@@ -1,0 +1,6 @@
+<h1>Home Page</h1>
+<%= link_to 'Create Classroom', new_classroom_path %>
+
+<% @classrooms.each do |classroom| %>
+  <h3><%= link_to classroom.name, classroom_path(classroom) %></h3>
+<% end %>

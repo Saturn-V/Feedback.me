@@ -1,0 +1,9 @@
+<h1>Create a Classroom!</h1>
+
+<%= form_for(@classroom) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit 'Create' %>
+<% end %>
+
+<%= link_to 'Back To Home Page', root_path %>
