@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209054334) do
+ActiveRecord::Schema.define(version: 20161212065942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,4 +21,13 @@ ActiveRecord::Schema.define(version: 20161209054334) do
     t.string   "name"
   end
 
+  create_table "forms", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "classroom_id"
+    t.index ["classroom_id"], name: "index_forms_on_classroom_id", using: :btree
+  end
+
+  add_foreign_key "forms", "classrooms"
 end

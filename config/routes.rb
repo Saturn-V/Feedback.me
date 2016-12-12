@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   resources :pages, only: [:home]
 
-  resources :classrooms, only: [:show, :new, :create]
+  resources :classrooms, only: [:show, :new, :create] do
+    resources :forms, only: [:index, :show, :new, :create]
+  end
 end

@@ -1,0 +1,205 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /* Grid
+ –––––––––––––––––––––––––––––––––––––––––––––––––– */
+ .container {
+   position: relative;
+   width: 100%;
+   max-width: 960px;
+   margin: 0 auto;
+   padding: 0 20px;
+   box-sizing: border-box;
+  }
+
+ .columns {
+   width: 100%;
+   float: left;
+   box-sizing: border-box;
+ }
+
+ /* For devices larger than 400px */
+ @media (min-width: 400px) {
+   .container {
+     width: 85%;
+     padding: 0;
+   }
+ }
+
+ /* For devices larger than 550px */
+ @media (min-width: 550px) {
+   .container { width: 80%; }
+   .column,
+   .columns { margin-left: 4%; }
+   .column:first-child,
+   .columns:first-child { margin-left: 0; }
+ }
+
+ .one.column,
+ .one.columns                    { width: 4.66666666667%; }
+ .two.columns                    { width: 13.3333333333%; }
+ .three.columns                  { width: 22%;            }
+ .four.columns                   { width: 30.6666666667%; }
+ .five.columns                   { width: 39.3333333333%; }
+ .six.columns                    { width: 48%;            }
+ .seven.columns                  { width: 56.6666666667%; }
+ .eight.columns                  { width: 65.3333333333%; }
+ .nine.columns                   { width: 74.0%;          }
+ .ten.columns                    { width: 82.6666666667%; }
+ .eleven.columns                 { width: 91.3333333333%; }
+ .twelve.columns                 { width: 100%; margin-left: 0; }
+
+ /* Offsets */
+ .offset-by-one.column,
+ .offset-by-one.columns          { margin-left: 8.66666666667%; }
+ .offset-by-two.column,
+ .offset-by-two.columns          { margin-left: 17.3333333333%; }
+ .offset-by-three.column,
+ .offset-by-three.columns        { margin-left: 26%;            }
+ .offset-by-four.column,
+ .offset-by-four.columns         { margin-left: 34.6666666667%; }
+ .offset-by-five.column,
+ .offset-by-five.columns         { margin-left: 43.3333333333%; }
+ .offset-by-six.column,
+ .offset-by-six.columns          { margin-left: 52%;            }
+ .offset-by-seven.column,
+ .offset-by-seven.columns        { margin-left: 60.6666666667%; }
+ .offset-by-eight.column,
+ .offset-by-eight.columns        { margin-left: 69.3333333333%; }
+ .offset-by-nine.column,
+ .offset-by-nine.columns         { margin-left: 78.0%;          }
+ .offset-by-ten.column,
+ .offset-by-ten.columns          { margin-left: 86.6666666667%; }
+ .offset-by-eleven.column,
+ .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+
+ /* Navigation Menu
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Desktop Navigation */
+.nav {
+  position: fixed;
+  z-index: 10;
+  height: 100vh;
+  background-color: rgba(255, 253, 245, .75);
+  border-radius: 0 6px 6px 0;
+  /*color: #44696C;*/
+  /*background: linear-gradient(rgba(255, 216, 155, .5), rgba(25, 84, 123, .5));*/
+}
+
+.nav > .name {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-size: 2.5em;
+  font-weight: 400;
+  /*color: #44696C;*/
+}
+
+.nav-items {
+  position: absolute;
+  width: auto;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.nav > .nav-items a {
+  font-weight: 200;
+  /*box-sizing: border-box;*/
+  display: block;
+  float: left;
+  padding: 10% 5%;
+  font-size: 1.5em;
+  transition: 0.1s;
+}
+
+.nav > .nav-items a:hover {
+  border-left: solid 4px #004056;
+}
+
+/* MOBILE NAV PLACE INTO A MEDIA QUERY SO THIS ONLY SHOWS UP WHEN ON MOBILE*/
+.nav-mobile-button {
+  display: none;
+  color: black;
+  z-index: 1;
+  font-size:30px;
+  cursor:pointer;
+  position: fixed;
+  right: 10%;
+}
+
+.nav-mobile {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  /*background: linear-gradient(rgba(255, 216, 155, 0.9), rgba(25, 84, 123, 0.9));*/
+  background-color: rgba(255, 253, 245, .75);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align:center;
+}
+
+.nav-mobile a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 45px;
+    display: block;
+    transition: 0.444ms
+}
+
+.nav-mobile a:hover{
+    color: #f1f1f1;
+}
+
+.nav-mobile .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+.nav-items-mobile {
+    margin-top: 30%;
+}
+
+@media only screen  and (min-device-width: 320px) and (max-device-width: 480px) {
+    .nav-mobile { padding-top: 15px; }
+
+    .nav-mobile a { font-size: 50px; }
+
+    .nav-mobile-button { display: block; }
+
+    .nav { display: none; }
+
+    .page-content {
+        width: 100%;
+        left: 0;
+    }
+
+    .project-card {
+        width: calc(100% - 5%);
+        height: calc(50% - 5%)
+    }
+}

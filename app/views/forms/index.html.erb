@@ -1,0 +1,6 @@
+<h1>Forms</h1>
+<%= link_to "Create a Form", new_classroom_form_path(@classroom) %>
+
+<% @classroom.forms.each do |form| %>
+  <h3><%= link_to form.name, classroom_form_path(@classroom, form) %></h3>
+<% end %>
