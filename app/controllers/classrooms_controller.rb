@@ -1,14 +1,17 @@
 class ClassroomsController < ApplicationController
   def show
-    @classroom = Classroom.find(params[:id])
+    @user = current_user
+    @classroom = @user.classrooms.find(params[:id])
   end
 
   def new
-    @classroom = Classroom.new
+    @user = current_user
+    @classroom = @user.classrooms.build
   end
 
   def create
-    @classroom = Classroom.new(classroom_params)
+    @user = current_user
+    @classroom = @user.classrooms.build(classroom_params)
 
     if @classroom.save
       flash[:success] = 'Classroom Created'
