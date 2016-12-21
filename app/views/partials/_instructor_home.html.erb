@@ -1,0 +1,11 @@
+<h1>Instructor Home Page</h1>
+
+<% if @user.classrooms.count > 0 %>
+  <h1>yo</h1>
+<% else %>
+  <%= link_to 'Create Classroom', new_classroom_path %>
+
+  <% @classrooms.each do |classroom| %>
+    <h3><%= link_to classroom.name, classroom_path(classroom) %></h3>
+  <% end %>
+<% end %>

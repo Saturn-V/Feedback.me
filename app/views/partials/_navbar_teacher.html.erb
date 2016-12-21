@@ -1,11 +1,10 @@
     <p class="name">Feedback</p>
     <div class="nav-items">
     <% if user_signed_in? %>
+      <% if current_user.try(:instructor?) %>
+      <%= link_to "Forms", new_user_registration_path %>
+      <% end %>
     <% else %>
       <%= link_to "Sign Up", new_user_registration_path %>
     <% end %>
-
-      <!-- <a href="#projects">Projects</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a> -->
     </div>
