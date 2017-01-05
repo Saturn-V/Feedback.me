@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     @user = current_user
-    @classrooms = Classroom.all
+    @classrooms = @user.classrooms
   end
 
   def landing

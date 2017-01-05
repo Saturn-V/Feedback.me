@@ -1,0 +1,18 @@
+<%= link_to "Feedback", root_path, :class => 'name' %>
+
+<div class="nav-items">
+  <% if user_signed_in? %>
+    <% if current_user.try(:instructor?) %>
+      <%= link_to "Forms", new_user_registration_path %>
+    <% else %>
+      <a href="#">Student</a>
+    <% end %>
+
+    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+
+  <% else %>
+    <%= link_to "Sign Up Student", new_user_registration_path %>
+    <%= link_to "Sign Up Teacher", new_user_registration_path %>
+    <%= link_to "Log In", new_user_session_path %>
+  <% end %>
+</div>

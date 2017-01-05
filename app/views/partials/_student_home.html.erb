@@ -1,0 +1,8 @@
+<h1>Student: <%= @user.email %></h1>
+<% if current_user.try(:instructor?) %>
+<h3>Role: Instructor</h3>
+<% end %>
+
+<% if current_user.try(:student?) %>
+<h3>Role: Student</h3>
+<% end %>

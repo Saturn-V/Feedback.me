@@ -1,9 +1,5 @@
 <% if current_user.try(:instructor?) %>
 <%= render "partials/instructor_home" %>
 <% else %>
-<h1>404 Home Page not found aka my user properties are nil</h1>
-<% end %>
-
-<% if current_user.try(:student?) %>
 <%= render "partials/student_home" %>
 <% end %>
