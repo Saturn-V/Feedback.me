@@ -1,7 +1,8 @@
 class ClassroomsController < ApplicationController
   def show
     @user = current_user
-    @classroom = @user.classrooms.find(params[:id])
+    # @classroom = @user.classrooms.find(params[:id])
+    @classroom = Classroom.find(params[:id])
   end
 
   def new

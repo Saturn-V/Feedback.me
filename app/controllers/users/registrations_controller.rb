@@ -7,17 +7,51 @@ before_action :configure_account_update_params, only: [:update]
     super
   end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def new_student
+    session[:user] ||= { }
+    session[:user]['instructor'] = true
+    session[:user]['student'] = false
+    @user = build_resource(session[:user])
+  end
 
+  def new_instructor
+    session[:user] ||= { }
+    session[:user]['instructor'] = true
+    session[:user]['student'] = false
+    @user = build_resource(session[:user])
+    @user.current_step = "teacher"
+  end
+
+  # POST /resource
   def create
-    @user = User.new
-    @user.current_step = session[:order_step]
-    @user.next_step
-    session[:order_step] = @user.current_step
-    render 'new'
+    session[:user].deep_merge!(params[:user]) if params[:user]
+    @user = build_resource(session[:user])
+    @user.current_step = session[:registration_step]
+
+    if @user.valid?
+      if @user.teacher_step || @user.student_step
+        @user.save if @user.valid?
+      else
+        @user.next_step
+      end
+      session[:registration_step] = @user.current_step
+    end
+
+    if @user.new_record?
+      render 'new'
+    else
+      session[:user_params] = nil
+
+      if @user.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_navigational_format?
+        sign_in(:user, @user)
+        respond_with @user, :location => after_sign_up_path_for(@user)
+      else
+        set_flash_message :notice, :"signed_up_but_#{@user.inactive_message}" if is_navigational_format?
+        expire_session_data_after_sign_in!
+        respond_with @user, :location => after_inactive_sign_up_path_for(@user)
+      end
+    end
   end
 
   # GET /resource/edit

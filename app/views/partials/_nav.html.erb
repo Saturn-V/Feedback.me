@@ -2,17 +2,17 @@
 
 <div class="nav-items">
   <% if user_signed_in? %>
-    <% if current_user.try(:instructor?) %>
-      <%= link_to "Forms", new_user_registration_path %>
+    <% if current_user.try(:instructor?) and current_user.classrooms.count > 0%>
+      <%= link_to "Forms", classroom_forms_path %>
     <% else %>
-      <a href="#">Student</a>
+      <a href="#">Create Classroom</a>
     <% end %>
 
     <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
 
   <% else %>
-    <%= link_to "Sign Up Student", new_user_registration_path %>
-    <%= link_to "Sign Up Teacher", new_user_registration_path %>
+    <%= link_to "Sign Up Student", new_student_registration_path %>
+    <%= link_to "Sign Up Instructor", new_instructor_registration_path %>
     <%= link_to "Log In", new_user_session_path %>
   <% end %>
 </div>

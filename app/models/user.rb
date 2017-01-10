@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :classrooms
-  after_create :assign_student_role
+  # after_create :assign_student_role
   attr_writer :current_step
 
   def assign_student_role
@@ -24,5 +24,13 @@ class User < ApplicationRecord
 
   def next_step
     self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def teacher_step
+    current_step == steps.last
+  end
+
+  def student_step
+    current_step == steps[1]
   end
 end
