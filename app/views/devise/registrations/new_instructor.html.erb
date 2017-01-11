@@ -1,5 +1,4 @@
 <h2>Sign up as an Instructor</h2>
-<h2><%= @user.current_step %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
@@ -27,8 +26,9 @@
     <%= f.hidden_field :instructor, value: true %>
   </div>
 
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", :name => 'instructor_button' %>
   </div>
 
 <% end %>
