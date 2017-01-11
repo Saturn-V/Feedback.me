@@ -1,6 +1,6 @@
-<h1>Please enter the class code: </h1>
-
-<%= form_tag(classrooms_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Class Code" %>
-    <%= submit_tag "Submit", :name => nil %>
+<% if @classroom.blank? %>
+  <h4>0 classrooms matched the code <%= params[:search] %>.</h4>
+<% else %>
+  <h3><%= link_to @classroom.name, classroom_path(@classroom) %></h3>
+  <span>Student Count: <%= @classroom.users.count %></span>
 <% end %>

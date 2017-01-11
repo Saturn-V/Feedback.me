@@ -1,13 +1,7 @@
 class ClassroomsController < ApplicationController
   def index
     @user = current_user
-    @classrooms = current_user.classrooms.all
-
-    if params[:search]
-      @classrooms = Classroom.search(params[:search]).order("created_at DESC")
-    else
-      @classrooms = Classroom.all.order("created_at DESC")
-    end
+    @classrooms = @user.classrooms.all
   end
 
   def show
@@ -52,8 +46,16 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  def join_classroom_search
+  end
+
   def join_classroom
-    @classroom
+    if params[:search]
+      @classroom = Classroom.find_by(class_code: params[:search])
+    else
+      # @recipes = Recipe.all.order("created_at DESC")
+      flash[:error] = "Failed to find class."
+    end
   end
 
   private

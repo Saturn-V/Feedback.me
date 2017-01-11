@@ -1,11 +1,7 @@
 <h1>Your Classes</h1>
-<span><%= link_to 'Join Classroom', new_student_join_path %></span>
+<span><%= link_to 'Join Classroom', new_student_join_search_path %></span>
 
-<% if @classrooms.blank? %>
-  <h4>There are no recipes containing the term <%= params[:search] %>.</h4>
-<% else %>
-  <% @classrooms.each do |classroom| %>
+<% @classrooms.each do |classroom| %>
   <h3><%= link_to classroom.name, classroom_path(classroom) %></h3>
   <span>Student Count: <%= classroom.users.count %></span>
-  <% end %>
 <% end %>
