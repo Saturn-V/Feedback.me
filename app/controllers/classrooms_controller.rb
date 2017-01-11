@@ -13,10 +13,11 @@ class ClassroomsController < ApplicationController
   def create
     @user = current_user
     @classroom = @user.classrooms.build(classroom_params)
+    @classroom.class_code = SecureRandom.hex(6)[0..6]
 
-    if @classroom.save
+    if @user.save
       flash[:success] = 'Classroom Created'
-      redirect_to classroom_path(@classroom)
+      redirect_to @classroom
     else
       redirect_to :back
       flash[:error] = 'Classroom failed to be created'

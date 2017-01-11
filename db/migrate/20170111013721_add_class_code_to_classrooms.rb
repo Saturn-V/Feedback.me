@@ -1,0 +1,5 @@
+class AddClassCodeToClassrooms < ActiveRecord::Migration[5.0]
+  def change
+    add_column :classrooms, :class_code, :string
+  end
+end

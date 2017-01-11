@@ -3,8 +3,7 @@
 <div class="nav-items">
   <% if user_signed_in? %>
     <% if current_user.try(:instructor?) and current_user.classrooms.count > 0%>
-      <%= link_to "Forms", classroom_forms_path %>
-    <% else %>
+      <%= link_to "Create Classroom", new_classroom_path %>
       <a href="#">Create Classroom</a>
     <% end %>
 

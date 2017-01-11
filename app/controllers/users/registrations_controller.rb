@@ -9,9 +9,10 @@ before_action :configure_account_update_params, only: [:update]
 
   def new_student
     session[:user] ||= { }
-    session[:user]['instructor'] = true
-    session[:user]['student'] = false
+    session[:user]['instructor'] = false
+    session[:user]['student'] = true
     @user = build_resource(session[:user])
+    @user.current_step = "class_code"
   end
 
   def new_instructor
