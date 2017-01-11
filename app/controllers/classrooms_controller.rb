@@ -1,4 +1,15 @@
 class ClassroomsController < ApplicationController
+  def index
+    @user = current_user
+    @classrooms = current_user.classrooms.all
+
+    if params[:search]
+      @classrooms = Classroom.search(params[:search]).order("created_at DESC")
+    else
+      @classrooms = Classroom.all.order("created_at DESC")
+    end
+  end
+
   def show
     @user = current_user
     # @classroom = @user.classrooms.find(params[:id])
@@ -22,6 +33,27 @@ class ClassroomsController < ApplicationController
       redirect_to :back
       flash[:error] = 'Classroom failed to be created'
     end
+  end
+
+  def update
+
+  end
+
+  def join
+    @user = current_user
+    @classroom = Classroom.find_by(class_code: params[:id])
+    @classroom.users << @user
+    if @classroom.update_attributes(classroom_params)
+      redirect_to @classroom
+      flash[:success] = "Succesfully Joined Class!"
+    else
+      redirect_to :back
+      flash[:error] = "Failed to join class."
+    end
+  end
+
+  def join_classroom
+    @classroom
   end
 
   private

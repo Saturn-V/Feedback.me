@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20170111013721) do
   end
 
   create_table "classrooms_users", id: false, force: :cascade do |t|
-    t.integer "classroom_id", null: false
-    t.integer "user_id",      null: false
+    t.integer "classroom_id"
+    t.integer "user_id"
+    t.index ["classroom_id"], name: "index_classrooms_users_on_classroom_id", using: :btree
+    t.index ["user_id"], name: "index_classrooms_users_on_user_id", using: :btree
   end
 
   create_table "forms", force: :cascade do |t|

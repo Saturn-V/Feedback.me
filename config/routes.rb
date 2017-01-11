@@ -21,7 +21,14 @@ Rails.application.routes.draw do
 
   resources :pages, only: [:home,:landing]
 
-  resources :classrooms, only: [:show, :new, :create] do
+  # Customized classrooms routes
+  get  'classrooms/join' => 'classrooms#join_classroom', :as => 'new_student_join'
+
+  resources :classrooms, only: [:index, :show, :new, :create] do
+    member do
+      patch :join
+      put :join
+    end
     resources :forms, only: [:index, :show, :new, :create]
   end
 end
