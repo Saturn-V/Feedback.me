@@ -1,6 +1,15 @@
 <% if @classroom.blank? %>
   <h4>0 classrooms matched the code <%= params[:search] %>.</h4>
 <% else %>
-  <h3><%= link_to @classroom.name, classroom_path(@classroom) %></h3>
+  <h3>
+    <%= link_to @classroom.name, classroom_path(@classroom) %>
+
+    <%= form_for @classroom, url: join_classroom_path(@classroom) do |f| %>
+      <%= f.hidden_field :users do |cf| %>
+        <% cf << current_user %>
+      <% end %>
+      <%= f.submit 'Join', :name => 'join' %>
+    <% end %>
+  </h3>
   <span>Student Count: <%= @classroom.users.count %></span>
 <% end %>

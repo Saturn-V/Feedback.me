@@ -35,7 +35,7 @@ class ClassroomsController < ApplicationController
 
   def join
     @user = current_user
-    @classroom = Classroom.find_by(class_code: params[:id])
+    @classroom = Classroom.find(params[:id])
     @classroom.users << @user
     if @classroom.update_attributes(classroom_params)
       redirect_to @classroom
@@ -50,11 +50,20 @@ class ClassroomsController < ApplicationController
   end
 
   def join_classroom
+    @user = current_user
+    @classroom = nil
     if params[:search]
       @classroom = Classroom.find_by(class_code: params[:search])
     else
       # @recipes = Recipe.all.order("created_at DESC")
       flash[:error] = "Failed to find class."
+    end
+
+    if params[:join]
+      @classroom.users << @user
+      if @user.save
+        redirect_to classrooms_path
+      end
     end
   end
 
