@@ -1,7 +1,7 @@
 <h1>Create a Form!</h1>
 
 <%= form_for [@classroom, @form] do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.submit 'Create' %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Create' %>
 <% end %>

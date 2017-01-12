@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111013721) do
+ActiveRecord::Schema.define(version: 20170112054356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,28 @@ ActiveRecord::Schema.define(version: 20170111013721) do
     t.index ["classroom_id"], name: "index_forms_on_classroom_id", using: :btree
   end
 
+  create_table "forms_questions", id: false, force: :cascade do |t|
+    t.integer "form_id"
+    t.integer "question_id"
+    t.index ["form_id"], name: "index_forms_questions_on_form_id", using: :btree
+    t.index ["question_id"], name: "index_forms_questions_on_question_id", using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.boolean  "free"
+    t.boolean  "static"
+    t.string   "option_one"
+    t.string   "option_two"
+    t.string   "option_three"
+    t.string   "option_four"
+    t.string   "option_five"
+    t.string   "option_six"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "form_id"
+    t.index ["form_id"], name: "index_questions_on_form_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -57,4 +79,5 @@ ActiveRecord::Schema.define(version: 20170111013721) do
   end
 
   add_foreign_key "forms", "classrooms"
+  add_foreign_key "questions", "forms"
 end

@@ -10,6 +10,8 @@
       <%= link_to "Classrooms", classrooms_path %>
     <% end %>
 
+    <%= link_to "Forms", classroom_forms_path(@classroom) if @classroom %>
+
     <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
 
   <% else %>
