@@ -7,7 +7,7 @@ class FormsController < ApplicationController
 
   def show
     @classroom = Classroom.find(params[:classroom_id])
-    @form = Form.find(params[:id])
+    @form = @classroom.forms.find(params[:id])
     @questions = @form.questions
   end
 

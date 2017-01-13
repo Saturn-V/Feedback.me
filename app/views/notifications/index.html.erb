@@ -1,0 +1,10 @@
+<h1>Notifications</h1>
+
+<% @notifications.each do |notification| %>
+  <%= link_to(edit_response_path(notification.response)) do %>
+  <section>
+    <h2>Form Request</h2>
+    <span>from <%= notification.sender.email %></span>
+  </section>
+  <% end %>
+<% end %>

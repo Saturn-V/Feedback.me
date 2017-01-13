@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112054356) do
+ActiveRecord::Schema.define(version: 20170113203621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "response_id"
+    t.integer  "value_static"
+    t.string   "value_free"
+    t.index ["response_id"], name: "index_answers_on_response_id", using: :btree
+  end
 
   create_table "classrooms", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -37,26 +46,45 @@ ActiveRecord::Schema.define(version: 20170112054356) do
     t.index ["classroom_id"], name: "index_forms_on_classroom_id", using: :btree
   end
 
-  create_table "forms_questions", id: false, force: :cascade do |t|
-    t.integer "form_id"
-    t.integer "question_id"
-    t.index ["form_id"], name: "index_forms_questions_on_form_id", using: :btree
-    t.index ["question_id"], name: "index_forms_questions_on_question_id", using: :btree
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "response_id"
+    t.index ["response_id"], name: "index_notifications_on_response_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
-    t.boolean  "free"
     t.boolean  "static"
-    t.string   "option_one"
-    t.string   "option_two"
-    t.string   "option_three"
-    t.string   "option_four"
-    t.string   "option_five"
-    t.string   "option_six"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "free"
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "form_id"
     t.index ["form_id"], name: "index_questions_on_form_id", using: :btree
+  end
+
+  create_table "questions_skills", id: false, force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "skill_id"
+    t.index ["question_id"], name: "index_questions_skills_on_question_id", using: :btree
+    t.index ["skill_id"], name: "index_questions_skills_on_skill_id", using: :btree
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "form_id"
+    t.integer  "user_id"
+    t.index ["form_id"], name: "index_responses_on_form_id", using: :btree
+    t.index ["user_id"], name: "index_responses_on_user_id", using: :btree
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,6 +106,10 @@ ActiveRecord::Schema.define(version: 20170112054356) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "answers", "responses"
   add_foreign_key "forms", "classrooms"
+  add_foreign_key "notifications", "responses"
   add_foreign_key "questions", "forms"
+  add_foreign_key "responses", "forms"
+  add_foreign_key "responses", "users"
 end

@@ -1,0 +1,27 @@
+<% if q.try(:static?) %>
+  <% q.skills.each do |skill| %>
+    <li><%= skill.label %></li>
+  <% end %>
+
+  <p>
+
+    <%= f.label :value_static, "Select one aption that applies to you most." %><br />
+    <%= f.radio_button :value_static, 0 %>
+    <%= f.label :value_waiting, "0. Waiting" %><br />
+    <%= f.radio_button :value_static, 1 %>
+    <%= f.label :value_beginning, "1. Beginning" %><br />
+    <%= f.radio_button :value_static, 2 %>
+    <%= f.label :value_undertaking, "2. Undertaking" %><br />
+    <%= f.radio_button :value_static, 3 %>
+    <%= f.label :value_approaching, "3. Approaching" %><br />
+    <%= f.radio_button :value_static, 4 %>
+    <%= f.label :value_overtaking, "4. Overtaking" %><br />
+    <%= f.radio_button :value_static, 5 %>
+    <%= f.label :value_innovating, "5. Innovating" %><br />
+  </p>
+<% else %>
+  <p>
+    <%= f.label :value_static, "Free Response Answer" %><br />
+    <%= f.text_field :value_static, :rows => 3 %><br />
+  </p>
+<% end %>

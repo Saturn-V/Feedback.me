@@ -1,6 +1,9 @@
 <h1>Forms</h1>
-<%= link_to "Create a Form", new_classroom_form_path(@classroom) %>
 
-<% @classroom.forms.each do |form| %>
-  <h3><%= link_to form.name, classroom_form_path(@classroom, form) %></h3>
+<% if @forms.empty? %>
+  <h1>No forms right now.</h1>
+<% else %>
+  <% @forms.each do |f| %>
+  <h3><%= link_to f.name, classroom_form_path(@classroom, f) %></h3>
+  <% end %>
 <% end %>
