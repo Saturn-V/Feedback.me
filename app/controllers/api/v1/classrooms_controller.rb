@@ -1,4 +1,9 @@
-class ClassroomsController < ApplicationController
+class Api::V1::ClassroomsController < Api::V1::BaseController
+
+  before_filter :authenticate_user!
+
+  respond_to :json
+
   def index
     @user = current_user
     @classrooms = @user.classrooms.all
