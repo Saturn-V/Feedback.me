@@ -1,12 +1,12 @@
 class Api::V1::ClassroomsController < Api::V1::BaseController
-
-  before_filter :authenticate_user!
-
-  respond_to :json
+  before_action :authenticate_request!
 
   def index
-    @user = current_user
-    @classrooms = @user.classrooms.all
+    binding.pry
+    # @user = current_user
+    # respond_with @user.classrooms.all
+    respond_with params[:email]
+    # render json: {'logged_in' => true}
   end
 
   def show

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
 
+  # JWT authentciation endpoint
+  post 'auth_user' => 'authentication#authenticate_user'
+
   # Customized users/registrations routes
   devise_scope :user do
     get  'students/sign_up' => 'users/registrations#new_student', :as => 'new_student_registration'
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
 
   # Default and Authenticated Root_Route's
   root 'pages#landing'
+
 
   # Customized classrooms routes
   get  'classrooms/join/search' => 'classrooms#join_classroom_search', :as => 'new_student_join_search'
