@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="46px" viewBox="0 0 47 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Website---Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="A4" transform="translate(-10.000000, -40.000000)" stroke="#F56643" stroke-width="4">
+            <g id="Icon" transform="translate(12.000000, 42.000000)">
+                <path d="M9,41 C9,41.552 8.552,42 8,42 L1,42 C0.448,42 0,41.552 0,41 L0,16 C0,15.448 0.448,15 1,15 L8,15 C8.552,15 9,15.448 9,16 L9,41 L9,41 Z" id="Stroke-274"></path>
+                <path d="M43,41 C43,41.552 42.552,42 42,42 L35,42 C34.448,42 34,41.552 34,41 L34,26 C34,25.448 34.448,25 35,25 L42,25 C42.552,25 43,25.448 43,26 L43,41 L43,41 Z" id="Stroke-276"></path>
+                <path d="M26,41 C26,41.552 25.552,42 25,42 L18,42 C17.448,42 17,41.552 17,41 L17,1 C17,0.448 17.448,0 18,0 L25,0 C25.552,0 26,0.448 26,1 L26,41 L26,41 Z" id="Stroke-278"></path>
+            </g>
+        </g>
+    </g>
+</svg>

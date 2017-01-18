@@ -6,6 +6,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro' %>
   </head>
 
   <body>
@@ -15,7 +17,7 @@
         <%= render "partials/nav" %>
       </div>
 
-      <div class="ten columns offset-by-two columns">
+      <div class="ten columns full offset-by-two columns full">
         <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>

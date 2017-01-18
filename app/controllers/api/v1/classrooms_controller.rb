@@ -3,9 +3,8 @@ class Api::V1::ClassroomsController < Api::V1::BaseController
 
   def index
     binding.pry
-    # @user = current_user
-    # respond_with @user.classrooms.all
-    respond_with params[:email]
+    @user = User.find(JsonWebToken.decode(request.headers['Authorization'].split(' ').last))
+    respond_with @user.classrooms.all
     # render json: {'logged_in' => true}
   end
 

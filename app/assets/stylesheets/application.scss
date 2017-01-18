@@ -14,6 +14,34 @@
  *= require_self
  */
 
+ /* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+html, body {
+  * { font-family: 'Source Sans Pro', sans-serif; }
+  font-size: 20;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(245, 245, 245);
+  color: black;
+}
+
+body {
+    font-family: 'san-francisco' !important;
+    font-weight: 100;
+    color: #FAFAFA;
+    height: 100%;
+    width: 100%;
+    color: #004056;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+
+}
+
  /* Grid
  –––––––––––––––––––––––––––––––––––––––––––––––––– */
  .container {
@@ -30,6 +58,11 @@
    float: left;
    box-sizing: border-box;
  }
+
+ .ten.columns.full { width: 87.6666666667% }
+
+ .offset-by-two.column.full,
+ .offset-by-two.columns.full          { margin-left: 13.3333333333%; }
 
  /* For devices larger than 400px */
  @media (min-width: 400px) {
@@ -93,10 +126,7 @@
   position: fixed;
   z-index: 10;
   height: 100vh;
-  background-color: rgba(150, 150, 150, .75);
-  border-radius: 0 6px 6px 0;
-  /*color: #44696C;*/
-  /*background: linear-gradient(rgba(255, 216, 155, .5), rgba(25, 84, 123, .5));*/
+  background-color: rgb(250, 250, 250);
 }
 
 .nav > .name {
@@ -118,19 +148,16 @@
   transform: translate(-50%, -50%);
 }
 
-
 .nav > .nav-items a {
   font-weight: 200;
-  /*box-sizing: border-box;*/
   display: block;
-  float: left;
-  padding: 10% 5%;
+  padding: 20% 5%;
   font-size: 1.5em;
   transition: 0.1s;
 }
 
 .nav > .nav-items a:hover {
-  border-left: solid 4px #004056;
+  // border-left: solid 4px #004056;
 }
 
 /* MOBILE NAV PLACE INTO A MEDIA QUERY SO THIS ONLY SHOWS UP WHEN ON MOBILE*/

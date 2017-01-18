@@ -1,3 +1,44 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content {
+  position: relative;
+  height: 100vh;
+  &:first-child {
+    background-color: rgba(245, 245, 245, 1);
+  }
+  background-color: rgba(255, 255, 255, 1);
+  &:last-child {
+    background-color: rgba(245, 245, 245, 1);
+  }
+}
+
+.landing-title {
+  position: absolute;
+  top: 25%;
+  transform: translate(0%, -50%);
+  right: 10%;
+  width: 50%;
+  font-size: 4em;
+  //
+  // &:last-child {
+  //   left: 10%;
+  //   right: auto;
+  // }
+}
+
+.feedback {
+  &:first-child {
+    right: auto;
+    left: 10%;
+  }
+}
+
+.criticism {
+
+}
+
+.kaizen {
+
+}
