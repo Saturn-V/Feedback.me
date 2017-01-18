@@ -14,31 +14,54 @@
   }
 }
 
-.landing-title {
+.text.area {
   position: absolute;
-  top: 25%;
+  top: 38.5%;
   transform: translate(0%, -50%);
   right: 10%;
   width: 50%;
-  font-size: 4em;
-  //
-  // &:last-child {
-  //   left: 10%;
-  //   right: auto;
-  // }
+}
+
+.landing.image {
+  position: absolute;
+  top: 38.5%;
+  right: 7.5%;
+  transform: translate(0%, -50%);
 }
 
 .feedback {
-  &:first-child {
+  :first-child {
     right: auto;
     left: 10%;
+  }
+  .text.area {
+    .small.divider {
+      background-color: rgb(255, 208, 91);
+    }
   }
 }
 
 .criticism {
-
+  .landing.image {
+    right: auto;
+    left: 7.5%;
+  }
+  .text.area {
+    .small.divider {
+      background-color: rgb(50, 74, 94);
+    }
+  }
 }
 
 .kaizen {
+  :first-child {
+    right: auto;
+    left: 10%;
+  }
 
+  .text.area {
+    .small.divider {
+      background-color: rgb(255, 208, 91);
+    }
+  }
 }

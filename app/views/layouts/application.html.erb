@@ -18,10 +18,13 @@
       </div>
 
       <div class="ten columns full offset-by-two columns full">
-        <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
-        <%= yield %>
+        <div class="gutter">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+
+          <%= yield %>
+        </div>
       </div>
     </div>
 
