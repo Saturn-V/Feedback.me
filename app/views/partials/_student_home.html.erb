@@ -1,4 +1,4 @@
-<h1>Student: <%= @user.email %></h1>
+<h1>Student: <%= @user.last_name %>, <%= @user.first_name %> </h1>
 <% if current_user.try(:instructor?) %>
 <h3>Role: Instructor</h3>
 <% end %>
