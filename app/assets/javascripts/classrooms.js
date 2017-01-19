@@ -1,30 +1,17 @@
 //= require Chart
 
 $(function() {
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
-    type: 'bar',
+  var ctxA = document.getElementById("selfChart");
+  var ctxB = document.getElementById("classChart");
+  var selfChart = new Chart(ctxA, {
+    type: 'line',
     data: {
-      labels: ["Oct", "Nov", "Dec", "Jan", "Feb", "March"],
+      labels: ["Oct", "Nov", "Dec", "Jan", "Feb", "March", "April", "May", "June", "Oct", "Nov", "Dec", "Jan", "Feb", "March", "April", "May", "June"],
       datasets: [{
         label: 'Instructor Performance',
         data: [0, 2, 4, 2, 3, 1, 5, 2, 3, 3, 4, 5],
-        backgroundColor: [
-          'rgba(80, 227, 194, 0.2)',
-          'rgba(80, 227, 194, 0.2)',
-          'rgba(80, 227, 194, 0.2)',
-          'rgba(80, 227, 194, 0.2)',
-          'rgba(80, 227, 194, 0.2)',
-          'rgba(80, 227, 194, 0.2)'
-        ],
-        borderColor: [
-          'rgba(80, 227, 194, 1)',
-          'rgba(80, 227, 194, 1)',
-          'rgba(80, 227, 194, 1)',
-          'rgba(80, 227, 194, 1)',
-          'rgba(80, 227, 194, 1)',
-          'rgba(80, 227, 194, 1)'
-        ],
+        backgroundColor: 'rgba(80, 227, 194, 0.2)',
+        borderColor: 'rgba(80, 227, 194, 1)',
         borderWidth: 1
       }]
     },
@@ -35,7 +22,43 @@ $(function() {
             beginAtZero:true
           }
         }]
+      },
+      gridlines: {
+        display: false
       }
     }
+  });
+
+  var data = {
+    datasets: [{
+        data: [
+            8,
+            10,
+            4,
+            7,
+            13
+        ],
+        backgroundColor: [
+            "#FFCE56",
+            "#36A2EB",
+            "#4BC0C0",
+            "#FF6384",
+            "#BF90D4"
+        ],
+        label: 'Student Performance' // for legend
+    }],
+    labels: [
+        "Too Fast",
+        "Too Slow",
+        "A wee bit too fast",
+        "A wee bit too slow",
+        "Just Right!"
+    ]
+};
+
+  var classChart = new Chart(ctxB, {
+    type: 'polarArea',
+    data: data,
+    options: {}
   });
 });

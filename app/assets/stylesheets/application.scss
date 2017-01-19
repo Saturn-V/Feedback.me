@@ -49,8 +49,10 @@ span {
 }
 
 canvas {
-  max-width: 25%;
+  // float: left;
+  max-width: auto;
   max-height: auto;
+  padding: 4em;
 }
 
 a:hover g {

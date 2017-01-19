@@ -24,12 +24,16 @@
   background-color: white;
 }
 
-.chart {
+.chart-section {
   box-sizing: border-box;
   // width: 90%;
   margin: 4em 4em 4em 0;
   padding: 2em;
   background-color: white;
+}
+
+.chart {
+  float: left;
 }
 
 // Classroom Index
