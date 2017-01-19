@@ -9,6 +9,7 @@ class ResponsesController < ApplicationController
     @response = Response.find(params[:id])
 
     if @response.update_attributes(response_params)
+      # binding.pry
       redirect_to root_path
       flash[:success] = "Response completed"
     else
@@ -21,6 +22,6 @@ class ResponsesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def response_params
-    params.require(:response).permit(:value_static, :value_free)
+    params.require(:response).permit(:value_static, :value_free, :complete, answers_attributes => [:value_static, :value_free])
   end
 end

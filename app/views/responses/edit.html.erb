@@ -3,11 +3,13 @@
 <%= form_for @response do |f| %>
 
   <p>
+    <%= f.hidden_field :complete, value: true %>
+
     <% @questions.each do |question| %>
       <section>
         <li><%= question.label %></li>
         <ul>
-          <%= f.fields_for :questions do |builder| %>
+          <%= f.fields_for :answer do |builder| %>
             <%= render partial: "partials/answer_fields", locals: { :f => builder, :q => question } %>
           <% end %>
         </ul>

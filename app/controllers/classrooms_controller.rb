@@ -8,6 +8,19 @@ class ClassroomsController < ApplicationController
     @user = current_user
     # @classroom = @user.classrooms.find(params[:id])
     @classroom = Classroom.find(params[:id])
+    @users = @classroom.users
+    @feedbacks = []
+    @users.each do |user|
+      responses = user.responses.where(:complete => true)
+      responses.each do |response|
+        response.answers.each do |answer|
+          if !answer.value_free.nil?
+            @feedbacks += [answer]
+          end
+        end
+      end
+
+    end
   end
 
   def new

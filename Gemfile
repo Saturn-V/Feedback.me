@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 # Use jwt for user auth token bearing
 gem 'jwt'
+# Easily add variables to your Javascript from your controllers
+gem 'gon'
+# Beautiful charts from Chart.js
+gem 'chart-js-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Feedback</title>
+    <%= Gon::Base.render_data({}) %>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,13 +20,11 @@
       </div>
 
       <div class="ten columns full offset-by-two columns full">
-        <div class="gutter">
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>
 
           <%= yield %>
-        </div>
       </div>
     </div>
 

@@ -1,4 +1,23 @@
-<h1>Current Classroom: <%= @classroom.name %> | <%= @user.email %></h1>
-<h2>Class Code: <%= @classroom.class_code %></h2>
+<span class="title">Current Classroom: <%= @classroom.name %> | <%= @user.email %></span>
+<span class="sub title" style="display: block">Class Code: <%= @classroom.class_code %></span>
+<%= button_to 'Back To My Classrooms', root_path, method: :get %>
 
-<%= link_to 'Back To My Classrooms', root_path %>
+<div class="chart">
+  <span class="title">Weekly Growth</span>
+  <canvas id="myChart" width="200" height="200"></canvas>
+</div>
+
+  <div class="feedbacks">
+    <div class="header">
+      <span class="title">My Feedback</span>
+    </div>
+    <% @feedbacks.each do |feedback| %>
+      <div class="feedback-section">
+        <span class="sub title">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
+        <div class="small body">
+          <span><%= feedback.value_free %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

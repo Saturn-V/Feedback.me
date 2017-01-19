@@ -1,6 +1,9 @@
 class Response < ApplicationRecord
+  validates_presence_of :answers, :on => :update
+
   belongs_to :form
   belongs_to :user
+  belongs_to :classroom
 
   has_one :notification
 
