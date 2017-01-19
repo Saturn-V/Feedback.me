@@ -1,9 +1,12 @@
-<h1>Forms</h1>
+<span class="title">Forms</span>
 
-<% if @forms.empty? %>
-  <h1>No forms right now.</h1>
-<% else %>
+<div class="card">
+  <% if @forms.empty? %>
+  <span class="title">No forms right now.</span>
+  <% else %>
   <% @forms.each do |f| %>
-  <h3><%= link_to f.name, classroom_form_path(@classroom, f) %></h3>
+  <span class="title"><%= link_to f.name, classroom_form_path(@classroom, f) %></span>
+  <span class="sub title">Form Type: <%= f.assesment_type %></span>
   <% end %>
-<% end %>
+  <% end %>
+</div>
