@@ -1,29 +1,30 @@
 <% if !user_signed_in? %>
+
   <%= link_to root_path, :style => "width: 100%; height: auto;" do %>
-  <?xml version="1.0" encoding="UTF-8"?>
-  <svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="logo">
-    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
-    <title>Artboard</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Misc-/-Old" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g id="Artboard">
-        <g id="No-Background" transform="translate(256.000000, 256.000000) rotate(45.000000) translate(-256.000000, -256.000000) translate(67.000000, 67.000000)">
-          <g id="Group-5">
-            <path d="M189,189 C189,136.809091 231.309091,94.5 283.5,94.5 C335.690909,94.5 378,136.809091 378,189 C378,293.381818 293.381818,378 189,378 C84.6181823,378 0,293.381818 0,189 C0,241.190909 42.3090911,283.5 94.5,283.5 C146.690909,283.5 189,241.190909 189,189 Z" id="Combined-Shape" fill="#00B0C3"></path>
-            <ellipse id="Oval-2" fill="#FFFFFF" cx="283.5" cy="189" rx="18.9" ry="18.9"></ellipse>
-            <path d="M189,94.5 C189,42.3090911 231.309091,-1.42108547e-13 283.5,-1.42108547e-13 C335.690909,-1.42108547e-13 378,42.3090911 378,94.5 C377.999962,198.881856 293.381794,283.5 189,283.5 C84.6181823,283.5 0,198.881818 0,94.5 C-7.10542736e-14,146.690909 42.3090911,189 94.5,189 C146.690909,189 189,146.690909 189,94.5 Z" id="Combined-Shape" fill="#F56643" transform="translate(189.000000, 141.750000) rotate(180.000000) translate(-189.000000, -141.750000) "></path>
-            <circle id="Oval" fill="#FFFFFF" cx="94.5" cy="189" r="18.9"></circle>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="logo">
+      <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+      <title>Artboard</title>
+      <desc>Created with Sketch.</desc>
+      <defs></defs>
+      <g id="Misc-/-Old" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+          <g id="No-Background" transform="translate(256.000000, 256.000000) rotate(45.000000) translate(-256.000000, -256.000000) translate(67.000000, 67.000000)">
+            <g id="Group-5">
+              <path d="M189,189 C189,136.809091 231.309091,94.5 283.5,94.5 C335.690909,94.5 378,136.809091 378,189 C378,293.381818 293.381818,378 189,378 C84.6181823,378 0,293.381818 0,189 C0,241.190909 42.3090911,283.5 94.5,283.5 C146.690909,283.5 189,241.190909 189,189 Z" id="Combined-Shape" fill="#00B0C3"></path>
+              <ellipse id="Oval-2" fill="#FFFFFF" cx="283.5" cy="189" rx="18.9" ry="18.9"></ellipse>
+              <path d="M189,94.5 C189,42.3090911 231.309091,-1.42108547e-13 283.5,-1.42108547e-13 C335.690909,-1.42108547e-13 378,42.3090911 378,94.5 C377.999962,198.881856 293.381794,283.5 189,283.5 C84.6181823,283.5 0,198.881818 0,94.5 C-7.10542736e-14,146.690909 42.3090911,189 94.5,189 C146.690909,189 189,146.690909 189,94.5 Z" id="Combined-Shape" fill="#F56643" transform="translate(189.000000, 141.750000) rotate(180.000000) translate(-189.000000, -141.750000) "></path>
+              <circle id="Oval" fill="#FFFFFF" cx="94.5" cy="189" r="18.9"></circle>
+            </g>
           </g>
         </g>
       </g>
-    </g>
-  </svg>
+    </svg>
   <% end %>
+
 <% end %>
 
-<div class="nav-items">
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
 
   <%= link_to root_path do %>
     <?xml version="1.0" encoding="UTF-8"?>
@@ -44,11 +45,12 @@
     </svg>
   <% end %>
 
-    <% if current_user.try(:instructor?) and current_user.classrooms.count > 0 %>
-      <% if @classroom %>
-        <%= link_to classroom_forms_path(@classroom) do %>
-          <?xml version="1.0" encoding="UTF-8"?>
-          <svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <% if current_user.try(:instructor?) and current_user.classrooms.count > 0 %>
+    <% if @classroom %>
+
+      <%= link_to classroom_forms_path(@classroom) do %>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
               <title>Icon</title>
               <desc>Created with Sketch.</desc>
@@ -62,21 +64,81 @@
                       </g>
                   </g>
               </g>
-          </svg>
-        <% end %>
+        </svg>
       <% end %>
-    <% else %>
-      <%= link_to "Classrooms", classrooms_path %>
-      <%= link_to "Notifications", notifications_path %>
+
     <% end %>
 
-    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-
   <% else %>
-    <%= link_to "Instructor", new_instructor_registration_path, :style => "color: #EA5D32;" %>
-    <%= link_to "Student", new_student_registration_path, :style => "color: #30A7BE" %>
-    <footer>
-      <%= link_to "Log In", new_user_session_path %>
-    </footer>
+    <% if current_user.notifications.count > 0 %>
+
+      <%= link_to notifications_path, :class => "badge1", :data => { badge: current_user.notifications.count.to_s } do %>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+              <title>Icon</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g id="Website---Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                  <g id="A4" transform="translate(-10.000000, -118.000000)" stroke="#9B9B9B" stroke-width="4">
+                      <g id="Icon" transform="translate(12.000000, 120.000000)">
+                          <polyline id="Stroke-80" points="34 27 34 43 0 43 0 9 14 9"></polyline>
+                          <polygon id="Stroke-82" points="23.2151 28.2505 42.8151 8.5745 34.3511 0.1435 14.7511 19.8195 13.1851 29.8565"></polygon>
+                          <path d="M29.2851,5.9728 L37.0631,13.7508" id="Stroke-84"></path>
+                      </g>
+                  </g>
+              </g>
+        </svg>
+      <% end %>
+
+    <% else %>
+
+      <%= link_to "Notifications", notifications_path do %>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+              <title>Icon</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g id="Website---Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                  <g id="A4" transform="translate(-10.000000, -118.000000)" stroke="#9B9B9B" stroke-width="4">
+                      <g id="Icon" transform="translate(12.000000, 120.000000)">
+                          <polyline id="Stroke-80" points="34 27 34 43 0 43 0 9 14 9"></polyline>
+                          <polygon id="Stroke-82" points="23.2151 28.2505 42.8151 8.5745 34.3511 0.1435 14.7511 19.8195 13.1851 29.8565"></polygon>
+                          <path d="M29.2851,5.9728 L37.0631,13.7508" id="Stroke-84"></path>
+                      </g>
+                  </g>
+              </g>
+        </svg>
+      <% end %>
+
+    <% end %>
+
+    <%= link_to classrooms_path do %>
+      <?xml version="1.0" encoding="UTF-8"?>
+      <svg width="47px" height="47px" viewBox="0 0 38 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+            <title>Icon</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Website---Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <g id="A4" transform="translate(-15.000000, -197.000000)" stroke="#9B9B9B" stroke-width="4">
+                    <g id="Icon" transform="translate(17.000000, 199.000000)">
+                        <path d="M33.6992,17.7261 L17.7262,33.6991 C17.3252,34.1001 16.6752,34.1001 16.2742,33.6991 L0.3012,17.7261 C-0.0998,17.3251 -0.0998,16.6751 0.3012,16.2741 L16.2742,0.3011 C16.6752,-0.0999 17.3252,-0.0999 17.7262,0.3011 L33.6992,16.2741 C34.1002,16.6751 34.1002,17.3251 33.6992,17.7261 L33.6992,17.7261 Z" id="Stroke-433"></path>
+                        <path d="M33.6992,26.7261 L17.7262,42.6991 C17.3252,43.1001 16.6752,43.1001 16.2742,42.6991 L0.3012,26.7261" id="Stroke-434"></path>
+                    </g>
+                </g>
+            </g>
+      </svg>
+    <% end %>
+
   <% end %>
-</div>
+
+  <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+
+<% else %>
+  <%= link_to "Instructor", new_instructor_registration_path, :style => "color: #EA5D32;", :class => "bottom" %>
+  <%= link_to "Student", new_student_registration_path, :style => "color: #30A7BE", :class => "bottom" %>
+
+  <%= link_to "Log In", new_user_session_path, :class => "bottom" %>
+<% end %>

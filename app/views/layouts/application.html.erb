@@ -15,11 +15,11 @@
   <body>
 
     <div class="row">
-      <div class="two columns nav">
+      <div class="one column nav">
         <%= render "partials/nav" %>
       </div>
 
-      <div class="ten columns full offset-by-two columns full">
+      <div class="eleven columns full offset-by-one column full">
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>

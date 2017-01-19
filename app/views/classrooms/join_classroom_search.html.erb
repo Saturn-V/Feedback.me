@@ -1,6 +1,11 @@
-<h1>Please enter the class code: </h1>
+<span class="title">Join Class</span>
+<span class="sub title">
+  Enter the class code provided by your Instructor to join the class.
+</span>
 
-<%= form_tag(new_student_join_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Class Code" %>
-    <%= submit_tag "Submit", :name => nil %>
-<% end %>
+<div class="card">  
+  <%= form_tag(new_student_join_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Class Code" %>
+  <%= submit_tag "Submit", :name => nil %>
+  <% end %>
+</div>

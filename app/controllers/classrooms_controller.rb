@@ -1,7 +1,7 @@
 class ClassroomsController < ApplicationController
   def index
     @user = current_user
-    @classrooms = @user.classrooms.all
+    @classrooms = @user.classrooms.sort_by(&:created_at)
   end
 
   def show
@@ -84,6 +84,6 @@ class ClassroomsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def classroom_params
-    params.require(:classroom).permit(:name)
+    params.require(:classroom).permit(:name, :subject)
   end
 end

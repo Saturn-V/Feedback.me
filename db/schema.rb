@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119054622) do
+ActiveRecord::Schema.define(version: 20170119193601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170119054622) do
     t.datetime "updated_at", null: false
     t.string   "name"
     t.string   "class_code"
+    t.string   "subject"
   end
 
   create_table "classrooms_users", id: false, force: :cascade do |t|
@@ -40,9 +41,10 @@ ActiveRecord::Schema.define(version: 20170119054622) do
 
   create_table "forms", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "classroom_id"
+    t.string   "assesment_type"
     t.index ["classroom_id"], name: "index_forms_on_classroom_id", using: :btree
   end
 

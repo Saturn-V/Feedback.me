@@ -1,10 +1,13 @@
-<h1>Notifications</h1>
+<span class="title">Notifications</span>
 
 <% @notifications.each do |notification| %>
-  <%= link_to(edit_response_path(notification.response)) do %>
-  <section>
-    <h2>Form Request</h2>
-    <span>from <%= notification.sender.email %></span>
-  </section>
-  <% end %>
+  <div class="notification card">
+    <%= link_to(edit_response_path(notification.response)) do %>
+    <section>
+      <span class="sub title">Form Request</span>
+      <span><%= notification.response.form.assesment_type %></span>
+      <span>from <%= notification.sender.email %></span>
+    </section>
+    <% end %>
+  </div>
 <% end %>
