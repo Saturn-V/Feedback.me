@@ -1,4 +1,5 @@
-<span class="title">Current Classroom: <%= @classroom.name %> | <%= @user.email %></span>
+<span class="title">Current Classroom: <%= @classroom.name %></span>
+<span class="sub title">Instructor: <%= @user.last_name %>, <%= @user.first_name %></span>
 <span class="sub title" style="display: block">Class Code: <%= @classroom.class_code %></span>
 <%= button_to 'Back To My Classrooms', root_path, method: :get %>
 

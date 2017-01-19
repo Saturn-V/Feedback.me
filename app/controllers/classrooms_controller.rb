@@ -5,9 +5,9 @@ class ClassroomsController < ApplicationController
   end
 
   def show
-    @user = current_user
     # @classroom = @user.classrooms.find(params[:id])
     @classroom = Classroom.find(params[:id])
+    @user = @classroom.users.first
     @users = @classroom.users
     @feedbacks = []
     @users.each do |user|
