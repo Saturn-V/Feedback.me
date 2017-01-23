@@ -4,16 +4,3 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-instructor:
-  email: alice@example.com
-  password: password
-  password_confirmation: password
-  instructor: true
-  student: false
-
-student:
-  email: bob@example.com
-  password: password
-  password_confirmation: password
-  instructor: false
-  student: true
