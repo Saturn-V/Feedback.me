@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       patch :join
       put :join
     end
+
     resources :forms, only: [:index, :show, :new, :create]
 
     post 'classrooms/:classroom_id/forms/:id/notifications' => 'notifications#create', :as => 'notification_creation'
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
   resources :pages, only: [:home,:landing]
 
   # Response routes
-  resources :responses, only: [:edit, :update]
+  resources :responses, only: [:index, :show, :edit, :update]
 
 
 

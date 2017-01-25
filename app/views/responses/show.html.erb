@@ -1,0 +1,10 @@
+<% @response.answers.each do |answer| %>
+  <li><%= answer.question.label %></li>
+  <ul>
+    <% if answer.question.try(:static?) %>
+      <li><%= answer.value_static %></li>
+    <% else %>
+      <li><%= answer.value_free %></li>
+    <% end %>
+  </ul>
+<% end %>

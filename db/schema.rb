@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119193601) do
+ActiveRecord::Schema.define(version: 20170124025017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20170119193601) do
     t.integer  "response_id"
     t.integer  "value_static"
     t.string   "value_free"
+    t.integer  "question_id"
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["response_id"], name: "index_answers_on_response_id", using: :btree
   end
 
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170119193601) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "answers", "questions"
   add_foreign_key "answers", "responses"
   add_foreign_key "forms", "classrooms"
   add_foreign_key "notifications", "responses"

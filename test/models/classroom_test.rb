@@ -1,28 +1,38 @@
 require 'test_helper'
 
 class ClassroomTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  include Devise::Test::IntegrationHelpers
 
-  # def setup
-  #   @instructor = User.create(email: 'instructorTest@user.com', password: 'password', password_confirmation: 'password', instructor: true, student: false)
-  #   sign_in @instructor
-  #
-  #   @classroom = @instructor.classrooms.create(name: 'Rails')
-  # end
+  def setup
+    @user = User.create(email: 'adam@instructor.com', password: 'password', password_confirmation: 'password', first_name: 'Adam', last_name: 'Braus', instructor: true, student: false)
+    @user.save
+    sign_in @user
+    @classroom = @user.classrooms.create(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
+    @form = Form.create(name: 'Sample Form', classroom_id: @classroom, assesment_type: 'instructor')
+    @response = Response.create(classroom: @classroom, form: @form, user: @user)
+  end
 
-  # test 'subreddit has title' do
-  #   assert_equal @subreddit.title, 'new number who dis'
-  # end
+  test 'classroom has name' do
+    assert_equal @classroom.name, 'Ruby on Rails'
+  end
 
-  # test "user id should be present" do
-  #   assert_equal @subreddit.user, @user
-  # end
+  test 'classroom has class_code' do
+    assert_equal @classroom.class_code, 'xyz'
+  end
 
-  # test 'classroom can contain users' do
-  #   assert_equal @classroom.posts.count, 1
-  # end
+  test 'classroom has subject' do
+    assert_equal @classroom.subject, 'CS'
+  end
+
+  # Has many forms (?)
+
+  test 'classroom can contain responses' do
+    assert_equal @classroom.responses.count, 1
+  end
+
+  test 'classroom can contain users' do
+    assert_equal @classroom.users.count, 1
+  end
 
   # test "title should be present" do
   #   @subreddit.title = nil

@@ -5,16 +5,20 @@
   <p>
     <%= f.hidden_field :complete, value: true %>
 
-    <% @questions.each do |question| %>
       <section>
-        <li><%= question.label %></li>
-        <ul>
-          <%= f.fields_for :answer do |builder| %>
-            <%= render partial: "partials/answer_fields", locals: { :f => builder, :q => question } %>
+          <%= f.fields_for :answers do |builder| %>
+            <% if !Question.find_by(id:builder.object.question_id).nil? %>
+              <% question = Question.find_by(id:builder.object.question_id) %>
+
+              <li><%= question.label %></li>
+
+              <ul>
+                <%= render partial: "partials/answer_fields", locals: { :f => builder, :q => question } %>
+              </ul>
+            <% end %>
+
           <% end %>
-        </ul>
       </section>
-    <% end %>
   </p>
 
 

@@ -9,6 +9,9 @@ class Response < ApplicationRecord
 
   has_many :answers, dependent: :destroy
 
-  accepts_nested_attributes_for :answers
+  validates_associated :answers
 
+  attr_accessor :answers_attributes
+
+  accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 end

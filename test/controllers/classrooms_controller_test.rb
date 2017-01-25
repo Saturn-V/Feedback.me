@@ -10,10 +10,6 @@ class ClassroomsControllerTest < ActionDispatch::IntegrationTest
     @classroom = @user.classrooms.create(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
   end
 
-  test "the truth" do
-    assert true
-  end
-
   test "should get index" do
     get classrooms_url
     assert_response :success
@@ -26,6 +22,16 @@ class ClassroomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     get new_classroom_url
+    assert_response :success
+  end
+
+  test 'should get join_classroom_search' do
+    get new_student_join_search_url
+    assert_response :success
+  end
+
+  test 'should get join_classroom' do
+    get new_student_join_url(@classroom)
     assert_response :success
   end
 

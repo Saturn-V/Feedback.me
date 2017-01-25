@@ -1,4 +1,5 @@
 class ClassroomsController < ApplicationController
+
   def index
     @user = current_user
     @classrooms = @user.classrooms.sort_by(&:created_at)
@@ -19,7 +20,6 @@ class ClassroomsController < ApplicationController
           end
         end
       end
-
     end
   end
 
@@ -40,10 +40,6 @@ class ClassroomsController < ApplicationController
       redirect_to :back
       flash[:error] = 'Classroom failed to be created'
     end
-  end
-
-  def update
-
   end
 
   def join
