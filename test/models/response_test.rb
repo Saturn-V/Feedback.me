@@ -3,21 +3,34 @@ require 'test_helper'
 class ResponseTest < ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
 
-  # def setup
-  #   @user = User.create(email: 'adam@instructor.com', password: 'password', password_confirmation: 'password', first_name: 'Adam', last_name: 'Braus', instructor: true, student: false)
-  #   @user.save
-  #   sign_in @user
-  #   @classroom = @user.classrooms.build(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
-  #   @form = Form.create(name: 'Sample Form', classroom_id: @classroom, assesment_type: 'instructor')
-  #   3.times do
-  #     @form.questions.build(label: "Sample")
-  #   @response = Response.create(classroom: @classroom, form: @form, user: @user)
+  def setup
+    @user = User.create(email: 'adam@instructor.com', password: 'password', password_confirmation: 'password', first_name: 'Adam', last_name: 'Braus', instructor: true, student: false)
+    @user.save
+    # sign_in @user
+    @classroom = @user.classrooms.build(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
+    @form = Form.create(name: 'Sample Form', assesment_type: 'instructor')
+    @response = Response.create(classroom: @classroom, form: @form, user: @user)
+    # 3.times do
+    #   @form.questions.build(label: "Sample")
+    # end
+  end
+
+  # test 'response has one notification' do
+  #   assert_equal @response.user, @user
   # end
 
-  # test 'response has correlatiing question' do
-  #   assert_equal @response.name, 'Ruby on Rails'
-  # end
-  #
+  test 'response belongs to user' do
+    assert_equal @response.user, @user
+  end
+
+  test 'response belongs to classroom' do
+    assert_equal @response.classroom, @classroom
+  end
+
+  test 'response belongs to form' do
+    assert_equal @response.form, @form
+  end
+
   # test 'classroom has class_code' do
   #   assert_equal @classroom.class_code, 'xyz'
   # end

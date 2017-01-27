@@ -7,9 +7,14 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
     @user = User.create(email: 'adam@instructor.com', password: 'password', password_confirmation: 'password', first_name: 'Adam', last_name: 'Braus', instructor: true, student: false)
     @user.save
     sign_in @user
+
     @classroom = @user.classrooms.build(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
+
     @form = Form.create(name: 'Sample Form', assesment_type: 'instructor')
+    @question = @form.questions.create(static: true, free: false, label: 'Sample Question', form: @form)
+
     @response = Response.create(classroom: @classroom, form: @form, user: @user)
+    @answer = @response.answers.create(response: @response, question_id: @question)
   end
 
   test "should get index" do
@@ -28,20 +33,32 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update response' do
-    @res = Response.create(classroom: @classroom, form: @form, user: @user, is_complete: false)
+    @res = Response.create(classroom: @classroom, form: @form, user: @user)
 
-    patch response_url(@response), params: { response: { is_complete: true } }
+    patch response_url(@res), params: { response: { is_complete: true } }
 
-    # @res.is_complete = true
+    assert_redirected_to classroom_path(@classroom)
 
-    # @res.save
+    @res.reload
 
-    # take user to 'show' subreddit after editing one
-    # assert_redirected_to classroom_path(@classroom)
+    assert_equal true, @res.is_complete
+  end
 
-    # Reload data to fetch updated data and assert that title is updated.
-    # @response.reload
+  test 'should update response answers' do
+    @res = Response.create(classroom: @classroom, form: @form, user: @user)
+    @ans = @res.answers.create(question: @question)
+    
+    patch response_url(@res), params: { response: { is_complete: true, answers_attributes: {
+                                                                        '0': { value_static: 0 }
+                                                                       }
+                                                  }
+                                      }
 
-    assert_equal true, @response.is_complete
+    assert_redirected_to classroom_path(@classroom)
+
+    @res.reload
+    @ans.reload
+
+    assert_equal 0, @ans.value_static
   end
 end

@@ -21,7 +21,7 @@ html, body {
   font-size: 20;
   margin: 0;
   padding: 0;
-  background-color: #F5F5F5;
+  background-color: #FFC80A;
   color: black;
 }
 
@@ -62,6 +62,10 @@ a:hover g {
 svg {
   width: 1.75em;
   height: auto;
+}
+
+.header {
+  padding: 2.5rem;
 }
 
 .logo {
