@@ -48,7 +48,7 @@
   <% end %>
 
   <% if current_user.try(:instructor?) and current_user.classrooms.count > 0 %>
-    <% if @classroom %>
+    <% if !@classroom.nil? and !@classroom.new_record? %>
 
       <%= link_to classroom_forms_path(@classroom) do %>
         <?xml version="1.0" encoding="UTF-8"?>

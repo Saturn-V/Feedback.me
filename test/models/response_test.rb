@@ -1,7 +1,48 @@
 require 'test_helper'
 
 class ResponseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
+  include Devise::Test::IntegrationHelpers
+
+  # def setup
+  #   @user = User.create(email: 'adam@instructor.com', password: 'password', password_confirmation: 'password', first_name: 'Adam', last_name: 'Braus', instructor: true, student: false)
+  #   @user.save
+  #   sign_in @user
+  #   @classroom = @user.classrooms.build(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
+  #   @form = Form.create(name: 'Sample Form', classroom_id: @classroom, assesment_type: 'instructor')
+  #   3.times do
+  #     @form.questions.build(label: "Sample")
+  #   @response = Response.create(classroom: @classroom, form: @form, user: @user)
+  # end
+
+  # test 'response has correlatiing question' do
+  #   assert_equal @response.name, 'Ruby on Rails'
+  # end
+  #
+  # test 'classroom has class_code' do
+  #   assert_equal @classroom.class_code, 'xyz'
+  # end
+  #
+  # test 'classroom has subject' do
+  #   assert_equal @classroom.subject, 'CS'
+  # end
+
+  # Has many forms (?)
+  #
+  # test 'classroom can contain responses' do
+  #   assert_equal @classroom.responses.count, 1
+  # end
+  #
+  # test 'classroom can contain users' do
+  #   assert_equal @classroom.users.count, 1
+  # end
+
+  # test "title should be present" do
+  #   @subreddit.title = nil
+  #   assert_not @subreddit.valid?
+  # end
+  #
+  # test "title is too long" do
+  #   @subreddit.title = "i"*40
+  #   assert_not @subreddit.valid?
   # end
 end

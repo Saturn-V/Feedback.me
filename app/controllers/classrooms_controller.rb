@@ -12,7 +12,7 @@ class ClassroomsController < ApplicationController
     @users = @classroom.users
     @feedbacks = []
     @users.each do |user|
-      responses = user.responses.where(:complete => true)
+      responses = user.responses.where(is_complete: true)
       responses.each do |response|
         response.answers.each do |answer|
           if !answer.value_free.nil?
@@ -25,7 +25,7 @@ class ClassroomsController < ApplicationController
 
   def new
     @user = current_user
-    @classroom_new = @user.classrooms.build
+    @classroom = @user.classrooms.build
   end
 
   def create

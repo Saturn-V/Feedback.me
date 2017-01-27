@@ -1,5 +1,5 @@
 class Form < ApplicationRecord
-  belongs_to :classroom
+  has_and_belongs_to_many :classrooms
 
   has_many :questions
   has_many :responses, dependent: :destroy

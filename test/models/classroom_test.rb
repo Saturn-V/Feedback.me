@@ -8,7 +8,7 @@ class ClassroomTest < ActiveSupport::TestCase
     @user.save
     sign_in @user
     @classroom = @user.classrooms.create(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
-    @form = Form.create(name: 'Sample Form', classroom_id: @classroom, assesment_type: 'instructor')
+    @form = Form.create(name: 'Sample Form', assesment_type: 'instructor')
     @response = Response.create(classroom: @classroom, form: @form, user: @user)
   end
 

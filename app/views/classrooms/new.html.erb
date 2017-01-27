@@ -1,6 +1,6 @@
 <h1>Create a Classroom!</h1>
 
-<%= form_for(@classroom_new) do |f| %>
+<%= form_for(@classroom) do |f| %>
 
   <div class="field">
     <%= f.label :name %>
@@ -15,7 +15,7 @@
   <div class="actions">
     <%= f.submit 'Create' %>
   </div>
-  
+
 <% end %>
 
 <%= link_to 'Back To Home Page', root_path %>

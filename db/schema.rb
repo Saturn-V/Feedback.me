@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124025017) do
+ActiveRecord::Schema.define(version: 20170126025733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,9 +45,14 @@ ActiveRecord::Schema.define(version: 20170124025017) do
     t.string   "name"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "classroom_id"
     t.string   "assesment_type"
-    t.index ["classroom_id"], name: "index_forms_on_classroom_id", using: :btree
+  end
+
+  create_table "forms_classrooms", id: false, force: :cascade do |t|
+    t.integer "form_id"
+    t.integer "classroom_id"
+    t.index ["classroom_id"], name: "index_forms_classrooms_on_classroom_id", using: :btree
+    t.index ["form_id"], name: "index_forms_classrooms_on_form_id", using: :btree
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -82,7 +87,7 @@ ActiveRecord::Schema.define(version: 20170124025017) do
     t.integer  "form_id"
     t.integer  "user_id"
     t.integer  "classroom_id"
-    t.boolean  "complete",     default: false
+    t.boolean  "is_complete",  default: false
     t.index ["classroom_id"], name: "index_responses_on_classroom_id", using: :btree
     t.index ["form_id"], name: "index_responses_on_form_id", using: :btree
     t.index ["user_id"], name: "index_responses_on_user_id", using: :btree
@@ -109,7 +114,6 @@ ActiveRecord::Schema.define(version: 20170124025017) do
     t.datetime "updated_at",                             null: false
     t.boolean  "instructor",             default: true
     t.boolean  "student",                default: false
-    t.string   "auth_token",             default: ""
     t.string   "first_name"
     t.string   "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -118,7 +122,6 @@ ActiveRecord::Schema.define(version: 20170124025017) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "responses"
-  add_foreign_key "forms", "classrooms"
   add_foreign_key "notifications", "responses"
   add_foreign_key "questions", "forms"
   add_foreign_key "responses", "classrooms"
