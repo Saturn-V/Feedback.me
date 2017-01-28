@@ -30,6 +30,8 @@ class ResponsesController < ApplicationController
     # </section>
     @response = Response.find(params[:id])
     @classroom = @response.classroom
+
+
     if @response.update_attributes(response_params)
       redirect_to classroom_path(@classroom)
       flash[:success] = "Response completed"
@@ -43,6 +45,6 @@ class ResponsesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def response_params
-    params.require(:response).permit(:value_static, :value_free, :is_complete, answers_attributes: [:id, :value_static, :value_free])
+    params.require(:response).permit(:value_static, :value_free, :is_complete, answers_attributes: [:id, :value_static, :value_free, :_destroy])
   end
 end

@@ -6,7 +6,20 @@
     <%= f.hidden_field :is_complete, value: true %>
   </p>
 
+  <section>
+          <%= f.fields_for :answers, @response.answers.build do |builder| %>
+            <% if !Question.find_by(id:builder.object.question_id).nil? %>
+              <% question = Question.find_by(id:builder.object.question_id) %>
 
+              <li><%= question.label %></li>
+
+              <ul>
+                <%= render partial: "partials/answer_fields", locals: { :f => builder, :q => question } %>
+              </ul>
+            <% end %>
+
+          <% end %>
+  </section>
 
   <p><%= f.submit "Submit" %></p>
 

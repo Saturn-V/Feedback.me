@@ -5,7 +5,7 @@ class Response < ApplicationRecord
   belongs_to :classroom
   belongs_to :form
 
-  has_one :notification
+  has_one :notification, dependent: :destroy
 
   has_many :answers, dependent: :destroy
 
@@ -13,6 +13,5 @@ class Response < ApplicationRecord
 
   attr_accessor :answers_attributes
 
-
-  # accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :answers
 end

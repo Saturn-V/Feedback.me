@@ -13,9 +13,8 @@
   </head>
 
   <body>
-
+    <% if @disable.nil? %>
     <div class="row">
-      <% if @disable.nil? %>
         <div class="one column nav">
           <%= render "partials/nav" %>
         </div>
@@ -27,12 +26,16 @@
 
             <%= yield %>
         </div>
-      <% else %>
+    </div>
+    <% else %>
+    <div class="container">
+      <div class="row">
         <div class="twelve columns">
           <%= yield if @disable %>
         </div>
-      <% end %>
+      </div>
     </div>
+    <% end %>
 
   </body>
 </html>

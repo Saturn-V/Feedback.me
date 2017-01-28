@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="51px" height="51px" viewBox="0 0 51 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(-309.000000, -343.000000)" fill="#FFC80A">
+            <g id="3" filter="url(#filter-1)" transform="translate(215.000000, 325.000000)">
+                <path d="M139.393,30.037 L135.647,33.823 C135.647,33.823 135.647,33.824 135.646,33.824 C135.646,33.825 135.645,33.825 135.645,33.826 L109.987,59.755 C109.149,60.602 101.412,62.994 99.508,62.994 C99.194,62.994 98.736,62.953 98.394,62.609 C97.994,62.204 97.541,61.746 99.101,56.444 C99.436,55.305 100.579,51.536 101.217,50.892 L130.623,21.174 C131.373,20.416 132.37,19.999 133.429,19.999 C134.489,19.999 135.485,20.417 136.235,21.174 L139.393,24.365 C140.143,25.122 140.556,26.13 140.556,27.201 C140.556,28.273 140.143,29.28 139.393,30.037 L139.393,30.037 Z M100.04,60.942 C101.25,60.77 103.454,60.141 105.34,59.526 L101.437,55.581 C100.824,57.53 100.209,59.797 100.04,60.942 L100.04,60.942 Z M102.151,53.467 L107.429,58.801 C108.011,58.583 108.449,58.399 108.631,58.289 L133.541,33.115 L127.577,27.088 L102.667,52.263 C102.54,52.471 102.359,52.906 102.151,53.467 L102.151,53.467 Z M137.99,25.783 L134.832,22.592 C134.082,21.834 132.776,21.835 132.026,22.592 L128.98,25.67 L134.944,31.697 L137.99,28.619 C138.365,28.24 138.572,27.737 138.572,27.201 C138.572,26.666 138.365,26.162 137.99,25.783 L137.99,25.783 Z M136.375,35.67 C136.763,35.278 137.39,35.278 137.778,35.67 C138.166,36.062 138.166,36.696 137.778,37.088 L129.071,45.887 C128.877,46.083 128.623,46.181 128.369,46.181 C128.115,46.181 127.861,46.083 127.668,45.887 C127.28,45.495 127.28,44.861 127.668,44.469 L136.375,35.67 L136.375,35.67 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

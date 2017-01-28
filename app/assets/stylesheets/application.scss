@@ -28,13 +28,13 @@ html, body {
 body {
     font-family: 'san-francisco' !important;
     font-weight: 100;
-    color: #FAFAFA;
+    color: black;
     height: 100%;
     width: 100%;
-    color: #004056;
 }
 
 a {
+  color: inherit;
   font-size: 1em;
   text-decoration: none;
 }
@@ -64,8 +64,15 @@ svg {
   height: auto;
 }
 
+img {
+  padding: 0 0 1.5rem 0;
+}
+
 .header {
-  padding: 2.5rem;
+  padding: 1.5rem 0 0 0;
+  &.center {
+    text-align: center;
+  }
 }
 
 .logo {
@@ -75,14 +82,48 @@ svg {
 }
 
 .title {
-  font-size: 4em;
   display: block;
   box-sizing: border-box;
-  padding:  .25em 0;
+  font-size: 7rem;
+  margin: 0;
+  &.small {
+    font-size: 2rem;
+  }
 }
-
 .sub.title {
   font-size: 2em;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.card {
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  text-align: center;
+  // width: 25%;
+  float: left;
+  // height: auto;
+  // margin: 2rem;
+  padding: 1.5rem 0.5rem 2.5rem 0.5rem;
+  box-shadow: 0px 2.5px 5px #000;
+  transition: 0.25s;
+  &:hover {
+    box-shadow: 0px 5px 15px #000;
+  }
+
+  > .title {
+    line-height: 3.5rem;
+  }
+}
+
+.text {
+  line-height: 1.75rem;
+  &.small {
+    font-size: 1rem;
+  }
 }
 
 .body {
