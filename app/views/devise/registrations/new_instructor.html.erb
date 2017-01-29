@@ -1,46 +1,68 @@
-  <h2 class="title">Sign up as an Instructor</h2>
+<div class="header center">
+  <span class="title large">Teachers, let's get started</span>
+</div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :style => 'left:10%;' }) do |f| %>
+<%= link_to root_path do %>
+  <img src="/assets/back.svg" alt="" style="position: absolute">
+<% end %>
+
+
+<div class="row section">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email, :class => "sub title" %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :email, :class => "label" %>
+    <%= f.email_field :email, :style => "width: 100%", autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name, :class => "sub title" %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :first_name, :class => "label" %>
+    <%= f.text_field :first_name, :style => "width: 100%", autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name, :class => "sub title" %><br />
-    <%= f.text_field :last_name, autofocus: true %>
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :last_name, :class => "label" %>
+    <%= f.text_field :last_name, :style => "width: 100%", autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :password, :class => "sub title" %>
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :password, :class => "label" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <% end %>
+    <%= f.password_field :password, :style => "width: 100%", autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, :class => "sub title" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :password_confirmation, :class => "label" %>
+    <%= f.password_field :password_confirmation, :style => "width: 100%", autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.hidden_field :instructor, value: true %>
+  <br />
+
+  <%= f.hidden_field :student, value: false %>
+
+  <%= f.hidden_field :instructor, value: true %>
+
+
+  <div class="actions six columns offset-by-three columns">
+    <%= f.submit "Sign up", :name => 'student_button' %>
   </div>
 
+  <br />
 
-  <div class="actions">
-    <%= f.submit "Sign up", :name => 'instructor_button' %>
+  <div class="six columns offset-by-three columns">
+    <%= render "devise/shared/links" %>
   </div>
-
   <% end %>
-
-  <%= render "devise/shared/links" %>
+</div>

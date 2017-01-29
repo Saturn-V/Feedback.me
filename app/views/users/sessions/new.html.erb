@@ -1,26 +1,39 @@
-  <h2 class="title">Log in</h2>
+<div class="header center">
+  <span class="title large">Login</span>
+</div>
 
+<%= link_to root_path do %>
+  <img src="/assets/back.svg" alt="" style="position: absolute">
+<% end %>
+
+<div class="row section">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, :class => "sub title" %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password, :class => "sub title" %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <%= devise_error_messages! %>
+    
+    <div class="field six columns offset-by-three columns">
+      <%= f.label :email, :class => "label" %><br />
+      <%= f.email_field :email, :style => "width: 100%", autofocus: true %>
+    </div>
 
-  <% if devise_mapping.rememberable? -%>
-  <div class="field">
-    <%= f.check_box :remember_me %>
-    <%= f.label :remember_me %>
-  </div>
-  <% end -%>
+    <div class="field six columns offset-by-three columns">
+      <%= f.label :password, :class => "label" %><br />
+      <%= f.password_field :password, :style => "width: 100%", autocomplete: "off" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+    <% if devise_mapping.rememberable? -%>
+      <div class="field six columns offset-by-three columns">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%>
+
+    <div class="actions six columns offset-by-three columns">
+      <%= f.submit "Log in" %>
+    </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  <div class="six columns offset-by-three columns text center">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

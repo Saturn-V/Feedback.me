@@ -16,6 +16,7 @@ before_action :configure_account_update_params, only: [:update]
   end
 
   def new_instructor
+    @disable = true
     session[:user] ||= { }
     session[:user]['instructor'] = true
     session[:user]['student'] = false
