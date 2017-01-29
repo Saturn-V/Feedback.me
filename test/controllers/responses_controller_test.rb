@@ -47,13 +47,15 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
   test 'should update response answers' do
     @res = Response.create(classroom: @classroom, form: @form, user: @user)
     @ans = @res.answers.create(question: @question)
-    patch response_url(@res), params: { response: { is_complete: true, answers_attributes: [{ value_static: 5 }] } }
+
+    patch response_url(@res), params: { response: { is_complete: true, answers_attributes: [{ :id => @res.answers.first.id, :value_static => 5 }] } }
 
     # assert_redirected_to classroom_path(@classroom)
 
     @res.reload
-    @res.answers.reload
 
+    assert_equal true, @res.is_complete
+    assert_equal 1, @res.answers.length
     assert_equal 5, @res.answers.first.value_static
   end
 end

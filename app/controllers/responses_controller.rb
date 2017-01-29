@@ -31,8 +31,9 @@ class ResponsesController < ApplicationController
     @response = Response.find(params[:id])
     @classroom = @response.classroom
 
+    binding.pry
 
-    if @response.update_attributes(response_params)
+    if @response.update_attributes!(response_params)
       redirect_to classroom_path(@classroom)
       flash[:success] = "Response completed"
     else

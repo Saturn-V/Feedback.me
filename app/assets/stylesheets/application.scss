@@ -16,22 +16,25 @@
 
  /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-html, body {
-  * { font-family: 'Source Sans Pro', sans-serif; }
-  font-size: 20;
+/* NOTE
+html is set to 62.5% so that all the REM measurements throughout Skeleton
+are based on 10px sizing. So basically 1.5rem = 15px :) */
+html {
+  font-size: 62.5%;
   margin: 0;
   padding: 0;
   background-color: #FFC80A;
-  color: black;
+}
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222;
+  height: 100%;
+  width: 100%;
 }
 
-body {
-    font-family: 'san-francisco' !important;
-    font-weight: 100;
-    color: black;
-    height: 100%;
-    width: 100%;
-}
 
 a {
   color: inherit;
@@ -40,7 +43,7 @@ a {
 }
 
 a:hover {
-  color: #F56643;
+  color: #129DE7;
 }
 
 span {
@@ -84,45 +87,66 @@ img {
 .title {
   display: block;
   box-sizing: border-box;
-  font-size: 7rem;
   margin: 0;
+  font-weight: 400;
+  &.large {
+    font-size: 8rem;
+  }
+
+  &.medium {
+    font-size: 4rem;
+  }
+
   &.small {
     font-size: 2rem;
   }
 }
-.sub.title {
+
+.text {
+  &.large {
+    font-size: 4rem;
+  }
+  &.medium {
+    font-size: 2rem;
+    line-height: 3rem;
+    margin: 1rem 0 0 0;
+  }
+  &.small {
+    font-size: 1rem;
+  }
+}
+
+.label {
   font-size: 2em;
+  font-weight: 400;
 }
 
 .section {
-  padding: 4rem 0;
+  padding: 5rem 0;
+  > form > * {
+    padding: 1.5rem 0;
+    text-align: center;
+  }
 }
 
 .card {
-  background-color: white;
   box-sizing: border-box;
-  border-radius: 0.5rem;
-  text-align: center;
-  // width: 25%;
-  float: left;
-  // height: auto;
-  // margin: 2rem;
   padding: 1.5rem 0.5rem 2.5rem 0.5rem;
+  border-radius: 1rem;
   box-shadow: 0px 2.5px 5px #000;
+  background-color: white;
   transition: 0.25s;
+  float: left;
+  text-align: center;
+  font-weight: 300;
+  > img {
+    padding: 1rem 0 2rem 0;
+  }
+  > .title {
+    letter-spacing: 0.25rem;
+  }
   &:hover {
     box-shadow: 0px 5px 15px #000;
-  }
-
-  > .title {
-    line-height: 3.5rem;
-  }
-}
-
-.text {
-  line-height: 1.75rem;
-  &.small {
-    font-size: 1rem;
   }
 }
 

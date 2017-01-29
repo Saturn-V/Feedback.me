@@ -1,50 +1,64 @@
-  <h2 class="title">Sign up as a Student</h2>
+<div class="header center">
+  <span class="title large">Students, let's get started</span>
+</div>
 
+<div class="row section">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email, :class => "sub title" %><br />
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :email, :class => "label" %>
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name, :class => "sub title" %><br />
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :first_name, :class => "label" %>
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name, :class => "sub title" %><br />
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :last_name, :class => "label" %>
     <%= f.text_field :last_name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :password, :class => "sub title" %>
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :password, :class => "label" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, :class => "sub title" %><br />
+  <br />
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :password_confirmation, :class => "label" %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.hidden_field :student, value: true %>
-  </div>
+  <br />
 
-  <div class="field">
-    <%= f.hidden_field :instructor, value: false %>
-  </div>
+  <%= f.hidden_field :student, value: true %>
+
+  <%= f.hidden_field :instructor, value: false %>
 
 
-  <div class="actions">
+  <div class="actions six columns offset-by-three columns">
     <%= f.submit "Sign up", :name => 'student_button' %>
   </div>
 
+  <br />
+
+  <div class="six columns offset-by-three columns">
+    <%= render "devise/shared/links" %>
+  </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+</div>
