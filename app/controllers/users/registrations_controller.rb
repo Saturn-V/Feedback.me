@@ -27,7 +27,6 @@ before_action :configure_account_update_params, only: [:update]
   def create
 
     @user = build_resource(sign_up_params)
-    # @user = build_resource(session[:user])
 
     if params[:instructor_button]
       @user.instructor = true
@@ -48,16 +47,16 @@ before_action :configure_account_update_params, only: [:update]
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(:user, @user)
-        respond_with resource, location: after_sign_up_path_for(@user)
+        redirect_to root_path
       else
         set_flash_message! :notice, :"signed_up_but_#{@user.inactive_message}"
         expire_data_after_sign_in!
-        respond_with @user, location: after_inactive_sign_up_path_for(@user)
+        redirect_to root_path
       end
     else
       clean_up_passwords @user
       set_minimum_password_length
-      respond_with @user
+      redirect_to root_path
     end
   end
 
