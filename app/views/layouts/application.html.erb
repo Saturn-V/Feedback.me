@@ -14,27 +14,27 @@
 
   <body>
     <% if @disable.nil? %>
-    <div class="row">
-        <div class="one column nav">
-          <%= render "partials/nav" %>
-        </div>
-
-        <div class="eleven columns full offset-by-one column full">
-            <% flash.each do |key, value| %>
-              <div class="alert alert-<%= key %>"><%= value %></div>
-            <% end %>
-
-            <%= yield %>
-        </div>
-    </div>
-    <% else %>
-    <div class="container">
       <div class="row">
-        <div class="twelve columns">
-          <%= yield if @disable %>
+          <div class="one column nav">
+            <%= render "partials/nav" %>
+          </div>
+
+          <div class="eleven columns full offset-by-one column full">
+              <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>"><%= value %></div>
+              <% end %>
+
+              <%= yield %>
+          </div>
+      </div>
+    <% else %>
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <%= yield if @disable %>
+          </div>
         </div>
       </div>
-    </div>
     <% end %>
 
   </body>

@@ -9,25 +9,9 @@ class ResponsesController < ApplicationController
 
   def edit
     @response = Response.find(params[:id])
-    @form = @response.form
-    # @questions.count.times { @response.answers.build }
   end
 
   def update
-    # <section>
-    #     <%= f.fields_for :answers do |builder| %>
-    #       <% if !Question.find_by(id:builder.object.question_id).nil? %>
-    #         <% question = Question.find_by(id:builder.object.question_id) %>
-    #
-    #         <li><%= question.label %></li>
-    #
-    #         <ul>
-    #           <%= render partial: "partials/answer_fields", locals: { :f => builder, :q => question } %>
-    #         </ul>
-    #       <% end %>
-    #
-    #     <% end %>
-    # </section>
     @response = Response.find(params[:id])
     @classroom = @response.classroom
 
@@ -46,6 +30,6 @@ class ResponsesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def response_params
-    params.require(:response).permit(:value_static, :value_free, :is_complete, answers_attributes: [:id, :value_static, :value_free, :_destroy])
+    params.require(:response).permit(:is_complete, answers_attributes: [:id, :value_static, :value_free])
   end
 end
