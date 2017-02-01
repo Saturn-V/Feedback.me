@@ -34,6 +34,8 @@ gem 'jwt'
 gem 'gon'
 # Beautiful charts from Chart.js
 gem 'chart-js-rails'
+# Jquery Turbolinks
+gem 'jquery-turbolinks'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

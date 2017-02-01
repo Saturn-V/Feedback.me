@@ -10,8 +10,5 @@ class Response < ApplicationRecord
   has_many :answers
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  # attr_accessor :answers_attributes
-
-
   # validates_associated :answers
 end

@@ -1,43 +1,58 @@
-<span class="title" style="border-bottom: 2px solid black">Current Classroom: <%= @classroom.name %></span>
-<span class="sub title">Instructor: <%= @user.last_name %>, <%= @user.first_name %></span>
-<span class="sub title" style="display: block">Class Code: <%= @classroom.class_code %></span>
-<%= button_to 'Back To My Classrooms', root_path, method: :get %>
+<div class="header">
+  <span class="title medium">Current Classroom: <%= @classroom.name %></span>
+  <span class="title small">Instructor: <%= @user.last_name %>, <%= @user.first_name %></span>
+  <span class="title small" style="display: block">Class Code: <%= @classroom.class_code %></span>
+  <%= button_to 'Back To My Classrooms', root_path, method: :get %>
+</div>
 
-<div class="chart-section">
-  <div class="chart">
-    <span class="title">Weekly Growth</span>
-    <canvas id="selfChart" width="200" height="200"></canvas>
-  </div>
 
-  <div class="chart">
-    <span class="title">Class Pacing</span>
-    <canvas id="classChart" width="200" height="200"></canvas>
-  </div>
 
-  <div class="clear">
+<div class="row section">
+  <div class="twelve columns card">
+    <div class="row">
+
+      <div class="six columns chart">
+
+          <span class="title">Monthly Growth</span>
+          <canvas id="selfChart" width="200" height="200"></canvas>
+
+      </div>
+
+      <div class="six columns chart">
+
+          <span class="title">Class Pacing</span>
+          <canvas id="classChart" width="200" height="200"></canvas>
+
+      </div>
+
+    </div>
 
   </div>
 </div>
 
-<% if current_user.try(:admin?) %>
-  <div class="feedbacks">
-    <div class="header">
-      <span class="title">My Feedback</span>
-    </div>
-    <% if @feedbacks.count > 0 %>
-      <% @feedbacks.each do |feedback| %>
-        <div class="feedback-section">
-          <span class="sub title">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
-          <div class="small body">
-            <span><%= feedback.value_free %></span>
+<% if current_user.try(:instructor?) %>
+  <div class="header">
+    <span class="title medium">My Feedback</span>
+  </div>
+
+  <% if @feedbacks.count > 0 %>
+  <div class="row">
+    <% @feedbacks.each do |feedback| %>
+        <div class="six columns card">
+          <div class="section">
+            <span class="title small">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
+            <div class="text medium">
+              <span><%= feedback.value_free %></span>
+            </div>
           </div>
         </div>
-      <% end %>
-    <% else %>
-      <div class="feedback-section">
-        <span class="sub title">No Free Response Feedback has been submitted.</span>
-      </div>
     <% end %>
   </div>
-</div>
+  <% else %>
+    <div class="card full">
+      <div class="section">
+        <span class="title medium">No Free Response Feedback has been submitted.</span>
+      </div>
+    </div>
+  <% end %>
 <% end %>

@@ -1,7 +1,7 @@
-<span class="title">Notifications</span>
+<span class="title medium">Notifications</span>
 
 <% @notifications.each do |notification| %>
-  <div class="notification card">
+  <div class="card full">
     <%= link_to(edit_response_path(notification.response)) do %>
     <section>
       <span class="sub title">Form Request</span>

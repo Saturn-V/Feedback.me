@@ -63,6 +63,7 @@ a:hover g {
 }
 
 svg {
+  fill: #F56643;
   width: 1.75em;
   height: auto;
 }
@@ -150,6 +151,9 @@ img {
   }
   &:hover {
     box-shadow: 0px 5px 15px #000;
+  }
+  &.full {
+    width: 100%;
   }
 }
 
@@ -244,6 +248,11 @@ img {
   .ten.columns                    { width: 82.6666666667%; }
   .eleven.columns                 { width: 91.3333333333%; }
   .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .eleven.columns.content {
+    width: 91.3333333333%;
+    padding: 0 0 0 5rem;
+  }
 
   .one-third.column               { width: 30.6666666667%; }
   .two-thirds.column              { width: 65.3333333333%; }

@@ -1,3 +1,4 @@
+//= require jquery.turbolinks
 //= require Chart
 
 $(function() {
@@ -6,10 +7,10 @@ $(function() {
   var selfChart = new Chart(ctxA, {
     type: 'line',
     data: {
-      labels: ["Oct", "Nov", "Dec", "Jan", "Feb", "March", "April", "May", "June", "Oct", "Nov", "Dec", "Jan", "Feb", "March", "April", "May", "June"],
+      labels: ["Jan", "Feb", "March", "April", "May", "June"],
       datasets: [{
         label: 'Instructor Performance',
-        data: [0, 2, 4, 2, 3, 1, 5, 2, 3, 3, 4, 5],
+        data: [2, 3, 1, 5, 2, 3],
         backgroundColor: 'rgba(80, 227, 194, 0.2)',
         borderColor: 'rgba(80, 227, 194, 1)',
         borderWidth: 1
@@ -23,7 +24,7 @@ $(function() {
           }
         }]
       },
-      gridlines: {
+      gridLines: {
         display: false
       }
     }

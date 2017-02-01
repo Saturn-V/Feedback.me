@@ -1,21 +1,23 @@
 <h1><%= @form.name %></h1>
 
+<section>
+  <ol>
 <% @questions.each do |question| %>
-  <section>
-    <li><%= question.label %></li>
-    <ul>
-      <% if question.try(:static?) %>
+      <li><%= question.label %></li>
+      <ul>
+        <% if question.try(:static?) %>
         <% question.skills.each do |skill| %>
-          <li><%= skill.label %></li>
+        <li><%= skill.label %></li>
         <% end %>
-      <% else %>
-        <li>(Response goes here)</li>
-      <% end %>
-    </ul>
-  </section>
-
+        <% else %>
+        <li>Optional Feedback section.</li>
+        <% end %>
+      </ul>
+      <br />
 <% end %>
+</ol>
+</section>
 
 <%= button_to 'Send Form to Classroom', classroom_notification_creation_path(@classroom, @form), method: :post %>
-
-<%= link_to "Back to All Forms", classroom_forms_path(@classroom) %>
+<br />
+<%= button_to "Back to All Forms", classroom_forms_path(@classroom), method: :get %>

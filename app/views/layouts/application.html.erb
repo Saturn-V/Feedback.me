@@ -9,27 +9,30 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Raleway:300,400,500' %>
   </head>
 
   <body>
     <% if @disable.nil? %>
+      <!--  Render side navigation -->
       <div class="row">
           <div class="one column nav">
             <%= render "partials/nav" %>
           </div>
 
-          <div class="eleven columns full offset-by-one column full">
+          <div class="eleven columns content">
+
               <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
+              <div class="alert alert-<%= key %>"><%= value %></div>
               <% end %>
 
               <%= yield %>
+
           </div>
       </div>
     <% else %>
+      <!--  Remove Side Navigation -->
       <div class="container">
         <div class="row">
           <div class="twelve columns">
@@ -39,5 +42,6 @@
       </div>
     <% end %>
 
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
