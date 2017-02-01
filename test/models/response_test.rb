@@ -6,13 +6,17 @@ class ResponseTest < ActiveSupport::TestCase
   def setup
     @user = User.create(email: 'adam@instructor.com', password: 'password', password_confirmation: 'password', first_name: 'Adam', last_name: 'Braus', instructor: true, student: false)
     @user.save
-    # sign_in @user
+    sign_in @user
+
     @classroom = @user.classrooms.build(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
+
     @form = Form.create(name: 'Sample Form', assesment_type: 'instructor')
+    @question_one = @form.questions.create(static: true, free: false, label: 'Sample Question', form: @form)
+    @question_two = @form.questions.create(static: false, free: true, label: 'Sample Question', form: @form)
+
     @response = Response.create(classroom: @classroom, form: @form, user: @user)
-    # 3.times do
-    #   @form.questions.build(label: "Sample")
-    # end
+    @response.answers.create(response: @response, question: @question_one)
+    @response.answers.create(response: @response, question: @question_two)
   end
 
   # test 'response has one notification' do
@@ -20,35 +24,27 @@ class ResponseTest < ActiveSupport::TestCase
   # end
 
   test 'response belongs to user' do
-    assert_equal @response.user, @user
+    assert_equal @user, @response.user
   end
 
   test 'response belongs to classroom' do
-    assert_equal @response.classroom, @classroom
+    assert_equal @classroom, @response.classroom
   end
 
   test 'response belongs to form' do
-    assert_equal @response.form, @form
+    assert_equal @form, @response.form
   end
 
-  # test 'classroom has class_code' do
-  #   assert_equal @classroom.class_code, 'xyz'
-  # end
-  #
-  # test 'classroom has subject' do
-  #   assert_equal @classroom.subject, 'CS'
-  # end
+  test 'response has default is_complete' do
+    assert_equal false, @response.is_complete
+  end
+
+  test 'response has many answers' do
+    assert_equal 2, @response.answers.count
+  end
 
   # Has many forms (?)
   #
-  # test 'classroom can contain responses' do
-  #   assert_equal @classroom.responses.count, 1
-  # end
-  #
-  # test 'classroom can contain users' do
-  #   assert_equal @classroom.users.count, 1
-  # end
-
   # test "title should be present" do
   #   @subreddit.title = nil
   #   assert_not @subreddit.valid?

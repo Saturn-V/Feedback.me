@@ -1,5 +1,4 @@
 class Response < ApplicationRecord
-  attr_accessor :answers_attributes
   # validates_presence_of :answers, :on => :update
 
   belongs_to :user
@@ -8,9 +7,11 @@ class Response < ApplicationRecord
 
   has_one :notification, dependent: :destroy
 
-  has_many :answers, dependent: :destroy
+  has_many :answers
+  accepts_nested_attributes_for :answers, allow_destroy: true
 
-  accepts_nested_attributes_for :answers, :allow_destroy => true
+  # attr_accessor :answers_attributes
+
 
   # validates_associated :answers
 end

@@ -1,19 +1,61 @@
 <h1><%= @response.form.name %></h1>
 
-<%= form_for @response do |f| %>
+<%= form_for(@response) do |f| %>
+  <% if @response.errors.any? %>
+    <h4><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h4>
+
+    <ul>
+    <% @response.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  <% end %>
 
   <p>
     <%= f.hidden_field :is_complete, value: true %>
   </p>
 
   <section>
-    <%= f.fields_for :answers do |builder| %>
-        <% question = Question.find_by(id:builder.object.question_id) %>
+    <%= f.fields_for :answers do |a| %>
+        <% question = Question.find_by( id: a.object.question_id ) %>
 
         <li><%= question.label %></li>
 
         <ul>
-          <%= render partial: "partials/answer_fields", locals: { :f => builder, :q => question } %>
+          <% if question.try(:static?) %>
+            <% question.skills.each do |skill| %>
+              <li><%= skill.label %></li>
+            <% end %>
+
+            <p>
+
+              <%= a.label :value_static, "Select one aption that applies to you most." %><br />
+
+              <%= a.radio_button :value_static, 0 %>
+              <%= a.label :value_waiting, "0. Waiting" %><br />
+
+              <%= a.radio_button :value_static, 1 %>
+              <%= a.label :value_beginning, "1. Beginning" %><br />
+
+              <%= a.radio_button :value_static, 2 %>
+              <%= a.label :value_undertaking, "2. Undertaking" %><br />
+
+              <%= a.radio_button :value_static, 3 %>
+              <%= a.label :value_approaching, "3. Approaching" %><br />
+
+              <%= a.radio_button :value_static, 4 %>
+              <%= a.label :value_overtaking, "4. Overtaking" %><br />
+
+              <%= a.radio_button :value_static, 5 %>
+              <%= a.label :value_innovating, "5. Innovating" %><br />
+
+            </p>
+          <% else %>
+            <p>
+              <%= a.label :value_free, "Free Response Answer" %><br />
+              <%= a.text_field :value_free %><br />
+            </p>
+          <% end %>
         </ul>
       <% end %>
 

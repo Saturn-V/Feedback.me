@@ -3,14 +3,14 @@
 </div>
 
 <%= link_to root_path do %>
-  <img src="/assets/back.svg" alt="" style="position: absolute">
+  <img src="/assets/back.svg" alt="back button" style="position: absolute">
 <% end %>
 
 <div class="row section">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <%= devise_error_messages! %>
-    
+
     <div class="field six columns offset-by-three columns">
       <%= f.label :email, :class => "label" %><br />
       <%= f.email_field :email, :style => "width: 100%", autofocus: true %>
