@@ -19,6 +19,7 @@
   </div>
 </div>
 
+<% if current_user.try(:admin?) %>
   <div class="feedbacks">
     <div class="header">
       <span class="title">My Feedback</span>
@@ -39,3 +40,4 @@
     <% end %>
   </div>
 </div>
+<% end %>

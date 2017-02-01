@@ -38,7 +38,11 @@ Rails.application.routes.draw do
   end
 
   # Notification routes
-  resources :notifications, only: [:index]
+  resources :notifications, only: [:index] do
+    # collection do
+    #   post :mark_as_read
+    # end
+  end
 
   # Questions Routes
   resources :questions, only: [:create, :update, :destroy]

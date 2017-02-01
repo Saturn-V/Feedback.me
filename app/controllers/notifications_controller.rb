@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.where(recipient: current_user)
+    @notifications = Notification.where(recipient: current_user).unread
   end
 
   def create
@@ -18,5 +18,10 @@ class NotificationsController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  def mark_as_read
+    @notification = Notification.find(:id)
+    @notifications.update_all(read_at: Time.zone.now)
   end
 end
