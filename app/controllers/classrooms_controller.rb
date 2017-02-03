@@ -9,18 +9,18 @@ class ClassroomsController < ApplicationController
     # @classroom = @user.classrooms.find(params[:id])
     @classroom = Classroom.find(params[:id])
     @user = @classroom.users.first
-    @users = @classroom.users
     @feedbacks = []
-    @users.each do |user|
-      responses = user.responses.where(is_complete: true)
-      responses.each do |response|
-        response.answers.each do |answer|
-          if !answer.value_free.nil?
-            @feedbacks += [answer]
-          end
+    responses = @classroom.responses.where(is_complete: true)
+    responses.each do |response|
+      response.answers.each do |answer|
+        if !answer.value_free.nil?
+          @feedbacks += [answer]
         end
       end
     end
+
+    @instructor_p = chart_instructor_performance(@classroom)
+    gon.chart_months = chart_months
   end
 
   def new
@@ -81,5 +81,48 @@ class ClassroomsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def classroom_params
     params.require(:classroom).permit(:name, :subject)
+  end
+
+  # Data for charts
+  def chart_months
+    current_month = Date.today.month
+    month_names = 6.downto(1).map { |n|
+      DateTime::MONTHNAMES.drop(1)[(current_month - n) % 12]
+    }
+    return month_names
+  end
+
+  def chart_instructor_performance(classroom)
+    response_answers = Hash.new
+    instructor_performance = []
+
+    responses = classroom.responses.for_instructors.order('created_at DESC')
+
+    responses.each do |response|
+      response_month = response.created_at.to_datetime.month
+      # response_answers.push(response.created_at.to_datetime.month)
+      answers = response.answers.for_static
+      answers.each do |answer|
+
+        if !response_answers[response_month].nil?
+          if !response_answers[response_month][responses.index(response)].nil?
+            response_answers[response_month][responses.index(response)][answers.index(answer)] = answer
+          end
+        else
+          response_answers[response_month] = Hash.new
+          response_answers[response_month][responses.index(response)] = Hash.new
+          response_answers[response_month][responses.index(response)][answers.index(answer)] = answer
+          # response_answers.push(answer)
+        end
+      end
+    end
+
+    for month in response_answers
+      for response in response_answers[month]
+        for answer in response_answers[month][response]
+
+
+
+    return response_answers
   end
 end

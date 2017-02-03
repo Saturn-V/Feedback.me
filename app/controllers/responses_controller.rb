@@ -14,7 +14,7 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
     @classroom = @response.classroom
-
+    @response.updated_at = Time.zone.now
     # binding.pry
 
     if @response.update(response_params)

@@ -13,7 +13,7 @@
 
       <div class="six columns chart">
 
-          <span class="title">Monthly Growth</span>
+          <span class="title">Monthly Growth <%= @instructor_p %></span>
           <canvas id="selfChart" width="200" height="200"></canvas>
 
       </div>
@@ -36,6 +36,7 @@
   </div>
 
   <% if @feedbacks.count > 0 %>
+  <%= @feedbacks.count %>
   <div class="row">
     <% @feedbacks.each do |feedback| %>
         <div class="six columns card">

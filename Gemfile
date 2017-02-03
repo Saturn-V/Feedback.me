@@ -36,6 +36,8 @@ gem 'gon'
 gem 'chart-js-rails'
 # Jquery Turbolinks
 gem 'jquery-turbolinks'
+# use Font Awesome
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

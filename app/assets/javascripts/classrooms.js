@@ -7,7 +7,7 @@ $(function() {
   var selfChart = new Chart(ctxA, {
     type: 'line',
     data: {
-      labels: ["Jan", "Feb", "March", "April", "May", "June"],
+      labels: gon.chart_months,
       datasets: [{
         label: 'Instructor Performance',
         data: [2, 3, 1, 5, 2, 3],
