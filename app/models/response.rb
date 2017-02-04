@@ -13,8 +13,4 @@ class Response < ApplicationRecord
   # validates_associated :answers
 
   scope :for_instructors, -> { joins(:form).where(is_complete: true, created_at: Time.now.end_of_month - 6.months..Time.now.end_of_month, forms: {assesment_type: 'instructor'}) }
-
-  # def self.for_instructors
-  #   joins(:form).where(forms: {assesment_type: 'instructor'})
-  # end
-end
+end 

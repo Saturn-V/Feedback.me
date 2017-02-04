@@ -7,7 +7,7 @@ $(function() {
   var selfChart = new Chart(ctxA, {
     type: 'line',
     data: {
-      labels: gon.chart_months,
+      labels: gon.chart_month_names,
       datasets: [{
         label: 'Instructor Performance',
         data: [2, 3, 1, 5, 2, 3],
@@ -21,45 +21,42 @@ $(function() {
         yAxes: [{
           ticks: {
             beginAtZero:true
+          },
+          gridLines: {
+            display: false
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: false
           }
         }]
-      },
-      gridLines: {
-        display: false
       }
     }
   });
 
-  var data = {
-    datasets: [{
-        data: [
-            8,
-            10,
-            4,
-            7,
-            13
-        ],
-        backgroundColor: [
-            "#FFCE56",
-            "#36A2EB",
-            "#4BC0C0",
-            "#FF6384",
-            "#BF90D4"
-        ],
-        label: 'Student Performance' // for legend
-    }],
-    labels: [
-        "Too Fast",
-        "Too Slow",
-        "A wee bit too fast",
-        "A wee bit too slow",
-        "Just Right!"
-    ]
-};
-
   var classChart = new Chart(ctxB, {
-    type: 'polarArea',
-    data: data,
+    type: 'doughnut',
+    data: {
+      labels: [
+          "Too Fast",
+          "Too Slow",
+          "A wee bit too fast",
+          "A wee bit too slow",
+          "Just Right!"
+      ],
+      datasets: [{
+          data: [ 8, 10, 4, 7, 13 ],
+          backgroundColor: [
+              "#FFCE56",
+              "#36A2EB",
+              "#4BC0C0",
+              "#FF6384",
+              "#BF90D4"
+          ]
+          // label: 'Student Performance' // for legend
+      }]
+  },
     options: {}
   });
 });

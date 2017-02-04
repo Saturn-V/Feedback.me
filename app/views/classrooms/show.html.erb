@@ -37,8 +37,8 @@
 
   <% if @feedbacks.count > 0 %>
   <%= @feedbacks.count %>
+  <% @feedbacks.each do |feedback| %>
   <div class="row">
-    <% @feedbacks.each do |feedback| %>
         <div class="six columns card">
           <div class="section">
             <span class="title small">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
@@ -47,8 +47,8 @@
             </div>
           </div>
         </div>
-    <% end %>
   </div>
+  <% end %>
   <% else %>
     <div class="card full">
       <div class="section">

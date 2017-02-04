@@ -19,8 +19,9 @@ class ClassroomsController < ApplicationController
       end
     end
 
-    @instructor_p = chart_instructor_performance(@classroom)
-    gon.chart_months = chart_months
+    answers_hash = chart_instructor_answers_hash(@classroom)
+    @instructor_p = chart_instructor_performance(answers_hash)
+    gon.chart_month_names = chart_month_names
   end
 
   def new
@@ -84,7 +85,7 @@ class ClassroomsController < ApplicationController
   end
 
   # Data for charts
-  def chart_months
+  def chart_month_names
     current_month = Date.today.month
     month_names = 6.downto(1).map { |n|
       DateTime::MONTHNAMES.drop(1)[(current_month - n) % 12]
@@ -92,37 +93,72 @@ class ClassroomsController < ApplicationController
     return month_names
   end
 
-  def chart_instructor_performance(classroom)
+  def chart_month_numbers
+    current_month = Date.today.month
+    month_names = 6.downto(1).map { |n|
+      (current_month - n) % 12
+    }
+    return month_numbers
+  end
+
+  def chart_instructor_answers_hash(classroom)
     response_answers = Hash.new
-    instructor_performance = []
+    # instructor_performance = Hash.new
 
     responses = classroom.responses.for_instructors.order('created_at DESC')
 
     responses.each do |response|
+
       response_month = response.created_at.to_datetime.month
-      # response_answers.push(response.created_at.to_datetime.month)
+      response_form_name = response.form.name
       answers = response.answers.for_static
+
       answers.each do |answer|
 
-        if !response_answers[response_month].nil?
-          if !response_answers[response_month][responses.index(response)].nil?
-            response_answers[response_month][responses.index(response)][answers.index(answer)] = answer
-          end
-        else
+        if response_answers[response_month].nil?
           response_answers[response_month] = Hash.new
-          response_answers[response_month][responses.index(response)] = Hash.new
-          response_answers[response_month][responses.index(response)][answers.index(answer)] = answer
-          # response_answers.push(answer)
+          response_answers[response_month][response_form_name] = Hash.new
+          response_answers[response_month][response_form_name][responses.index(response)] = Hash.new
+          response_answers[response_month][response_form_name][responses.index(response)][answers.index(answer)] = answer
+        elsif response_answers[response_month][response_form_name].nil?
+          response_answers[response_month][response_form_name] = Hash.new
+          response_answers[response_month][response_form_name][responses.index(response)] = Hash.new
+          response_answers[response_month][response_form_name][responses.index(response)][answers.index(answer)] = answer
+        elsif response_answers[response_month][response_form_name][responses.index(response)].nil?
+          response_answers[response_month][response_form_name][responses.index(response)] = Hash.new
+          response_answers[response_month][response_form_name][responses.index(response)][answers.index(answer)] = answer
+        else
+          response_answers[response_month][response_form_name][responses.index(response)][answers.index(answer)] = answer
         end
+
+        # if !instructor_performance[response_month].nil?
+        #   # if responses.index(response) == (responses.size - 1)
+        #     # instructor_performance[response_month] = instructor_performance[response_month] /
+        #   if this is the end of this form type for this
+        #   else
+        #     instructor_performance[response_month] += answer.value_static
+        #   end
+        # else
+        #   instructor_performance[response_month] = answer.value_static
+        # end
+
       end
     end
 
-    for month in response_answers
-      for response in response_answers[month]
-        for answer in response_answers[month][response]
+    # for instructor_performance.each_with_index do |value, index|
+    #   if value.nil?
+    #     instructor_performance[index] = 0
+    #   else
+    #     instructor_performance[index] = (value/)
+    # end
 
-
-
+    # return instructor_performance
     return response_answers
+  end
+
+  def chart_instructor_performance(answers_hash)
+    # for answers_hash.each_with_index do |value, index|
+    #
+    # end
   end
 end
