@@ -1,6 +1,9 @@
 //= require jquery.turbolinks
 //= require Chart
 
+Chart.defaults.global.maintainAspectRatio = false;
+Chart.defaults.global.legend.display = false;
+
 $(function() {
   var ctxA = document.getElementById("selfChart");
   var ctxB = document.getElementById("classChart");
@@ -10,7 +13,7 @@ $(function() {
       labels: gon.chart_month_names,
       datasets: [{
         label: 'Instructor Performance',
-        data: [2, 3, 1, 5, 2, 3],
+        data: gon.chart_inst_compiled,
         backgroundColor: 'rgba(80, 227, 194, 0.2)',
         borderColor: 'rgba(80, 227, 194, 1)',
         borderWidth: 1
@@ -60,3 +63,35 @@ $(function() {
     options: {}
   });
 });
+
+
+function openChart(evt, chartName) {
+  // Declare all variables
+  var i, tabcontent, tablinks, arrows;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tab-link");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    // tablinks[i].currentTarget.children("div").style.display = "none";
+  }
+
+  // Get all elements with class="arrow-right" and hide them
+  arrows = document.getElementsByClassName("arrow-right");
+  for (i = 0; i < arrows.length; i++) {
+    arrows[i].style.display = "none";
+  }
+
+  // Show the current tab, and add an "active" class to the link that opened the tab
+  document.getElementById(chartName).style.display = "block";
+  evt.currentTarget.className += " active";
+  evt.currentTarget.children[0].style.display = "block";
+}
+
+document.getElementById("defaultChart").click();
