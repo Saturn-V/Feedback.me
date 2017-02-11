@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @responses = current_user.responses.all
   end
@@ -14,8 +15,9 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
     @classroom = @response.classroom
+
     @response.updated_at = Time.zone.now
-    # binding.pry
+    @response.is_complete = true
 
     if @response.update(response_params)
       redirect_to classroom_path(@classroom)

@@ -9,15 +9,16 @@
     text-align: center;
     width: 80%;
     height: auto;
-    * {
-      padding: 0;
-    }
+    // * {
+    //   padding: 0;
+    // }
     .contained {
       box-sizing: border-box;
-      padding: 0 2rem;
+      padding: 2rem 2rem 0 2rem;
       width: 100%;
       height: 40rem;
       canvas {
+        padding: 0;
         width: 100%;
         height: 100%;
       }
@@ -33,7 +34,8 @@
   overflow: hidden;
   // border: 1px solid #ccc;
   // border-left: none;
-  background-color: #f1f1f1;
+  border-radius: 0 4px 4px 0;
+  background-color: #8C8E91;
   .tab-link {
     display: block;
     text-decoration: none;
@@ -45,6 +47,12 @@
     &:first-child {
       border-top: none;
     }
+    &.last {
+      border-bottom: 1px solid #ccc;
+    }
+    &.empty {
+      border-top: none;
+    }
   }
 }
 
@@ -53,7 +61,10 @@
 }
 
 /* Change background color of links on hover */
-.tab a:hover {background-color: #ddd;}
+.tab a:hover {background-color: #97A2A4;}
 
 /* Create an active/current tablink class */
-.tab a:focus, .active {background-color: #ccc;}
+.tab a:focus, .active {
+  background-color: rgba(28, 34, 40, 0.85);
+  color: white;
+}

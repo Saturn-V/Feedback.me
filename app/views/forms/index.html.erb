@@ -1,5 +1,6 @@
 <div class="header">
   <span class="title medium">Forms</span>
+  <%= link_to 'Create a Form', new_classroom_form_path(@classroom), :class => 'button' %>
 </div>
 
 <% if @forms.empty? %>

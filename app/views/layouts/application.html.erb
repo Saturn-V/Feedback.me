@@ -26,7 +26,7 @@
             <div class="eleven columns content">
 
                 <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
+                  <div class="alert alert-<%= key %>"><%= value %></div>
                 <% end %>
 
                 <%= yield %>
@@ -50,6 +50,7 @@
         </div>
       <% end %>
 
+      <!--  Scripts -->
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

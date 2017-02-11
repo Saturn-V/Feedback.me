@@ -3,9 +3,9 @@
   Enter the class code provided by your Instructor to join the class.
 </span>
 
-<div class="card">  
+<div class="card">
   <%= form_tag(new_student_join_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Class Code" %>
-  <%= submit_tag "Submit", :name => nil %>
+    <%= text_field_tag :search, params[:search], placeholder: "Class Code" %>
+    <%= submit_tag "Submit", :name => nil %>
   <% end %>
 </div>

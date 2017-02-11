@@ -1,11 +1,13 @@
-<span class="title">Instructor Home Page <%= button_to 'Create Classroom', new_classroom_path, method: :get %></span>
+<span class="title">Welcome, <%= current_user.first_name %> <%= current_user.last_name %> <%= button_to 'Create Classroom', new_classroom_path, method: :get, :class => 'button-primary' %></span>
 
 <% if @user.classrooms.count > 0 %>
   <% @user.classrooms.each do |classroom| %>
-    <div class="classroom-section">
-      <h3><%= link_to classroom.name, classroom_path(classroom), :class => "sub title" %></h3>
-      <span>Student Count: <%= classroom.users.count %></span>
-    </div>
+    <%= link_to classroom_path(classroom) do %>
+      <div class="card">
+        <h3 class="title medium"><%= classroom.name %></h3>
+        <span>Student Count: <%= classroom.users.count %></span>
+      </div>
+    <% end %>
   <% end %>
 <% else %>
   <span class="title"> No Classrooms.</span>

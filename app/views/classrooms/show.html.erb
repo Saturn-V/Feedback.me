@@ -1,5 +1,5 @@
-<div class="row section first">
-  <div class="twelve columns card charts">
+<div class="row">
+  <div class="twelve columns card charts section first">
 
     <div class="row">
 
@@ -31,49 +31,31 @@
           </div>
       </div>
 
-      <div id="Soon" class="nine columns chart tab-content">
-          <!-- <span class="title">Monthly Growth</span> -->
-          <div class="header">
-            <span class="title medium">Current Classroom: <%= @classroom.name %></span>
-            <span class="title small">Instructor: <%= @user.last_name %>, <%= @user.first_name %></span>
-            <span class="title small" style="display: block">Class Code: <%= @classroom.class_code %></span>
-            <!-- <%= button_to 'Back To My Classrooms', root_path, method: :get %> -->
-          </div>
 
-          <div class="contained">
-            <h1>Chart coming soon...</h1>
-          </div>
-      </div>
 
       <div class="three columns tab">
         <a href="javascript:void(0)" id="defaultChart" class="tab-link" onclick="openChart(event, 'Performance')">
           <div class="arrow-right"></div>
           Performance
         </a>
-        <a href="javascript:void(0)" class="tab-link" onclick="openChart(event, 'Pacing')">
+        <a href="javascript:void(0)" class="tab-link last" onclick="openChart(event, 'Pacing')">
           <div class="arrow-right"></div>
           Pacing
         </a>
-        <a href="javascript:void(0)" class="tab-link" onclick="openChart(event, 'Soon')">
-          <div class="arrow-right"></div>
-          Coming soon...
-        </a>
-        <a href="javascript:void(0)" class="tab-link" onclick="openChart(event, 'Soon')">
-          <div class="arrow-right"></div>
-          Coming soon...
-        </a>
-        <a href="javascript:void(0)" class="tab-link" onclick="openChart(event, 'Soon')">
-          <div class="arrow-right"></div>
-          Coming soon...
-        </a>
+        <div class="tab-link empty">
+        </div>
+        <div class="tab-link empty">
+        </div>
+        <div class="tab-link empty">
+        </div>
       </div>
 
     </div>
   </div>
 </div>
 
-<div class="row section">
-  <div class="nine columns card">
+<div class="row">
+  <div class="nine columns card section">
 
     <% if current_user.try(:instructor?) %>
     <div class="header left">

@@ -1,5 +1,5 @@
 class ClassroomsController < ApplicationController
-
+  before_action :authenticate_user!
   # GET /classrooms
   def index
     @user = current_user
@@ -20,6 +20,7 @@ class ClassroomsController < ApplicationController
         end
       end
     end
+    @feedbacks.reverse!
 
     # For Charts
     # @test = chart_inst_ans_hash(chart_inst_sorted(@classroom))
@@ -50,38 +51,52 @@ class ClassroomsController < ApplicationController
     end
   end
 
-  def join
-    @user = current_user
-    @classroom = Classroom.find(params[:id])
-    @classroom.users << @user
-    if @classroom.update_attributes(classroom_params)
-      redirect_to @classroom
-      flash[:success] = "Succesfully Joined Class!"
-    else
-      redirect_to :back
-      flash[:error] = "Failed to join class."
-    end
-  end
-
   def join_classroom_search
   end
 
+  # Results
   def join_classroom
-    @user = current_user
     @classroom = nil
+    @is_enrolled = true
+    # Params hash contains class_code that was [:SEARCH]ed
     if params[:search]
       @classroom = Classroom.find_by(class_code: params[:search])
+      unless @classroom.users.include?(current_user)
+        @is_enrolled = false
+      end
     else
-      # @recipes = Recipe.all.order("created_at DESC")
       flash[:error] = "Failed to find class."
     end
 
-    if params[:join]
-      @classroom.users << @user
-      if @user.save
-        redirect_to classrooms_path
+    # if params[:join]
+    #   unless @classroom.users.include?(current_user)
+    #     @classroom.users << current_user
+    #   end
+    #
+    #   if current_user.save
+    #     redirect_to classrooms_path
+    #   end
+    # end
+  end
+
+  def join
+    current_user
+    @classroom = Classroom.find(params[:id])
+    unless @classroom.users.include?(current_user)
+      @classroom.users << current_user
+
+      if @classroom.update_attributes(classroom_params)
+        redirect_to @classroom
+        flash[:success] = "Succesfully Joined Class!"
+      else
+        redirect_to :back
+        flash[:error] = "Failed to join class."
       end
+    else
+      redirect_to :back
+      flash[:success] = "You are already enrolled in this classroom!"
     end
+
   end
 
   private

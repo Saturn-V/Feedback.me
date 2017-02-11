@@ -1,15 +1,23 @@
 <% if @classroom.blank? %>
-  <h4>0 classrooms matched the code <%= params[:search] %>.</h4>
+  <div class="header center card">
+    <span class="text large">0 classrooms matched the code <%= params[:search] %>.</span>
+  </div>
 <% else %>
-  <h3>
-    <%= link_to @classroom.name, classroom_path(@classroom) %>
+  <%= link_to @classroom.name, classroom_path(@classroom) %>
+  <span>Student Count: <%= @classroom.users.count %></span>
 
+  <% if @is_enrolled %>
+    <h1>You are already enrolled in this classroom!</h1>
+    <span>Search for another class?</span>
+    <span><%= button_to 'Back', new_student_join_search_path, method: :get %></span>
+  <% else %>
+    <!--  REVISE SEARCH QUERY CODE -->
     <%= form_for @classroom, url: join_classroom_path(@classroom) do |f| %>
+      <!-- Why the fuck is this even here. Literally no value being passed. -->
       <%= f.hidden_field :users do |cf| %>
-        <% cf << current_user %>
       <% end %>
+
       <%= f.submit 'Join', :name => 'join' %>
     <% end %>
-  </h3>
-  <span>Student Count: <%= @classroom.users.count %></span>
+  <% end %>
 <% end %>

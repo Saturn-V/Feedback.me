@@ -12,11 +12,12 @@ $(function() {
     data: {
       labels: gon.chart_month_names,
       datasets: [{
+        fill: false,
         label: 'Instructor Performance',
         data: gon.chart_inst_compiled,
         backgroundColor: 'rgba(80, 227, 194, 0.2)',
         borderColor: 'rgba(80, 227, 194, 1)',
-        borderWidth: 1
+        borderWidth: 3
       }]
     },
     options: {
@@ -79,7 +80,6 @@ function openChart(evt, chartName) {
   tablinks = document.getElementsByClassName("tab-link");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
-    // tablinks[i].currentTarget.children("div").style.display = "none";
   }
 
   // Get all elements with class="arrow-right" and hide them

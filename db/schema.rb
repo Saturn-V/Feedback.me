@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201055609) do
+ActiveRecord::Schema.define(version: 20170210224717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170201055609) do
     t.string   "name"
     t.string   "class_code"
     t.string   "subject"
+    t.index ["class_code"], name: "index_classrooms_on_class_code", unique: true, using: :btree
   end
 
   create_table "classrooms_users", id: false, force: :cascade do |t|

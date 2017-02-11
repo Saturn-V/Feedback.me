@@ -1,5 +1,5 @@
 class FormsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @classroom = Classroom.find(params[:classroom_id])
     @forms = Form.all
@@ -13,8 +13,8 @@ class FormsController < ApplicationController
 
   def new
     # session[:form_params] ||= {}
-    # @classroom = Classroom.find(params[:classroom_id])
-    # @form = @classroom.forms.build
+    @classroom = Classroom.find(params[:classroom_id])
+    @form = @classroom.forms.build
     # 3.times do
     #   question = @form.sections.build.build_question
     # end
