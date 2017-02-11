@@ -1,21 +1,5 @@
-<h1>Create a Form!</h1>
+<%= link_to 'Back', classroom_forms_path(@classroom), :class => 'button' %>
 
-<%= form_for [@classroom, @form] do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+<h1>Create a Form</h1>
 
-  <%= f.fields_for :sections do |builder| %>
-    <%= builder.fields_for :question do |question_form| %>
-      <div class="field">
-        <%= render 'partials/question_fields', :f => question_form %>
-      </div>
-    <% end %>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Submit" %>
-  </div>
-
-<% end %>
+<%= render 'form' %>

@@ -14,7 +14,11 @@ class FormsController < ApplicationController
   def new
     # session[:form_params] ||= {}
     @classroom = Classroom.find(params[:classroom_id])
-    @form = @classroom.forms.build
+    @form = @classroom.forms.new
+    3.times do
+      question = @form.questions.build
+      4.times { question.skills.build }
+    end
     # 3.times do
     #   question = @form.sections.build.build_question
     # end
@@ -23,15 +27,16 @@ class FormsController < ApplicationController
   end
 
   def create
-    # @classroom = Classroom.find(params[:classroom_id])
-    # @form = @classroom.forms.build(form_params)
-    # if @form.save
-    #   flash[:success] = 'Form Created'
-    #   redirect_to classroom_path(@classroom)
-    # else
-    #   redirect_to :back
-    #   flash[:error] = 'Form failed to be created'
-    # end
+    @classroom = Classroom.find(params[:classroom_id])
+    @form = @classroom.forms.new(form_params)
+
+    if @form.save!
+      flash[:success] = 'Form Created'
+      redirect_to classroom_path(@classroom)
+    else
+      redirect_to :back
+      flash[:error] = 'Form failed to be created'
+    end
 
     # session[:form_params].deep_merge!(params[:form]) if params[:form]
     # @form = @classroom.forms.build(form_params)
@@ -61,6 +66,6 @@ class FormsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def form_params
-    params.require(:form).permit(:name, :assesment_type)
+    params.require(:form).permit(:name, :assesment_type, :_destroy, questions_attributes: [:id, :label, :static, :free, skills_attributes: [:id, :label, :_destroy]])
   end
 end

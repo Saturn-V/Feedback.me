@@ -1,0 +1,30 @@
+<%= form_for [@classroom, @form] do |f| %>
+  <% if @form.errors.any? %>
+    <div class="card">
+
+      <h4><%= pluralize(@forest.errors.count, "error") %> prohibited this forest from being saved:</h4>
+
+      <ul>
+        <% @form.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  <% end %>
+
+  <div class="field six columns offset-by-three columns">
+    <%= f.label :name, :class => "label" %>
+    <%= f.text_field :name, :style => "width: 100%", autofocus: true %>
+  </div>
+
+  <%= f.fields_for :questions do |builder| %>
+
+      <%= render 'question_static_fields', :f => builder %>
+
+  <% end %>
+
+  <div class="actions six columns offset-by-three columns">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
