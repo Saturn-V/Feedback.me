@@ -20,9 +20,11 @@
 
   <%= f.fields_for :questions do |builder| %>
 
-      <%= render 'question_static_fields', :f => builder %>
+    <%= render 'question_fields', :f => builder %>
 
   <% end %>
+
+  <p><%= link_to_add_fields "Add Question", f, :questions %></p>
 
   <div class="actions six columns offset-by-three columns">
     <%= f.submit "Create" %>

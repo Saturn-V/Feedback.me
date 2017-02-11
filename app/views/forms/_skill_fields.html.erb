@@ -1,11 +1,9 @@
-<div class="field six columns offset-by-three columns">
+<div class="form-fields six columns offset-by-three columns">
   <div class="header">
     <span>Skill</span>
+    <p><%= link_to_remove_fields "remove", f %></p>
   </div>
 
   <%= f.label :label, :class => "label" %>
   <%= f.text_field :label, :style => "width: 50%", autofocus: true %>
-
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, "Remove skill" %>
 </div>
