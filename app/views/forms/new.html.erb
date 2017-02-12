@@ -1,12 +1,16 @@
-<div class="">
-  <span style="display:inline-block">
-    <%= link_to classroom_forms_path(@classroom) do %>
-      <img src="/assets/back.svg" alt="back button" style="position: absolute">
-    <% end %>
-  </span>
-  <h1 style="display:inline-block">
+<span>
+  <%= link_to classroom_forms_path(@classroom) do %>
+  <img src="/assets/back.svg" alt="back button" style="position: absolute">
+  <% end %>
+</span>
+
+<div class="header">
+
+  <span class="title medium">
     Create a Form
-  </h1>
+  </span>
 </div>
 
-<%= render 'form' %>
+<div class="section">
+  <%= render 'form' %>
+</div>

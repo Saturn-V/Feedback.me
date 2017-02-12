@@ -1,6 +1,9 @@
-<span class="title medium">Notifications</span>
+<div class="header">
+  <span class="title medium">Notifications</span>
+</div>
 
-<% @incomplete_notifications.each do |notification| %>
+<div class="section">  
+  <% @incomplete_notifications.each do |notification| %>
   <div class="card full">
     <%= link_to(edit_response_path(notification.response)) do %>
     <section>
@@ -10,4 +13,5 @@
     </section>
     <% end %>
   </div>
-<% end %>
+  <% end %>
+</div>

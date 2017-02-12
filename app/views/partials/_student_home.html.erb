@@ -1,8 +1,5 @@
-<h1>Student: <%= @user.last_name %>, <%= @user.first_name %> </h1>
-<% if current_user.try(:instructor?) %>
-<h3>Role: Instructor</h3>
-<% end %>
+<div class="header">
+  <span class="title medium">Student: <%= @user.last_name %>, <%= @user.first_name %> </span>
 
-<% if current_user.try(:student?) %>
-<h3>Role: Student</h3>
-<% end %>
+  <span class="text large">Role: Student</span>
+</div>

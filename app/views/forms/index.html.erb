@@ -1,23 +1,29 @@
 <% if !@classroom.nil? and !@classroom.new_record? %>
+
   <div class="header">
     <span class="title medium">Forms</span>
-    <%= link_to 'Create a Form', new_classroom_form_path(@classroom), :class => 'button' %>
+    <%= button_to 'Create a Form', new_classroom_form_path(@classroom), method: :get, :class => 'button-primary' %>
   </div>
 
   <% if @forms.empty? %>
+
     <div class="card full">
       <span class="title medium">No forms right now.</span>
     </div>
+
   <% else %>
-    <div class="card full">
+
       <% @forms.each do |f| %>
+      <div class="card full">
         <%= link_to classroom_form_path(@classroom, f) do %>
           <span class="title medium"><%= f.name %></span>
           <span class="title small">Form Type: <%= f.assesment_type %></span>
         <% end %>
+      </div>
       <% end %>
-    </div>
+
   <% end %>
+
 <% else %>
   <%= render '/partials/segue_forms' %>
 <% end %>
