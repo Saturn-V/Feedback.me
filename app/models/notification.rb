@@ -3,5 +3,6 @@ class Notification < ApplicationRecord
   belongs_to :sender, class_name: "User"
   belongs_to :response
 
-  scope :unread, ->{ where(read_at: nil) }
+  scope :incomplete, -> { joins(:response).where(responses: { is_complete: false }) }
+  scope :completed, -> { joins(:response).where(responses: { is_complete: true }) }
 end

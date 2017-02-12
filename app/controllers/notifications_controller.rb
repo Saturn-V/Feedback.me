@@ -1,7 +1,8 @@
 class NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.where(recipient: current_user).unread
+    @incomplete_notifications = Notification.where(recipient: current_user).incomplete
+    @complete_notifications = Notification.where(recipient: current_user).completed
   end
 
   def create

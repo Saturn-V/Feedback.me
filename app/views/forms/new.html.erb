@@ -1,5 +1,12 @@
-<%= link_to 'Back', classroom_forms_path(@classroom), :class => 'button' %>
-
-<h1>Create a Form</h1>
+<div class="">
+  <span style="display:inline-block">
+    <%= link_to classroom_forms_path(@classroom) do %>
+      <img src="/assets/back.svg" alt="back button" style="position: absolute">
+    <% end %>
+  </span>
+  <h1 style="display:inline-block">
+    Create a Form
+  </h1>
+</div>
 
 <%= render 'form' %>
