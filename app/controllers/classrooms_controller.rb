@@ -29,6 +29,8 @@ class ClassroomsController < ApplicationController
 
     gon.chart_month_names = chart_month_names
     gon.chart_inst_compiled = chart_ans_array(answers_hash, month_numbers)
+
+    # gon.chart_responses_received = @classroom.
   end
 
   # GET /classrooms/new
@@ -97,6 +99,10 @@ class ClassroomsController < ApplicationController
       flash[:success] = "You are already enrolled in this classroom!"
     end
 
+  end
+
+  def select
+    @classrooms = current_user.classrooms.sort_by(&:created_at)
   end
 
   private

@@ -1,6 +1,6 @@
 class FormsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @classroom = Classroom.find(params[:classroom_id])
     @forms = Form.all
@@ -31,12 +31,12 @@ class FormsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     @form = @classroom.forms.new(form_params)
 
-    if @form.save!
+    if @form.save
       flash[:success] = 'Form Created'
       redirect_to classroom_path(@classroom)
     else
       redirect_to :back
-      flash[:error] = 'Form failed to be created'
+      flash[:error] = 'Form failed to be created. One or more fields were blank.'
     end
   end
 

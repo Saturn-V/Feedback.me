@@ -1,0 +1,20 @@
+<div class="header">
+  <span class="title medium">Select the classroom you'd like to send a form to:</span>
+</div>
+
+<div class="section">
+  <span class="title medium">Your classes</span>
+
+  <% @classrooms.each do |classroom| %>
+    <%= link_to classroom_forms_path(classroom) do %>
+
+      <div class="card left">
+        <span class="text large"><%= classroom.name %></span>
+        <span class="text large">Subject: <%= classroom.subject %></span>
+
+        <span class="text large">Student Count: <%= classroom.users.count %></span>
+      </div>
+
+    <% end %>
+  <% end %>
+</div>

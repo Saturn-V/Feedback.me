@@ -6,6 +6,8 @@ class Form < ApplicationRecord
 
   has_many :responses, dependent: :destroy
 
+  validates :name, :assesment_type, :presence => true
+
   # attr_writer :current_step
   #
   # validates_presence_of :five_tier, :if => lambda { |o| o.current_step == "tier_select" }

@@ -33,17 +33,36 @@
 
 
 
+
+
       <div class="three columns tab">
+
         <a href="javascript:void(0)" id="defaultChart" class="tab-link" onclick="openChart(event, 'Performance')">
           <div class="arrow-right"></div>
-          Performance
+          <div class="row">
+            <div class="six columns">
+            Your Performance
+            </div>
+            <div class="six columns">
+              ^ 10%
+            </div>
+          </div>
         </a>
+
         <a href="javascript:void(0)" class="tab-link last" onclick="openChart(event, 'Pacing')">
           <div class="arrow-right"></div>
-          Pacing
+          <div class="row">
+            <div class="six columns">
+              Class Pacing
+            </div>
+            <div class="six columns">
+            </div>
+          </div>
         </a>
+
         <div class="tab-link empty">
         </div>
+
         <div class="tab-link empty">
         </div>
         <div class="tab-link empty">
@@ -64,9 +83,9 @@
 
     <% if @feedbacks.count > 0 %>
     <!-- <%= @feedbacks.count %> -->
-    <% @feedbacks.each do |feedback| %>
     <div class="row">
-      <div class="six columns card">
+    <% @feedbacks.each do |feedback| %>
+      <div class="six columns card u-pull-left">
         <div class="section">
           <span class="title small">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
           <div class="text medium">
@@ -74,8 +93,8 @@
           </div>
         </div>
       </div>
-    </div>
     <% end %>
+  </div>
     <% else %>
     <div class="card full">
       <div class="section">

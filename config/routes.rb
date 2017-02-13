@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   # Customized classrooms routes
   get  'classrooms/join/search' => 'classrooms#join_classroom_search', :as => 'new_student_join_search'
   get  'classrooms/join' => 'classrooms#join_classroom', :as => 'new_student_join'
+  get  'classrooms/select' => 'classrooms#select', :as => 'classrooms_select'
 
   # Classroom Routes with nested Forms Routes
   resources :classrooms, only: [:index, :show, :new, :create] do
