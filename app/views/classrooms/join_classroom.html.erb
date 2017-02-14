@@ -4,7 +4,7 @@
   </div>
 <% else %>
   <%= link_to @classroom.name, classroom_path(@classroom) %>
-  <span>Student Count: <%= @classroom.users.count %></span>
+  <span>Student Count: <%= @classroom.users.count - 1%></span>
 
   <% if @is_enrolled %>
     <h1>You are already enrolled in this classroom!</h1>

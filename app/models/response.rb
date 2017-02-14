@@ -4,6 +4,7 @@ class Response < ApplicationRecord
   belongs_to :user
   belongs_to :classroom
   belongs_to :form
+  belongs_to :feedback_request
 
   has_one :notification, dependent: :destroy
 
@@ -13,4 +14,6 @@ class Response < ApplicationRecord
   # validates_associated :answers
 
   scope :for_instructors, -> { joins(:form).where(is_complete: true, created_at: Time.now.end_of_month - 6.months..Time.now.end_of_month, forms: {assesment_type: 'instructor'}) }
-end 
+  scope :submited, -> { where(is_complete: true) }
+  scope :incomplete, -> { where(is_complete: false) }
+end

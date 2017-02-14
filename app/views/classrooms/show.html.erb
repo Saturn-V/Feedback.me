@@ -44,12 +44,12 @@
             Your Performance
             </div>
             <div class="six columns">
-              ^ 10%
+
             </div>
           </div>
         </a>
 
-        <a href="javascript:void(0)" class="tab-link last" onclick="openChart(event, 'Pacing')">
+        <!-- <a href="javascript:void(0)" class="tab-link last" onclick="openChart(event, 'Pacing')">
           <div class="arrow-right"></div>
           <div class="row">
             <div class="six columns">
@@ -58,7 +58,10 @@
             <div class="six columns">
             </div>
           </div>
-        </a>
+        </a> -->
+
+        <div class="tab-link empty">
+        </div>
 
         <div class="tab-link empty">
         </div>
@@ -73,35 +76,35 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="nine columns card section">
+<% if current_user.try(:instructor?) %>
+  <div class="row">
+    <div class="nine columns card section">
 
-    <% if current_user.try(:instructor?) %>
-    <div class="header left">
-      <span class="title medium">My Feedback</span>
-    </div>
+      <div class="header left">
+        <span class="title medium">My Feedback</span>
+      </div>
 
-    <% if @feedbacks.count > 0 %>
-    <!-- <%= @feedbacks.count %> -->
-    <div class="row">
-    <% @feedbacks.each do |feedback| %>
-      <div class="six columns card u-pull-left">
-        <div class="section">
-          <span class="title small">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
-          <div class="text medium">
-            <span><%= feedback.value_free %></span>
+      <% if @feedbacks.count > 0 %>
+        <!-- <%= @feedbacks.count %> -->
+        <% @feedbacks.each do |feedback| %>
+          <div class="row">
+            <div class="twelve columns card">
+              <div class="section">
+                <span class="title small">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
+                <div class="text medium">
+                  <span><%= feedback.value_free %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="card full">
+          <div class="section">
+            <span class="title medium">No Free Response Feedback has been submitted.</span>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-    <% else %>
-    <div class="card full">
-      <div class="section">
-        <span class="title medium">No Free Response Feedback has been submitted.</span>
-      </div>
+      <% end %>
     </div>
-    <% end %>
-    <% end %>
   </div>
-</div>
+<% end %>

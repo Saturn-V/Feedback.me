@@ -4,18 +4,25 @@
 </div>
 
 <div class="section">
-  <% if @user.classrooms.count > 0 %>
-    <% @user.classrooms.each do |classroom| %>
-      <%= link_to classroom_path(classroom) do %>
+  <% if @feedback_requests.empty? %>
+    <div class="card">
+      <span class="title">You haven't made any Feedback Requests.</span>
+    </div>
+  <% else %>
+    <% @feedback_requests.each do |feedback_request| %>
+      <% submited = feedback_request.responses.submited.count %>
+      <% incomplete = feedback_request.responses.incomplete.count %>
+      <% students = feedback_request.classroom.users.count - 1 %>
+      <%= link_to classroom_path(feedback_request.classroom) do %>
 
         <div class="card">
-          <span class="title medium"><%= classroom.name %></span>
-          <span>Student Count: <%= classroom.users.count %></span>
+          <span class="title medium">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
+          <span>Submited: <%= submited %></span>
+          <span>Incomplete: <%= incomplete %></span>
+          <span>Student Count: <%= students %></span>
         </div>
 
       <% end %>
     <% end %>
-  <% else %>
-    <span class="title"> No Classrooms.</span>
   <% end %>
 </div>

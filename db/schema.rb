@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212021434) do
+ActiveRecord::Schema.define(version: 20170214052457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20170212021434) do
     t.integer "user_id"
     t.index ["classroom_id"], name: "index_classrooms_users_on_classroom_id", using: :btree
     t.index ["user_id"], name: "index_classrooms_users_on_user_id", using: :btree
+  end
+
+  create_table "feedback_requests", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.index ["classroom_id"], name: "index_feedback_requests_on_classroom_id", using: :btree
+    t.index ["user_id"], name: "index_feedback_requests_on_user_id", using: :btree
   end
 
   create_table "forms", force: :cascade do |t|
@@ -83,13 +92,15 @@ ActiveRecord::Schema.define(version: 20170212021434) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "form_id"
     t.integer  "user_id"
     t.integer  "classroom_id"
-    t.boolean  "is_complete",  default: false
+    t.boolean  "is_complete",         default: false
+    t.integer  "feedback_request_id"
     t.index ["classroom_id"], name: "index_responses_on_classroom_id", using: :btree
+    t.index ["feedback_request_id"], name: "index_responses_on_feedback_request_id", using: :btree
     t.index ["form_id"], name: "index_responses_on_form_id", using: :btree
     t.index ["user_id"], name: "index_responses_on_user_id", using: :btree
   end
@@ -123,9 +134,12 @@ ActiveRecord::Schema.define(version: 20170212021434) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "responses"
+  add_foreign_key "feedback_requests", "classrooms"
+  add_foreign_key "feedback_requests", "users"
   add_foreign_key "notifications", "responses"
   add_foreign_key "questions", "forms", on_delete: :cascade
   add_foreign_key "responses", "classrooms"
+  add_foreign_key "responses", "feedback_requests"
   add_foreign_key "responses", "forms"
   add_foreign_key "responses", "users"
 end

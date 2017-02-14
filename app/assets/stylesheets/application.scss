@@ -14,6 +14,9 @@
  *= require_self
  */
 
+ /* Progress Circle
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
  /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* NOTE
@@ -575,6 +578,8 @@ footer {
     color: #129DE7;
   }
 }
+
+
 
 @media only screen  and (min-device-width: 320px) and (max-device-width: 480px) {
     .nav-mobile { padding-top: 15px; }

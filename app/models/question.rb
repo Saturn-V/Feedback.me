@@ -6,5 +6,5 @@ class Question < ApplicationRecord
   has_and_belongs_to_many :skills, inverse_of: :question
   accepts_nested_attributes_for :skills, allow_destroy: true, :reject_if => lambda { |a| a[:label].blank? }
 
-  validates :label, :free, :presence => true
+  validates :label, :presence => true
 end

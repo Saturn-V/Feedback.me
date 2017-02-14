@@ -40,11 +40,10 @@ class ClassroomsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @classroom = @user.classrooms.build(classroom_params)
+    @classroom = current_user.classrooms.build(classroom_params)
     @classroom.class_code = SecureRandom.hex(6)[0..6]
 
-    if @user.save
+    if current_user.save!
       flash[:success] = 'Classroom Created'
       redirect_to @classroom
     else
@@ -221,19 +220,26 @@ class ClassroomsController < ApplicationController
   end
 
   def normalize(performance_hash)
-    xmin = performance_hash.min_by{|k,v| v}[1]
-    xmax = performance_hash.max_by{|k,v| v}[1]
-    # This is our normalized range, data is always displayed in this range
-    ymin = 0
-    ymax = 5
+    if performance_hash.empty?
+      6.times do |n|
+        performance_hash[n] = 0
+      end
+    else
+      xmin = performance_hash.min_by{|k,v| v}[1]
+      xmax = performance_hash.max_by{|k,v| v}[1]
+      # This is our normalized range, data is always displayed in this range
+      ymin = 0
+      ymax = 5
 
-    xrange = xmax - xmin
-    yrange = ymax - ymin
+      xrange = xmax - xmin
+      yrange = ymax - ymin
 
-    performance_hash.each do |key, value|
-      performance_hash[key] = ymin + (value - xmin) * (yrange.to_f / xrange)
+      performance_hash.each do |key, value|
+        performance_hash[key] = ymin + (value - xmin) * (yrange.to_f / xrange)
+      end
     end
 
+    # binding.pry
     return performance_hash
   end
 

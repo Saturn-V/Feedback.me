@@ -31,7 +31,7 @@ class FormsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     @form = @classroom.forms.new(form_params)
 
-    if @form.save
+    if @form.save!
       flash[:success] = 'Form Created'
       redirect_to classroom_path(@classroom)
     else
@@ -44,6 +44,6 @@ class FormsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def form_params
-    params.require(:form).permit(:name, :assesment_type, :_destroy, questions_attributes: [:id, :label, :static, :free, skills_attributes: [:id, :label, :_destroy]])
+    params.require(:form).permit(:name, :assesment_type, :_destroy, questions_attributes: [:id, :label, :static, :free, :_destroy, skills_attributes: [:id, :label, :_destroy]])
   end
 end

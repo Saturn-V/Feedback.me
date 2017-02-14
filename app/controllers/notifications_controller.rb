@@ -9,8 +9,11 @@ class NotificationsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     @form = Form.find(params[:id])
 
+    @feedback_request = current_user.feedback_requests.create(classroom: @classroom)
+
     (@classroom.users.uniq - [current_user]).each do |user|
-      @response = Response.create(classroom: @classroom, form: @form, user: user)
+      @response = Response.create(classroom: @classroom, form: @form, user: user, feedback_request: @feedback_request)
+      @feedback_request.responses << @response
       @form.questions.each do |question|
         @response.answers.create(question: question)
       end
