@@ -186,8 +186,6 @@ img {
     background-color: rgb(84, 192, 235);
 }
 
-.clear { clear: both; }
-
 .arrow-right {
   position: relative;
   top: 50%;
@@ -287,7 +285,18 @@ a:hover {
     margin-left: 4%; }
   .column:first-child,
   .columns:first-child {
-    margin-left: 0; }
+    margin-left: 0;
+  }
+
+  .six.column:nth-child(odd),
+  .six.columns:nth-child(odd) {
+    margin-left: 0;
+  }
+
+  .four.column.card:nth-child(4n),
+  .four.columns.card:nth-child(4n) {
+    margin-left: 0;
+  }
 
   .one.column,
   .one.columns                    { width: 4.66666666667%; }
@@ -477,6 +486,17 @@ label > .label-body {
   margin-left: .5rem;
   font-weight: normal;
 }
+
+/* Clearing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Self Clearing Goodness */
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
 
  /* Navigation Menu
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

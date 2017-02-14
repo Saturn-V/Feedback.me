@@ -9,20 +9,23 @@
       <span class="title">You haven't made any Feedback Requests.</span>
     </div>
   <% else %>
-    <% @feedback_requests.each do |feedback_request| %>
-      <% submited = feedback_request.responses.submited.count %>
-      <% incomplete = feedback_request.responses.incomplete.count %>
-      <% students = feedback_request.classroom.users.count - 1 %>
-      <%= link_to classroom_path(feedback_request.classroom) do %>
+    <div class="row">
+      <% @feedback_requests.each do |feedback_request| %>
+        <% submited = feedback_request.responses.submited.count %>
+        <% incomplete = feedback_request.responses.incomplete.count %>
+        <% students = feedback_request.classroom.users.count - 1 %>
+        <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card' do %>
+          <!-- <div class="four columns card"> -->
+            <span class="title medium">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
+            <span>Submited: <%= submited %></span>
+            <span>Incomplete: <%= incomplete %></span>
+            <span>Student Count: <%= students %></span>
+          <!-- </div> -->
 
-        <div class="card">
-          <span class="title medium">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
-          <span>Submited: <%= submited %></span>
-          <span>Incomplete: <%= incomplete %></span>
-          <span>Student Count: <%= students %></span>
-        </div>
 
+
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
 </div>
