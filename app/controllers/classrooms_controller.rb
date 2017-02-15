@@ -211,7 +211,7 @@ class ClassroomsController < ApplicationController
 
 
         if form_index == forms.size - 1
-          binding.pry
+          # binding.pry
           month_form_total = month_form_total / forms.size
           # month_form_total = normalize(month_form_total)
           inst_performance[month] = month_form_total
@@ -219,15 +219,17 @@ class ClassroomsController < ApplicationController
 
       end
     end
-
+    # binding.pry
     inst_performance = normalize(inst_performance)
     return inst_performance
   end
 
   def normalize(performance_hash)
-    if performance_hash.empty?
+    if performance_hash.empty? || (performance_hash.size == 1)
       6.times do |n|
-        performance_hash[n] = 0
+        unless performance_hash[n] <= 5
+          performance_hash[n] = 0
+        end
       end
     else
       xmin = performance_hash.min_by{|k,v| v}[1]
