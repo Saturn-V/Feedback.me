@@ -14,13 +14,14 @@
         <% submited = feedback_request.responses.submited.count %>
         <% incomplete = feedback_request.responses.incomplete.count %>
         <% students = feedback_request.classroom.users.count - 1 %>
-        <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card' do %>
-          <!-- <div class="four columns card"> -->
+        <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card border-left align-left' do %>
+
+            <span class="title medium"><%= feedback_request.classroom.name %></span>
             <span class="title medium">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
             <span>Submited: <%= submited %></span>
             <span>Incomplete: <%= incomplete %></span>
             <span>Student Count: <%= students %></span>
-          <!-- </div> -->
+
 
 
 

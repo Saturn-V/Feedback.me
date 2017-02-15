@@ -45,6 +45,7 @@
     border-top: 1px solid #ccc;
     // border-left: none;
     float: left;
+    transition: 0.25s;
     &:first-child {
       border-top: none;
     }
