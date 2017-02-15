@@ -30,7 +30,7 @@ class ClassroomsController < ApplicationController
     gon.chart_month_names = chart_month_names
     gon.chart_inst_compiled = chart_ans_array(answers_hash, month_numbers)
 
-    # gon.chart_responses_received = @classroom.
+    # binding.pry
   end
 
   # GET /classrooms/new
@@ -192,10 +192,13 @@ class ClassroomsController < ApplicationController
         responses.each_with_index do |(response, answers), response_index|
 
           answers.each do |pos, answer|
+
             if inst_performance[month] != 0
               form_response_total += answer.value_static
+              inst_performance[month] += answer.value_static
             else
               form_response_total = answer.value_static
+              inst_performance[month] = answer.value_static
             end
           end
 
@@ -203,10 +206,12 @@ class ClassroomsController < ApplicationController
             form_response_total = form_response_total / responses.size
             month_form_total += form_response_total
           end
-
+          # binding.pry
         end
 
+
         if form_index == forms.size - 1
+          binding.pry
           month_form_total = month_form_total / forms.size
           # month_form_total = normalize(month_form_total)
           inst_performance[month] = month_form_total
