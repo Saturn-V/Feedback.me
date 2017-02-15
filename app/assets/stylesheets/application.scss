@@ -288,8 +288,8 @@ a:hover {
     margin-left: 0;
   }
 
-  .six.column:nth-child(odd),
-  .six.columns:nth-child(odd) {
+  .six.column.card:nth-child(odd),
+  .six.columns.card:nth-child(odd) {
     margin-left: 0;
   }
 

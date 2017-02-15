@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  include ActionView::Helpers::TagHelper
 before_action :configure_sign_up_params, only: [:create]
 before_action :configure_account_update_params, only: [:update]
 
@@ -56,7 +57,13 @@ before_action :configure_account_update_params, only: [:update]
     else
       clean_up_passwords @user
       set_minimum_password_length
-      redirect_to root_path
+      redirect_to :back
+      # binding.pry
+      # flash[:notice] =
+      resource.errors.messages.each do |msg|
+        # { |msg| msg.to_s }.join
+        flash[msg[0]] = msg[1].to_s
+      end
     end
   end
 
@@ -88,12 +95,12 @@ before_action :configure_account_update_params, only: [:update]
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :first_name, :last_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :first_name, :last_name, :access_code])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :first_name, :last_name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :first_name, :last_name, :access_code])
   end
 
   # The path used after sign up.

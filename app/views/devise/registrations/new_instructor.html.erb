@@ -50,6 +50,13 @@
 
   <br />
 
+  <div class="field six columns offset-by-three columns">
+    <%= f.label "Access Code" %><br />
+    <%= f.text_field :access_code, autofocus: true %>
+  </div>
+
+  <br />
+
   <div class="actions six columns offset-by-three columns">
     <%= f.submit "Sign up", :name => 'instructor_button' %>
   </div>

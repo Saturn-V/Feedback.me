@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :access_code
+  validate :access_code_valid, :on => :create
+
   has_and_belongs_to_many :classrooms
 
   # Students receive many notifications from instructors
@@ -21,4 +24,10 @@ class User < ApplicationRecord
   #   end
   #   return false
   # end
+
+  def access_code_valid
+    unless self.access_code == "MakeSchoolClass18"
+      self.errors.add(:access_code, "Invalid Beta Access Code.")
+    end
+  end
 end
