@@ -1,6 +1,6 @@
 <% if @classroom.blank? %>
   <div class="header align-center card">
-    <span class="text large">0 classrooms matched the code <%= params[:search] %>.</span>
+    <span class="title medium">0 classrooms matched the code <i style="color: red;"><%= params[:search] %></i>.</span>
   </div>
 <% else %>
   <%= link_to @classroom.name, classroom_path(@classroom) %>

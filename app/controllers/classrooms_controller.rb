@@ -60,13 +60,19 @@ class ClassroomsController < ApplicationController
     @classroom = nil
     @is_enrolled = true
     # Params hash contains class_code that was [:SEARCH]ed
-    if params[:search]
+    if !params[:search].empty?
+
       @classroom = Classroom.find_by(class_code: params[:search])
-      unless @classroom.users.include?(current_user)
-        @is_enrolled = false
+
+      unless @classroom.nil?
+        unless @classroom.users.include?(current_user)
+          @is_enrolled = false
+        end
       end
+      
     else
-      flash[:error] = "Failed to find class."
+      redirect_to :back
+      flash[:error] = "Please enter a class code."
     end
 
     # if params[:join]
