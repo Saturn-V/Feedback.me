@@ -1,5 +1,19 @@
 <div class="header">
-  <span class="title medium">Student: <%= current_user.last_name %>, <%= current_user.first_name %> </span>
+  <span class="title medium">Hello, <%= current_user.first_name %> <%= current_user.last_name %></span>
 
-  <span class="text large">Role: Student</span>
+
+</div>
+
+<div class="section">
+  <div class="row">
+    <div class="card six columns align-left">
+      <% if !current_user.responses.incomplete.empty? %>
+        <span class="title medium">Alerts</span>
+        <span>Pending Forms: <%= current_user.responses.incomplete.size %></span>
+
+      <% else %>
+        <span class="title medium">No alerts! You have filed out all of your forms, good for you!</span>
+      <% end %>
+    </div>
+  </div>
 </div>

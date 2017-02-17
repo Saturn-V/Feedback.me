@@ -1,4 +1,4 @@
-<h1><%= @response.form.name %></h1>
+<span class="title medium"><%= @response.form.name %></span>
 
 <%= form_for(@response) do |f| %>
   <% if @response.errors.any? %>
@@ -16,7 +16,7 @@
       <%= f.fields_for :answers do |a| %>
       <% question = Question.find_by( id: a.object.question_id ) %>
 
-      <li><%= question.label %></li>
+      <li class="text medium"><%= question.label %></li>
 
       <ul>
         <% if question.try(:static?) %>
@@ -64,3 +64,33 @@
 <% end %>
 
 <%= button_to "Back to Notifications", notifications_path, method: :get %>
+
+<!-- <div class="response-footer-wrapper">   -->
+  <div class="row response-footer">
+
+    <div class="card two columns">
+      <span>test</span>
+    </div>
+
+    <div class="card two columns">
+      <span>test</span>
+    </div>
+
+    <div class="card two columns">
+      <span>test</span>
+    </div>
+
+    <div class="card two columns">
+      <span>test</span>
+    </div>
+
+    <div class="card two columns">
+      <span>test</span>
+    </div>
+
+    <div class="card two columns">
+      <span>test</span>
+    </div>
+
+  </div>
+<!-- </div> -->

@@ -1,3 +1,19 @@
 // Place all the styles related to the responses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.response-footer-wrapper {
+  // position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-right: 3rem;
+  .response-footer {
+    // position: fixed;
+    // box-sizing: border-box;
+    // margin-right: 3rem;
+    // bottom: 0;
+    > .card:first-child {
+      margin-left: 0;
+    }
+  }
+}

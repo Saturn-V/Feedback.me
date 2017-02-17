@@ -31,7 +31,7 @@ class FormsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     @form = @classroom.forms.new(form_params)
 
-    if @form.save!
+    if @form.save
       flash[:success] = 'Form Created'
       redirect_to classroom_path(@classroom)
     else

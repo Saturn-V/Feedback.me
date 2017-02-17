@@ -78,7 +78,7 @@
 
 <% if current_user.try(:instructor?) %>
   <div class="row">
-    <div class="nine columns card section">
+    <div class="twelve columns card section">
 
       <div class="header align-left">
         <span class="title medium">My Feedback</span>
@@ -90,10 +90,23 @@
         <% @feedbacks.each do |feedback| %>
             <div class="six columns card">
               <div class="section">
-                <span class="title small">Submitted by <%= feedback.response.user.first_name %> <%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
-                <div class="text medium">
-                  <span><%= feedback.value_free %></span>
+                <div class="row">
+
+                  <div class="six columns align-left">
+                    <span class="title small">Submitted by <%= feedback.response.user.first_name %></span>
+                  </div>
+                  <div class="six columns align-right">
+                    <span class="title small"><%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
+                  </div>
+
                 </div>
+
+                <div class="row">
+                  <div class="twelve columns align-left">
+                    <span class="title small"><%= feedback.value_free %></span>
+                  </div>
+                </div>
+
               </div>
             </div>
         <% end %>

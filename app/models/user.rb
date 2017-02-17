@@ -26,7 +26,8 @@ class User < ApplicationRecord
   # end
 
   def access_code_valid
-    unless self.access_code == "MakeSchoolClass18"
+    # MakeSchoolClass18
+    unless self.access_code == "uiux"
       self.errors.add(:access_code, "Invalid Beta Access Code.")
     end
   end

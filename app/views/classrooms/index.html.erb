@@ -1,19 +1,44 @@
 <div class="header">
   <span class="title medium">Classes</span>
 
-  <span><%= button_to 'Join Classroom', new_student_join_search_path, method: :get, :class => 'button-primary' %></span>
+  <span><%= button_to 'Join Classroom', new_student_join_search_path, method: :get, :class => 'button-primary' if current_user.try(:student?) %></span>
 </div>
 
 <div class="section">
-  <span class="title small">Your classes</span>
-  <% @classrooms.each do |classroom| %>
-    <%= link_to classroom_path(classroom) do %>
-      <div class="card full">
-        <span class="sub title"><%= classroom.name %></span>
-        <span>Subject: <%= classroom.subject %></span>
-
-        <span>Student Count: <%= classroom.users.count %></span>
-      </div>
-    <% end %>
+  <% if current_user.try(:student?) %>
+    <span class="title medium">Your classes</span>
   <% end %>
+  <div class="row">
+    <% @classrooms.each do |classroom| %>
+      <%= link_to classroom_path(classroom), :class => 'card four columns align-left' do %>
+
+        <span class="title small"><%= classroom.name %></span>
+        <span class="text medium">Subject: <%= classroom.subject %></span>
+        <div class="row">
+          <div class="card four columns">
+            <span><%= classroom.users.count %></span>
+            <span class="text small">Students</span>
+          </div>
+
+          <div class="card four columns">
+            <span><%= classroom.feedback_requests.size %></span>
+            <span class="text small">Sent</span>
+          </div>
+
+          <div class="card four columns">
+            <span><%= classroom.responses.size %></span>
+            <span class="text small">Received</span>
+          </div>
+
+        </div>
+
+      <% end %>
+    <% end %>
+    <%= link_to new_classroom_path, :class => 'card four columns' do %>
+
+      <span class="text medium">Add</span>
+      <span>a new</span>
+      <span>classroom</span>
+    <% end %>
+  </div>
 </div>

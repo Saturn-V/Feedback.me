@@ -9,21 +9,17 @@
 <% elsif current_user.try(:instructor?) %>
   <!--  If user is not currently in a classroom (.nil?) | If the user is creating a classroom (.new_record?) -->
   <!--  (.new_record?) Necessary since in the /classrooms/new route, @classroom is set to Classroom.new but doesn't really exist -->
-  <% if !@classroom.nil? and !@classroom.new_record? %>
-    <%= link_to classroom_forms_path(@classroom) do %>
-      <%= render '/partials/nav_forms_icon' %>
-    <% end %>
-  <% else %>
-    <%= link_to classrooms_select_path do %>
-      <%= render '/partials/nav_forms_icon' %>
-    <% end %>
-  <% end %>
+
+<%= link_to classrooms_select_path do %>
+  <%= render '/partials/nav_forms_icon' %>
+<% end %>
+
 <% end %>
 
 <%= link_to classrooms_path do %>
   <%= render '/partials/nav_classrooms_icon' %>
 <% end %>
 
-<%= link_to destroy_user_session_path, method: :delete do %>
+<%= link_to edit_user_registration_path do %>
   <%= render '/partials/nav_logout_icon' %>
 <% end %>

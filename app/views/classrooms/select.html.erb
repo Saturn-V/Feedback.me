@@ -1,19 +1,18 @@
 <div class="header">
-  <span class="title medium">Select the classroom you'd like to send a form to:</span>
+  <span class="title medium">Forms</span>
+  <span class="title small">Select the classroom you'd like to send a form to.</span>
 </div>
 
 <div class="section">
   <span class="title medium">Your classes</span>
 
   <% @classrooms.each do |classroom| %>
-    <%= link_to classroom_forms_path(classroom) do %>
+    <%= link_to classroom_forms_path(classroom), :class => 'card align-left' do %>
 
-      <div class="card align-left">
-        <span class="text large"><%= classroom.name %></span>
-        <span class="text large">Subject: <%= classroom.subject %></span>
+        <span class="title small"><%= classroom.name %></span>
+        <span class="text medium">Subject: <%= classroom.subject %></span>
 
-        <span class="text large">Student Count: <%= classroom.users.count %></span>
-      </div>
+        <span class="text medium">Student Count: <%= classroom.users.count %></span>
 
     <% end %>
   <% end %>
