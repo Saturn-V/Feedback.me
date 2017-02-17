@@ -16,13 +16,13 @@
         <span class="text medium">Subject: <%= classroom.subject %></span>
         <div class="row">
           <div class="card four columns">
-            <span><%= classroom.users.count %></span>
+            <span><%= Classroom.students(classroom).count %></span>
             <span class="text small">Students</span>
           </div>
 
           <div class="card four columns">
             <span><%= classroom.feedback_requests.size %></span>
-            <span class="text small">Sent</span>
+            <span class="text small">Forms sent</span>
           </div>
 
           <div class="card four columns">

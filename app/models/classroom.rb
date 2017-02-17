@@ -8,4 +8,6 @@ class Classroom < ApplicationRecord
   def self.search(search)
     where("class_code LIKE ?", "%#{search}%")
   end
+
+  scope :students, -> (classroom) { classroom.users.where.not(id: classroom.users.first) }
 end
