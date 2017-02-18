@@ -26,7 +26,7 @@
   <body>
       <% if @disable.nil? %>
         <!--  Render side navigation -->
-        <div class="row">
+        <div class="row" id="body">
             <div class="one column nav">
               <%= render "partials/nav" %>
             </div>
@@ -59,7 +59,7 @@
         <div class="container">
           <div class="row">
             <div class="twelve columns">
-              
+
               <div class="alerts">
                 <% flash.each do |key, value| %>
                   <div class="alert alert-<%= key %>">
