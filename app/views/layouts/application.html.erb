@@ -32,9 +32,17 @@
             </div>
 
             <div class="eleven columns content">
-              <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
-              <% end %>
+              <!--  Error Messages -->
+              <div class="alerts">
+                <% flash.each do |key, value| %>
+                  <div class="alert alert-<%= key %>">
+                    <span class="title small">
+                      <%= value %>
+                      <a href="#" id="close"><img src="/assets/Close.svg" alt=""></a>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
 
                 <%= yield %>
 
@@ -51,9 +59,17 @@
         <div class="container">
           <div class="row">
             <div class="twelve columns">
-              <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
-              <% end %>
+              
+              <div class="alerts">
+                <% flash.each do |key, value| %>
+                  <div class="alert alert-<%= key %>">
+                    <span class="title small">
+                      <%= value %>
+                      <a href="#" id="close"><img src="/assets/Close.svg" alt=""></a>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
 
               <%= yield if @disable %>
 

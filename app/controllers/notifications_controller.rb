@@ -22,6 +22,7 @@ class NotificationsController < ApplicationController
     end
 
     redirect_to root_path
+    flash[:success] = "Form sent succesfully."
   end
 
   def mark_as_read

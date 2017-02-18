@@ -16,3 +16,11 @@
 //= require turbolinks
 //= require_tree .
 //= require Chart
+
+$(function() {
+  close = document.getElementById("close");
+  close.addEventListener('click', function() {
+    note = document.getElementById("note");
+    note.style.display = 'none';
+  }, false);
+});

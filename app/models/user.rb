@@ -16,19 +16,10 @@ class User < ApplicationRecord
 
   has_many :feedback_requests, dependent: :destroy
 
-  # attr_accessor :password, :password_confirmation
-
-  # def self.valid_email?(email)
-  #   if User.exists?(email: email)
-  #     return true
-  #   end
-  #   return false
-  # end
-
   def access_code_valid
     # MakeSchoolClass18
     unless self.access_code == "uiux"
-      self.errors.add(:access_code, "Invalid Beta Access Code.")
+      self.errors.add(:access_code, :invalid, message: "is invalid [Beta].")
     end
   end
 end

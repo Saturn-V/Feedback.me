@@ -13,7 +13,7 @@
       <% @feedback_requests.each do |feedback_request| %>
         <% submited = feedback_request.responses.submited.count %>
         <% incomplete = feedback_request.responses.incomplete.count %>
-        <% students = feedback_request.classroom.users.count - 1 %>
+        <% students = Classroom.students(feedback_request.classroom).count %>
         <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card border-left align-left' do %>
 
             <span class="title small"><%= feedback_request.classroom.name %></span>

@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  include ActionView::Helpers::TagHelper
 before_action :configure_sign_up_params, only: [:create]
 before_action :configure_account_update_params, only: [:update]
 
@@ -58,11 +57,10 @@ before_action :configure_account_update_params, only: [:update]
       clean_up_passwords @user
       set_minimum_password_length
       redirect_to :back
+
       # binding.pry
-      # flash[:notice] =
-      resource.errors.messages.each do |msg|
-        # { |msg| msg.to_s }.join
-        flash[msg[0]] = msg[1].to_s
+      resource.errors.keys.map(&:to_sym).zip(resource.errors.full_messages).to_h.each do |sym, msg|
+        flash[sym] = msg.to_s
       end
     end
   end

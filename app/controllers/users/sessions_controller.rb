@@ -9,7 +9,9 @@ before_action :configure_sign_in_params, only: [:create]
 
   # POST /resource/sign_in
   def create
+    binding.pry
     super
+    binding.pry
   end
 
   # DELETE /resource/sign_out

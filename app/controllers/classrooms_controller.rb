@@ -44,11 +44,11 @@ class ClassroomsController < ApplicationController
     @classroom.class_code = SecureRandom.hex(6)[0..6]
 
     if current_user.save!
-      flash[:success] = 'Classroom Created'
       redirect_to @classroom
+      flash[:success] = 'Classroom was successfully created'
     else
       redirect_to :back
-      flash[:error] = 'Classroom failed to be created'
+      flash[:error] = 'Classroom failed to be created.'
     end
   end
 
@@ -69,7 +69,7 @@ class ClassroomsController < ApplicationController
           @is_enrolled = false
         end
       end
-      
+
     else
       redirect_to :back
       flash[:error] = "Please enter a class code."
