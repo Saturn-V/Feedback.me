@@ -59,7 +59,6 @@ class Api::V1::ClassroomsController < Api::V1::BaseController
     if params[:search]
       @classroom = Classroom.find_by(class_code: params[:search])
     else
-      # @recipes = Recipe.all.order("created_at DESC")
       flash[:error] = "Failed to find class."
     end
 

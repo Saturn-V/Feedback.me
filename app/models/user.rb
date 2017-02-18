@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   has_many :feedback_requests, dependent: :destroy
 
+  has_many :forms, foreign_key: :created_by_id, dependent: :destroy
+
   def access_code_valid
     # MakeSchoolClass18
     unless self.access_code == "uiux"

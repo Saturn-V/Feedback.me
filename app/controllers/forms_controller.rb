@@ -3,7 +3,7 @@ class FormsController < ApplicationController
 
   def index
     @classroom = Classroom.find(params[:classroom_id])
-    @forms = Form.all
+    @forms = Form.all.order("created_at DESC")
   end
 
   def show
@@ -33,7 +33,7 @@ class FormsController < ApplicationController
 
     if @form.save
       flash[:success] = 'Form Created'
-      redirect_to classroom_path(@classroom)
+      redirect_to classroom_form_path(@classroom, @form)
     else
       redirect_to :back
       flash[:error] = 'Form failed to be created. One or more fields were blank.'
