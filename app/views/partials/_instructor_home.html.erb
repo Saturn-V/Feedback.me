@@ -3,28 +3,40 @@
 </div>
 
 <div class="section">
-  <span class="title medium">Form Responses Recieved</span>
-  <% if @feedback_requests.empty? %>
-    <div class="card">
-      <span class="title">You haven't made any Feedback Requests.</span>
+  <% if current_user.classrooms.empty? %>
+    <span class="title small">You don't seem to have any classrooms setup, so let's create one!</span>
+    <div class="row">
+      <%= link_to new_classroom_path, :class => 'card four columns align-center' do %>
+
+        <span class="text medium">Create</span>
+        <span>your first</span>
+        <span>classroom</span>
+      <% end %>
     </div>
   <% else %>
-    <div class="row">
-      <% @feedback_requests.each do |feedback_request| %>
-        <% submited = feedback_request.responses.submited.count %>
-        <% incomplete = feedback_request.responses.incomplete.count %>
-        <% students = Classroom.students(feedback_request.classroom).count %>
-        <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card border-left align-left' do %>
+    <span class="title medium">Form Responses Recieved</span>
+    <% if @feedback_requests.empty? %>
+      <div class="card">
+        <span class="title">You haven't made any Feedback Requests.</span>
+      </div>
+    <% else %>
+      <div class="row">
+        <% @feedback_requests.each do |feedback_request| %>
+          <% submited = feedback_request.responses.submited.count %>
+          <% incomplete = feedback_request.responses.incomplete.count %>
+          <% students = Classroom.students(feedback_request.classroom).count %>
+          <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card border-left align-left' do %>
 
-            <span class="title small"><%= feedback_request.classroom.name %></span>
-            <span class="title small">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
-            <span class="text medium">Submited: <%= submited %></span>
-            <span class="text medium">Incomplete: <%= incomplete %></span>
-            <span class="text medium">Student Count: <%= students %></span>
+              <span class="title small"><%= feedback_request.classroom.name %></span>
+              <span class="title small">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
+              <span class="text medium">Submited: <%= submited %></span>
+              <span class="text medium">Incomplete: <%= incomplete %></span>
+              <span class="text medium">Student Count: <%= students %></span>
 
 
 
 
+          <% end %>
         <% end %>
       <% end %>
     </div>
