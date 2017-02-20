@@ -14,7 +14,7 @@
       <% end %>
     </div>
   <% else %>
-    <span class="title medium">Form Responses Recieved</span>
+    <span class="title medium">Form Responses Recieved <i class="fa fa-question" aria-hidden="true"></i></span>
     <% if @feedback_requests.empty? %>
       <div class="card">
         <span class="title">You haven't made any Feedback Requests.</span>
@@ -25,7 +25,7 @@
           <% submited = feedback_request.responses.submited.count %>
           <% incomplete = feedback_request.responses.incomplete.count %>
           <% students = Classroom.students(feedback_request.classroom).count %>
-          <%= link_to classroom_path(feedback_request.classroom), :class => 'four columns card border-left align-left' do %>
+          <%= link_to responses_request_path(feedback_request), :class => 'four columns card border-left align-left' do %>
 
               <span class="title small"><%= feedback_request.classroom.name %></span>
               <span class="title small">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>

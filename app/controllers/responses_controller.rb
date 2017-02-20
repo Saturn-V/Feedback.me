@@ -1,7 +1,10 @@
 class ResponsesController < ApplicationController
   before_action :authenticate_user!
-  def index
-    @responses = current_user.responses.all
+
+  def show_request
+    @request = current_user.feedback_requests.find(params[:id])
+    @submitted_responses = @request.responses.submited.count
+    @incomplete_responses = @request.responses.incomplete.count
   end
 
   def show

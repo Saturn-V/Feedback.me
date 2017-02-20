@@ -2,9 +2,15 @@
   <span class="title large">Teachers, let's get started</span>
 </div>
 
-<%= link_to root_path do %>
+<div class="row">
+  <%= link_to root_path, :class => 'three columns' do %>
   <img src="/assets/back.svg" alt="back button" style="position: absolute">
-<% end %>
+  <% end %>
+  <div class="six columns offset-by-three columns">
+    <%= render "devise/shared/links" %>
+  </div>
+
+</div>
 
 
 <div class="row section center">
@@ -59,12 +65,6 @@
 
   <div class="actions six columns offset-by-three columns">
     <%= f.submit "Sign up", :name => 'instructor_button' %>
-  </div>
-
-  <br />
-
-  <div class="six columns offset-by-three columns">
-    <%= render "devise/shared/links" %>
   </div>
   <% end %>
 </div>

@@ -52,7 +52,9 @@ Rails.application.routes.draw do
   resources :pages, only: [:home,:landing]
 
   # Response routes
-  resources :responses, only: [:index, :show, :create, :edit, :update]
+  resources :responses, only: [:show, :create, :edit, :update]
+  
+  get 'responses/request/:id' => 'responses#show_request', :as => 'responses_request'
 
 
 
