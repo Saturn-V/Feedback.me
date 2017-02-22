@@ -1,8 +1,22 @@
 <div class="header">
   <span class="title medium">Feedback Request Details</span>
+  <span class="title small">Submitted: <%= @submitted_responses.count %> | Incomplete: <%= @incomplete_responses.count %> | Students: <%= @students.count %></span>
 </div>
 
 <div class="section">
-  <span>Submitted: <%= @submitted_responses %></span>
-  <span>Incomplete: <%= @incomplete_responses %></span>
+  <span class="title medium">Students</span>
+  <div class="row">
+    <% @students.each do |student| %>
+      <div class="three columns">
+        <span class="title small"><%= student.first_name %> <%= student.last_name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="section">
+  <span class="title medium">Feedback</span>
+  <% @request.responses.submited.each do |response| %>
+    <span>response</span>
+  <% end %>
 </div>

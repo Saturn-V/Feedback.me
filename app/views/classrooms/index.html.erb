@@ -1,13 +1,8 @@
 <div class="header">
   <span class="title medium">Classes</span>
-
-  <span><%= button_to 'Join Classroom', new_student_join_search_path, method: :get, :class => 'button-primary' if current_user.try(:student?) %></span>
 </div>
 
 <div class="section">
-  <% if current_user.try(:student?) %>
-    <span class="title medium">Your classes</span>
-  <% end %>
   <div class="row">
     <% @classrooms.each do |classroom| %>
       <%= link_to classroom_path(classroom), :class => 'card four columns align-left' do %>
@@ -34,11 +29,21 @@
 
       <% end %>
     <% end %>
-    <%= link_to new_classroom_path, :class => 'card four columns' do %>
+    <% if current_user.try(:instructor?) %>
+      <%= link_to new_classroom_path, :class => 'card four columns' do %>
 
-      <span class="text medium">Add</span>
-      <span>a new</span>
-      <span>classroom</span>
+        <span class="text medium">Add</span>
+        <span>a new</span>
+        <span>classroom</span>
+      <% end %>
+    <% end %>
+
+    <% if current_user.try(:student?) %>
+      <%= link_to new_student_join_search_path, :class => 'card four columns' do %>
+
+        <span class="text medium">Join</span>
+        <span>classroom</span>
+      <% end %>
     <% end %>
   </div>
 </div>

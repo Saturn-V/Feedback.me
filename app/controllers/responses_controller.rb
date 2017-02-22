@@ -3,8 +3,9 @@ class ResponsesController < ApplicationController
 
   def show_request
     @request = current_user.feedback_requests.find(params[:id])
-    @submitted_responses = @request.responses.submited.count
-    @incomplete_responses = @request.responses.incomplete.count
+    @submitted_responses = @request.responses.submited
+    @incomplete_responses = @request.responses.incomplete
+    @students = Classroom.students(@request.classroom)
   end
 
   def show
