@@ -25,32 +25,40 @@
 
   <body>
       <% if @disable.nil? %>
-        <!--  Render side navigation -->
-        <div class="row" id="body">
-            <div class="one column nav">
-              <%= render "partials/nav" %>
-            </div>
+        <!--  Render Top navigation -->
+        <div class="row">
+          <div class="twelve columns nav">
+            <div class="container">
 
-            <div class="eleven columns content">
-              <!--  Error Messages -->
-              <div class="alerts">
-                <% flash.each do |key, value| %>
+              <%= render "partials/nav-top" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" id="body">
+            <div class="twelve columns content">
+              <div class="container">
+
+                <div class="alerts">
+                  <% flash.each do |key, value| %>
                   <div class="alert alert-<%= key %>">
                     <span class="title small">
                       <%= value %>
                       <a href="#" id="close"><img src="/assets/Close.svg" alt=""></a>
                     </span>
                   </div>
-                <% end %>
-              </div>
+                  <% end %>
+                </div>
 
                 <%= yield %>
+              </div>
+              <!--  Error Messages -->
 
             </div>
         </div>
 
-        <footer class="row">
-          <div class="eleven columns offset-by-one column section">
+        <footer class="row section">
+          <div class="twelve columns section">
             <span>Made with <i class="fa fa-heart" style="color: red" aria-hidden="true"></i> at <a href="https://www.makeschool.com/product-college/students">Make School</a> in San Francisco, California</span>
           </div>
         </footer>

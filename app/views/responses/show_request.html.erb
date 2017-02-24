@@ -16,7 +16,11 @@
 
 <div class="section">
   <span class="title medium">Feedback</span>
-  <% @request.responses.submited.each do |response| %>
-    <span>response</span>
+  <% if @request.responses.submited.empty? %>
+    <span>You haven't received any feedback.</span>
+  <% else %>
+    <% @request.responses.submited.each do |response| %>
+      <span><%= response %></span>
+    <% end %>
   <% end %>
 </div>

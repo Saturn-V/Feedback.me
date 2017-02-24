@@ -2,7 +2,7 @@ class Api::V1::ClassroomsController < Api::V1::BaseController
   before_action :authenticate_request!
 
   def index
-    binding.pry
+    # binding.pry
     @user = User.find(JsonWebToken.decode(request.headers['Authorization'].split(' ').last))
     respond_with @user.classrooms.all
     # render json: {'logged_in' => true}

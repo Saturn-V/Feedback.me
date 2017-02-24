@@ -53,13 +53,14 @@ Rails.application.routes.draw do
 
   # Response routes
   resources :responses, only: [:show, :create, :edit, :update]
-  
+
   get 'responses/request/:id' => 'responses#show_request', :as => 'responses_request'
 
 
 
   namespace :api do
     namespace :v1 do
+      devise_for :users, controllers: { registrations: 'api/v1/registrations' }
       resources :classrooms
       resources :notifications
     end

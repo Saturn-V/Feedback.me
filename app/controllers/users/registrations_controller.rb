@@ -89,7 +89,7 @@ before_action :configure_account_update_params, only: [:update]
     super
   end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

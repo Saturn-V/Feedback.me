@@ -43,7 +43,8 @@ body {
 }
 
 #body {
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 145px);
+  width: 100%;
 }
 
 span {
@@ -52,6 +53,10 @@ span {
 }
 
 a:hover g {
+  stroke: #F56643;
+}
+
+g:hover {
   stroke: #F56643;
 }
 
@@ -339,9 +344,13 @@ a:hover {
   .eleven.columns                 { width: 91.3333333333%; }
   .twelve.columns                 { width: 100%; margin-left: 0; }
 
-  .eleven.columns.content {
-    width: 91.3333333333%;
-    padding: 1rem 0 0 3rem;
+  // .eleven.columns.content {
+  //   width: 91.3333333333%;
+  //   padding: 1rem 0 0 3rem;
+  // }
+  .twelve.columns.content {
+    position: relative;
+    top: 55px;
   }
 
   .three.columns.tab {
@@ -533,34 +542,72 @@ label > .label-body {
  /* Navigation Menu
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* Desktop Navigation */
+// Side nav
+// .nav {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 10;
+//   // height: 100vh;
+//   background-color: #2C3C46;
+//   // background: linear-gradient(75deg, #2C3C46, #0E222F);
+//   text-align: center;
+//   a {
+//     display: block;
+//     // padding: 1em 0;
+//     margin-top: 0.00125rem;
+//     font-size: 2rem;
+//     transition: 0.1s;
+//     &:first-child {
+//       padding-top: 4rem;
+//     }
+//     &:last-child {
+//       position: absolute;
+//       display: inline-block;
+//       bottom: 0;
+//       left: 0;
+//       right: 0;
+//     }
+//   }
+// }
+
+// Top Nav
 .nav {
   position: fixed;
-  left: 0;
   top: 0;
-  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
-  height: 100vh;
+  // height: 7.5vh;
   background-color: #2C3C46;
   // background: linear-gradient(75deg, #2C3C46, #0E222F);
-  text-align: center;
+  // text-align: center;
   a {
-    display: block;
-    // padding: 1em 0;
-    margin-top: 0.00125rem;
+    display: inline-block;
+    // width: 1rem;
+    // height: auto;
+    svg {
+      width: 2.25rem;
+      height: auto;
+    }
+    padding: 1rem 1rem;
+    // margin-top: 0.00125rem;
     font-size: 2rem;
     transition: 0.1s;
-    &:first-child {
-      padding-top: 4rem;
-    }
-    &:last-child {
-      position: absolute;
-      display: inline-block;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
+    // &:first-child {
+    //   padding-top: 4rem;
+    // }
+    // &:last-child {
+    //   position: absolute;
+    //   display: inline-block;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    // }
   }
 }
+
 
 /* MOBILE NAV PLACE INTO A MEDIA QUERY SO THIS ONLY SHOWS UP WHEN ON MOBILE*/
 .nav-mobile-button {
@@ -666,7 +713,7 @@ label > .label-body {
 /* Footer
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 footer {
-  position: relative;
+  // position: relative;
   display: block;
   bottom: 0;
   left: 0;
@@ -675,7 +722,7 @@ footer {
   text-align: center;
   > .section {
     // padding: 4rem 0 1rem 0;
-    margin: 5rem 0 2.5rem 0;
+    margin: 5rem 0 2rem 0;
   }
   a {
     color: #129DE7;
