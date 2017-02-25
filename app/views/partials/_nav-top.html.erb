@@ -1,25 +1,35 @@
-<%= link_to root_path  do %>
-  <%= render '/partials/nav_home_icon' %>
-<% end %>
+<div class="container">
+  <div class="u-pull-left">
+    <li>
+      <%= link_to root_path  do %>
+        <!-- <img src="/assets/home.png" alt=""> -->
+        <span class="text medium">Feedback.me</span>
+      <% end %>
+    </li>
+  </div>
 
-<% if current_user.try(:student?) %>
-  <%= link_to notifications_path do %>
-    <%= render '/partials/nav_notifications_icon' %>
-  <% end %>
-<% elsif current_user.try(:instructor?) %>
-  <!--  If user is not currently in a classroom (.nil?) | If the user is creating a classroom (.new_record?) -->
-  <!--  (.new_record?) Necessary since in the /classrooms/new route, @classroom is set to Classroom.new but doesn't really exist -->
+  <div class="u-pull-right">
+    <li>
+      <% if current_user.try(:student?) %>
+        <%= link_to notifications_path do %>
+          <!-- <img src="/assets/forms.png" alt=""> -->
+          <span class="text medium">Notifications</span>
+        <% end %>
+      <% end %>
+    </li>
 
-<%= link_to classrooms_select_path do %>
-  <%= render '/partials/nav_forms_icon' %>
-<% end %>
+    <li>
+      <%= link_to classrooms_path do %>
+      <span class="text medium">Classes</span>
+      <!-- <img src="/assets/classrooms.png" alt=""> -->
+      <% end %>
+    </li>
 
-<% end %>
+    <li>
+      <%= link_to edit_user_registration_path do %>
+      <span class="text medium">Settings</span>
+      <% end %>
+    </li>
+  </div>
 
-<%= link_to classrooms_path do %>
-  <%= render '/partials/nav_classrooms_icon' %>
-<% end %>
-
-<%= link_to edit_user_registration_path do %>
-  <%= render '/partials/nav_settings_icon' %>
-<% end %>
+</div>

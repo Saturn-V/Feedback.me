@@ -1,8 +1,14 @@
 <% if !@classroom.nil? and !@classroom.new_record? %>
 
   <div class="header">
-    <span class="title medium">Forms</span>
-    <%= button_to 'Create a Form', new_classroom_form_path(@classroom), method: :get, :class => 'button-primary' %>
+    <div class="row">
+      <div class="six columns">
+        <span class="title medium">Forms</span>
+      </div>
+      <div class="six columns">
+        <%= button_to 'Create a Form', new_classroom_form_path(@classroom), method: :get, :class => 'button-primary u-pull-right' %>
+      </div>
+    </div>
   </div>
 
   <div class="row">

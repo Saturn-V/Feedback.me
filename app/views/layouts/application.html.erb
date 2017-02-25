@@ -18,7 +18,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Raleway:300,400,500' %>
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Raleway:100,300,400,500' %>
 
     <script src="https://use.fontawesome.com/c332acfbe6.js"></script>
   </head>
@@ -27,34 +27,31 @@
       <% if @disable.nil? %>
         <!--  Render Top navigation -->
         <div class="row">
-          <div class="twelve columns nav">
-            <div class="container">
-
+          <ul class="twelve columns nav">
               <%= render "partials/nav-top" %>
-            </div>
-          </div>
+          </ul>
         </div>
 
         <div class="row" id="body">
-            <div class="twelve columns content">
-              <div class="container">
+          <div class="twelve columns content">
+            <div class="container">
 
-                <div class="alerts">
-                  <% flash.each do |key, value| %>
-                  <div class="alert alert-<%= key %>">
-                    <span class="title small">
-                      <%= value %>
-                      <a href="#" id="close"><img src="/assets/Close.svg" alt=""></a>
-                    </span>
-                  </div>
-                  <% end %>
-                </div>
-
-                <%= yield %>
-              </div>
               <!--  Error Messages -->
+              <div class="alerts">
+                <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>">
+                  <span class="title small">
+                    <%= value %>
+                    <a href="#" id="close"><img src="/assets/Close.svg" alt=""></a>
+                  </span>
+                </div>
+                <% end %>
+              </div>
+
+              <%= yield %>
 
             </div>
+          </div>
         </div>
 
         <footer class="row section">

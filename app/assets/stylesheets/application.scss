@@ -39,12 +39,11 @@ body {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222;
   height: 100%;
-  width: 100%;
+  max-width: 100%;
 }
 
 #body {
   min-height: calc(100vh - 145px);
-  width: 100%;
 }
 
 span {
@@ -66,12 +65,12 @@ svg {
   height: auto;
 }
 
-img {
-  padding: 0 0 1.5rem 0;
-}
+// img {
+//   padding: 0 0 1.5rem 0;
+// }
 
 .header {
-  margin: 2.5rem 0;
+  margin: 2rem 0;
 }
 
 .logo {
@@ -85,21 +84,22 @@ img {
   box-sizing: border-box;
   margin: 0;
   font-weight: 400;
-  &.large {
-    font-size: 8rem;
-  }
-
-  &.medium {
-    font-size: 4rem;
-  }
-
-  &.small {
-    font-size: 2rem;
-  }
-  > i { font-size: 2rem }
+  &.splash    { color: #F56643 }
+  &.bold      { font-weight: 500 }
+  &.large     { font-size: 8rem }
+  &.medium    { font-size: 4rem }
+  &.med-sml   { font-size: 3rem }
+  &.small     { font-size: 2rem }
+  > i         { font-size: 2rem }
 }
 
+span.splash > a { color: #F56643; }
+
 .text {
+  &.aside {
+    display: inline-block;
+    color: grey;
+  }
   &.large {
     font-size: 4rem;
   }
@@ -136,13 +136,16 @@ img {
   margin-top: 2rem;
   padding: 1.5rem 1.5rem 2.5rem 1.5rem;
   border-radius: 4px;
-  box-shadow: 0px 5px 15px #C7C7C7;
+  box-shadow: 0px 2.5px 5px #C7C7C7;
   background-color: rgba(255, 255, 255, 0.75);
   transition: 0.25s;
   float: left;
   text-align: center;
   font-weight: 300;
-  &:hover { background-color: rgba(255, 255, 255, 0.80) }
+  &:hover {
+     background-color: rgba(255, 255, 255, 0.80);
+     box-shadow: 0px 5px 15px #C7C7C7;
+    }
   &.alert {
     background-color: rgba(183, 28, 28, 0.80);
     color: white;
@@ -448,9 +451,9 @@ input[type="button"].button-primary {
   color: black;
   // background-color: #33C3F0;
   // background: linear-gradient(270deg, #8FD3F4, #84FAB0);
-  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  background: #1EAEDB;
   border-color: #888;
-  transition: 0.5s
+  transition: 0.25s
  }
 .button.button-primary:hover,
 button.button-primary:hover,
@@ -573,38 +576,37 @@ label > .label-body {
 // }
 
 // Top Nav
-.nav {
+ul.nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  // height: 7.5vh;
   background-color: #2C3C46;
-  // background: linear-gradient(75deg, #2C3C46, #0E222F);
-  // text-align: center;
-  a {
+  padding: 0.75rem 1rem;
+  font-size: 2rem;
+  transition: 0.1s;
+  list-style-type: none !important;
+  margin: 0;
+  li {
     display: inline-block;
-    // width: 1rem;
-    // height: auto;
-    svg {
-      width: 2.25rem;
-      height: auto;
+    padding-left: 1.25rem;
+    &:first-child {
+      padding-left: 0;
     }
-    padding: 1rem 1rem;
-    // margin-top: 0.00125rem;
-    font-size: 2rem;
-    transition: 0.1s;
-    // &:first-child {
-    //   padding-top: 4rem;
-    // }
-    // &:last-child {
-    //   position: absolute;
-    //   display: inline-block;
-    //   bottom: 0;
-    //   left: 0;
-    //   right: 0;
-    // }
+    a {
+      color: white;
+      font-weight: 100;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.125s;
+      &:hover {
+        color: #F56643;
+      }
+      span {
+        margin: 0 !important;
+      }
+    }
   }
 }
 
@@ -720,9 +722,10 @@ footer {
   right: 0;
   box-sizing: border-box;
   text-align: center;
+  padding: 3rem 0 2rem 0;
   > .section {
     // padding: 4rem 0 1rem 0;
-    margin: 5rem 0 2rem 0;
+    // margin: 5rem 0 2rem 0;
   }
   a {
     color: #129DE7;

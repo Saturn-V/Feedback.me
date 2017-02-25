@@ -1,11 +1,20 @@
 <div class="header">
-  <span class="title medium"><%= @form.name %></span>
+  <%= link_to classroom_forms_path(@classroom) do %>
+    <img src="/assets/back.svg" alt="back button">
+  <% end %>
+  <br>
+  <span class="title medium splash">
+    <%= @form.name %>
+    <span class="text medium aside">
+      <i>Type</i> | <i><%= @form.assesment_type.capitalize %> Assesment</i>
+    </span>
+  </span>
 </div>
-
+<hr>
 <div class="section">
-  <ol>
+  <!-- <ol> -->
     <% @questions.each do |question| %>
-      <li><%= question.label %></li>
+      <li class="title small bold"><%= question.label %></li>
       <ul>
         <% if question.try(:static?) %>
           <% question.skills.each do |skill| %>
@@ -15,11 +24,12 @@
           <li>Optional Feedback section.</li>
         <% end %>
       </ul>
-      <br />
+      <hr>
+      <br>
     <% end %>
-  </ol>
+  <!-- </ol> -->
 </div>
 
-<%= button_to 'Send Form to Classroom', classroom_notification_creation_path(@classroom, @form), method: :post %>
-<br />
-<%= button_to "Back to All Forms", classroom_forms_path(@classroom), method: :get %>
+<div class="section">
+    <%= button_to 'Send Form to Classroom', classroom_notification_creation_path(@classroom, @form), method: :post, :class => 'button-primary u-pull-left' %>
+</div>

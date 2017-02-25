@@ -1,10 +1,11 @@
-<%= link_to root_path do %>
-  <img src="/assets/back.svg" alt="back button" style="position: absolute">
-<% end %>
 
 <div class="section">
 
   <div class="header">
+    <%= link_to root_path do %>
+      <img src="/assets/back.svg" alt="back button">
+    <% end %>
+    <br />
     <span class="title medium">Edit Profile</span>
   </div>
 
@@ -53,7 +54,7 @@
   </div>
   <% end %>
 
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 </div>
 
 <!-- <div class="section">
