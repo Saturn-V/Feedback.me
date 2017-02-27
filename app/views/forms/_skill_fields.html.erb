@@ -1,10 +1,13 @@
-<div class="form-fields seven columns">
-  <div class="header">
-  </div>
+<br>
 
-  <p>
-    <%= f.label :label, 'Skill', :class => "label", :style => "display: inline-block" %>
-    <%= link_to_remove_fields "remove", f %>
-  </p>
-  <%= f.text_field :label, :style => "width: 100%", autofocus: true %>
+<div class="form-fields">
+
+  <div class="row">
+    <div class="five columns offset-by-one column">
+      <%= f.text_area :label, autofocus: true, placeholder: 'Skill...', :class => 'u-full-width u-max-full-width' %>
+    </div>
+    <div class="five columns">
+      <%= link_to_remove_fields "remove", f %>
+    </div>
+  </div>
 </div>

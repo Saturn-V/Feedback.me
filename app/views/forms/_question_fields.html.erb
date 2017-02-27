@@ -1,26 +1,24 @@
 <div class="form-fields">
   <% unless f.object.try(:free?) %>
-    <div class="seven columns">
-      <div class="header">
+
+    <div class="row section">
+      <div class="six columns">
+        <%= f.text_field :label, autofocus: true, placeholder: 'Competency name...', :class => 'u-full-width' %>
       </div>
 
-      <p>
-        <%= f.label :label, 'Question', :class => "label", :style => "display: inline-block" %>
+      <div class="six columns">
         <%= link_to_remove_fields "remove", f %>
-      </p>
-      <%= f.text_field :label, :style => "width: 100%", autofocus: true %>
+      </div>
+    </div>
 
     <%= f.hidden_field :static, :value => true %>
     <%= f.hidden_field :free, :value => false %>
 
     <%= f.fields_for :skills do |builder| %>
-      <div class="row">
         <%= render 'skill_fields', :f => builder %>
-      </div>
     <% end %>
 
     <p><%= link_to_add_fields "Add Skill", f, :skills %></p>
-  </div>
   <% else %>
     <%= render 'question_free_fields', :f => f %>
   <% end %>
