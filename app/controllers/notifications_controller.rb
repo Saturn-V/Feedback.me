@@ -14,9 +14,14 @@ class NotificationsController < ApplicationController
     (@classroom.users.uniq - [current_user]).each do |user|
       @response = Response.create(classroom: @classroom, form: @form, user: user, feedback_request: @feedback_request)
       @feedback_request.responses << @response
-      @form.questions.each do |question|
-        @response.answers.create(question: question)
+      @form.categories.each do |category|
+        category.questions.each do |question|
+          @response.answers.create(question: question)
+        end
       end
+      # @form.questions.each do |question|
+      #   @response.answers.create(question: question)
+      # end
 
       Notification.create(recipient: user, sender: current_user, response: @response)
     end

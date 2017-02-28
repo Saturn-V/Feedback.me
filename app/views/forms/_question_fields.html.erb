@@ -1,6 +1,4 @@
 <div class="form-fields">
-  <% unless f.object.try(:free?) %>
-
     <div class="row section">
       <div class="six columns">
         <%= f.text_field :label, autofocus: true, placeholder: 'Competency name...', :class => 'u-full-width' %>
@@ -18,8 +16,6 @@
         <%= render 'skill_fields', :f => builder %>
     <% end %>
 
-    <p><%= link_to_add_fields "Add Skill", f, :skills %></p>
-  <% else %>
-    <%= render 'question_free_fields', :f => f %>
-  <% end %>
+    <span class="title small bold splash orange"><%= link_to_add_fields "Add Skill", f, :skills %></span>
+
 </div>

@@ -3,7 +3,7 @@
     <img src="/assets/back.svg" alt="back button">
   <% end %>
   <br>
-  <span class="title medium splash">
+  <span class="title medium splash orange">
     <%= @form.name %>
     <span class="text medium aside">
       <i>Type</i> | <i><%= @form.assesment_type.capitalize %> Assesment</i>
@@ -11,9 +11,19 @@
   </span>
 </div>
 <hr>
+
 <div class="section">
-  <!-- <ol> -->
-    <% @questions.each do |question| %>
+
+  <% @categories.each do |category| %>
+    <% if category.name == 'Free Response' %>
+      <li class="title med-sml splash blue"><%= category.name %> Section</li>
+    <% else %>
+      <li class="title med-sml splash blue"><%= category.name %> Competencies</li>
+    <% end %>
+
+    <% questions = category.questions %>
+
+    <% questions.each do |question| %>
       <li class="title small bold"><%= question.label %></li>
       <ul>
         <% if question.try(:static?) %>
@@ -24,10 +34,11 @@
           <li>Optional Feedback section.</li>
         <% end %>
       </ul>
-      <hr>
+      <hr style="width: 50%; float: left">
       <br>
     <% end %>
-  <!-- </ol> -->
+  <% end %>
+
 </div>
 
 <div class="section">

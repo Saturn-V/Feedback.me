@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218065320) do
+ActiveRecord::Schema.define(version: 20170227204929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20170218065320) do
     t.integer  "question_id"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["response_id"], name: "index_answers_on_response_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "form_id"
+    t.index ["form_id"], name: "index_categories_on_form_id", using: :btree
   end
 
   create_table "classrooms", force: :cascade do |t|
@@ -80,10 +88,10 @@ ActiveRecord::Schema.define(version: 20170218065320) do
     t.boolean  "static"
     t.boolean  "free"
     t.string   "label"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "form_id"
-    t.index ["form_id"], name: "index_questions_on_form_id", using: :btree
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_questions_on_category_id", using: :btree
   end
 
   create_table "questions_skills", id: false, force: :cascade do |t|
@@ -130,17 +138,17 @@ ActiveRecord::Schema.define(version: 20170218065320) do
     t.boolean  "student",                default: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "access_code"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "responses"
+  add_foreign_key "categories", "forms"
   add_foreign_key "feedback_requests", "classrooms"
   add_foreign_key "feedback_requests", "users"
   add_foreign_key "notifications", "responses"
-  add_foreign_key "questions", "forms", on_delete: :cascade
+  add_foreign_key "questions", "categories"
   add_foreign_key "responses", "classrooms"
   add_foreign_key "responses", "feedback_requests"
   add_foreign_key "responses", "forms"

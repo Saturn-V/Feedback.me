@@ -1,0 +1,32 @@
+<div class="form-fields card flat">
+  <br>
+  <% unless f.object.name == 'Free Response' %>
+    <div class="row">
+      <div class="six columns">
+        <%= f.label :name, 'Category Type', :class => "title small bold" %>
+        <%= f.select :name, [ 'Core','Character','Technical','Free Response' ], :prompt => 'Select One' %>
+      </div>
+      <div class="six columns">
+        <%= link_to_remove_fields "remove", f %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="eleven columns offset-by-one column">
+        <span class="title med-sml">Competencies</span>
+      </div>
+      <span class="title small bold splash orange"><%= link_to_add_fields "Add Question", f, :questions %></span>
+    </div>
+
+    <%= f.fields_for :questions do |builder| %>
+      <%= render 'question_fields', :f => f %>
+    <% end %>
+
+    <br>
+
+  <% else %>
+    <%= render 'category_free_fields', :f => f %>
+  <% end %>
+</div>

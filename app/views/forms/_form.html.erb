@@ -2,59 +2,46 @@
   <!-- ERRORS  -->
   <% if @form.errors.any? %>
     <div class="card">
-
       <h4><%= pluralize(@form.errors.count, "error") %> prohibited this form from being saved:</h4>
-
       <ul>
         <% @form.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
-
     </div>
   <% end %>
 
-  <!-- <div class="row"> -->
-    <!-- <div class="seven columns"> -->
-
-      <div class="row">
-        <div class="six columns">
-          <%= f.label :name, 'Form name', :class => "title small bold" %>
-          <%= f.text_field :name, :class => 'u-full-width', autofocus: true %>
-        </div>
-      </div>
-
-      <br>
-
-      <div class="row">
-        <div class="six columns">
-          <%= f.label :assesment_type, 'Assesment Type', :class => "title small bold" %>
-          <%= f.select :assesment_type, [ 'Instructor','Self','Peer' ], :prompt => 'Select One' %>
-        </div>
-      </div>
-
-      <br>
-
-      <div class="row">
-        <div class="twelve columns">
-          <span class="title med-sml inline">Competencies | </span>
-          <span class="title small bold splash inline"><%= link_to_add_fields "Add Question", f, :questions %></span>
-        </div>
-      </div>
-
-      <hr>
-      
-      <%= f.fields_for :questions do |builder| %>
-        <div class="row">
-          <%= render 'question_fields', :f => builder %>
-        </div>
-      <% end %>
-
-    <!-- </div> -->
-  <!-- </div> -->
-
-  <div class="actions six columns offset-by-three columns">
-    <%= f.submit "Create", :class => 'button-primary' %>
+  <div class="row">
+    <div class="twelve columns">
+      <%= f.label :name, 'Form name', :class => "title small bold" %>
+      <%= f.text_field :name, :class => 'u-full-width', autofocus: true %>
+    </div>
   </div>
 
+  <br>
+
+  <div class="row">
+    <div class="twelve columns">
+      <%= f.label :assesment_type, 'Assesment Type', :class => "title small bold" %>
+      <%= f.text_field :assesment_type, :readonly => true %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="twelve columns">
+      <span class="title med-sml">Competency Categories</span>
+      <span class="title small bold splash orange"><%= link_to_add_fields "Add Category", f, :categories %></span>
+    </div>
+  </div>
+
+  <%= f.fields_for :categories do |builder| %>
+    <%= render 'category_fields', :f => builder %>
+  <% end %>
+
+  <div class="actions six columns offset-by-three columns">
+    <br>
+    <%= f.submit "Create", :class => 'button-primary' %>
+  </div>
 <% end %>

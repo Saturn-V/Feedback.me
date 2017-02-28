@@ -84,7 +84,10 @@ svg {
   box-sizing: border-box;
   margin: 0;
   font-weight: 400;
-  &.splash    { color: #F56643 }
+  &.splash {
+    &.orange  { color: #F56643 }
+    &.blue    { color: #58A4B0 }
+  }
   &.bold      { font-weight: 500 }
   &.large     { font-size: 8rem }
   &.medium    { font-size: 4rem }
@@ -142,6 +145,7 @@ span.splash > a { color: #F56643; }
   float: left;
   text-align: center;
   font-weight: 300;
+  &.flat:hover { box-shadow: 0px 2.5px 5px #C7C7C7 }
   &:hover {
      background-color: rgba(255, 255, 255, 0.80);
      box-shadow: 0px 5px 15px #C7C7C7;

@@ -11,53 +11,62 @@
     </ul>
   <% end %>
 
-  <section>
-    <ol>
+  <div class="section">
+    <!-- <ol> -->
       <%= f.fields_for :answers do |a| %>
-      <% question = Question.find_by( id: a.object.question_id ) %>
+        <% question = Question.find_by( id: a.object.question_id ) %>
+        <span class="title small splash orange"><%= question.label %></span>
 
-      <li class="text medium"><%= question.label %></li>
-
-      <ul>
         <% if question.try(:static?) %>
-        <% question.skills.each do |skill| %>
-        <li><%= skill.label %></li>
-        <% end %>
+          <div class="">
+            <span class="title small"><%= a.label :value_static, "Select one aption that applies to you most." %></span>
+            <div class="inline">
+              <%= a.radio_button :value_static, 0 %>
+              <%= a.label :value_waiting, "0. Waiting", :class => 'inline' %><br />
+            </div>
 
-        <p>
+            <div class="inline">
+              <%= a.radio_button :value_static, 1 %>
+              <%= a.label :value_beginning, "1. Beginning", :class => 'inline' %><br />
+            </div>
 
-          <%= a.label :value_static, "Select one aption that applies to you most." %><br />
+            <div class="inline">
+              <%= a.radio_button :value_static, 2 %>
+              <%= a.label :value_undertaking, "2. Undertaking", :class => 'inline' %><br />
+            </div>
 
-          <%= a.radio_button :value_static, 0 %>
-          <%= a.label :value_waiting, "0. Waiting" %><br />
+            <div class="inline">
+              <%= a.radio_button :value_static, 3 %>
+              <%= a.label :value_approaching, "3. Approaching", :class => 'inline' %><br />
+            </div>
 
-          <%= a.radio_button :value_static, 1 %>
-          <%= a.label :value_beginning, "1. Beginning" %><br />
+            <div class="inline">
+              <%= a.radio_button :value_static, 4 %>
+              <%= a.label :value_overtaking, "4. Overtaking", :class => 'inline' %><br />
+            </div>
 
-          <%= a.radio_button :value_static, 2 %>
-          <%= a.label :value_undertaking, "2. Undertaking" %><br />
+            <div class="inline">
+              <%= a.radio_button :value_static, 5 %>
+              <%= a.label :value_innovating, "5. Innovating", :class => 'inline' %><br />
+            </div>
+          </div>
 
-          <%= a.radio_button :value_static, 3 %>
-          <%= a.label :value_approaching, "3. Approaching" %><br />
+            <ul>
+              <% question.skills.each do |skill| %>
+                <li><%= skill.label %></li>
+              <% end %>
+            </ul>
 
-          <%= a.radio_button :value_static, 4 %>
-          <%= a.label :value_overtaking, "4. Overtaking" %><br />
-
-          <%= a.radio_button :value_static, 5 %>
-          <%= a.label :value_innovating, "5. Innovating" %><br />
-
-        </p>
-        <% else %>
-        <p>
-          <%= a.label :value_free, "Free Response Answer" %><br />
-          <%= a.text_field :value_free %><br />
-        </p>
-        <% end %>
-      </ul>
+          <% else %>
+            <p>
+              <%= a.label :value_free, "Free Response Answer" %><br />
+              <%= a.text_field :value_free %><br />
+            </p>
+          <% end %>
       <% end %>
-    </ol>
+    <!-- </ol> -->
 
-  </section>
+  </div>
 
   <p><%= f.submit "Submit" %></p>
 

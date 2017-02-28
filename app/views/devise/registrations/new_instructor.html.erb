@@ -19,51 +19,44 @@
   <%= devise_error_messages! %>
 
   <div class="field six columns offset-by-three columns">
-    <%= f.label :email, :class => "label" %>
-    <%= f.email_field :email, :style => "width: 100%", autofocus: true %>
+    <%= f.label :email, :class => 'title small' %>
+    <%= f.email_field :email, autofocus: true, :class => 'u-full-width' %>
   </div>
 
-  <br />
+  <br>
 
   <div class="field six columns offset-by-three columns">
-    <%= f.label :first_name, :class => "label" %>
-    <%= f.text_field :first_name, :style => "width: 100%", autofocus: true %>
+    <%= f.label :first_name, :class => 'title small' %>
+    <%= f.text_field :first_name, autofocus: true, :class => 'u-full-width' %>
   </div>
 
-  <br />
+  <br>
 
   <div class="field six columns offset-by-three columns">
-    <%= f.label :last_name, :class => "label" %>
-    <%= f.text_field :last_name, :style => "width: 100%", autofocus: true %>
+    <%= f.label :last_name, :class => 'title small' %>
+    <%= f.text_field :last_name, autofocus: true, :class => 'u-full-width' %>
   </div>
 
-  <br />
+  <br>
 
   <div class="field six columns offset-by-three columns">
-    <%= f.label :password, :class => "label" %>
+    <%= f.label :password, :class => 'title small' %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
-    <%= f.password_field :password, :style => "width: 100%", autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", :class => 'u-full-width' %>
   </div>
 
-  <br />
+  <br>
 
   <div class="field six columns offset-by-three columns">
-    <%= f.label :password_confirmation, :class => "label" %>
-    <%= f.password_field :password_confirmation, :style => "width: 100%", autocomplete: "off" %>
+    <%= f.label :password_confirmation, :class => 'title small' %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'u-full-width' %>
   </div>
 
-  <br />
-
-  <div class="field six columns offset-by-three columns">
-    <%= f.label "Access Code" %><br />
-    <%= f.text_field :access_code, autofocus: true %>
-  </div>
-
-  <br />
 
   <div class="actions six columns offset-by-three columns">
+    <br>
     <%= f.submit "Sign up", :name => 'instructor_button' %>
   </div>
   <% end %>

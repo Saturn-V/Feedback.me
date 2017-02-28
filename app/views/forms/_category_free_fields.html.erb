@@ -1,0 +1,14 @@
+<div class="form-fields">
+    <div class="row">
+      <div class="six columns">
+        <%= f.label :name, 'Competency Category', :class => "title small bold" %>
+        <%= f.text_field :name, :readonly => true %>
+      </div>
+    </div>
+
+    <div class="">
+      <%= f.fields_for :questions do |builder| %>
+        <%= render 'question_free_fields', :f => builder %>
+      <% end %>
+    </div>
+</div>

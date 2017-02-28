@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :form, optional: true
+  belongs_to :category, optional: true
 
   has_many :answers, dependent: :destroy
 
