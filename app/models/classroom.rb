@@ -10,4 +10,16 @@ class Classroom < ApplicationRecord
   end
 
   scope :students, -> (classroom) { classroom.users.where.not(id: classroom.users.first) }
+
+  def enable_graph
+    months = []
+    self.responses.each do |response|
+      month = response.created_at.to_datetime.month
+      unless months.include?(month)
+        months.append(month)
+      end
+        return true if months.count >= 6
+    end
+    return false
+  end
 end

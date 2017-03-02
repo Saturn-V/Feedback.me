@@ -1,78 +1,67 @@
 <div class="row">
-  <div class="twelve columns card charts section first">
+  <div class="twelve columns card class-details section first">
 
     <div class="row">
+      <div class="max-width ten columns">
+        <div class="header align-left">
+          <span class="title medium"><%= @classroom.name %></span>
+          <span class="title small"><%= @instructor.last_name %>, <%= @instructor.first_name %></span>
+          <span class="title small" style="display: block">Class Code | <%= @classroom.class_code %></span>
+        </div>
+        <hr>
+        <div id="Overview" class="chart">
+            <!-- <span class="title">Monthly Growth</span> -->
 
-      <div id="Performance" class="nine columns chart tab-content">
-          <!-- <span class="title">Monthly Growth</span> -->
-          <div class="header align-left">
-            <span class="title medium">Current Classroom: <%= @classroom.name %></span>
-            <span class="title small">Instructor: <%= @user.last_name %>, <%= @user.first_name %></span>
-            <span class="title small" style="display: block">Class Code: <%= @classroom.class_code %></span>
-            <!-- <%= button_to 'Back To My Classrooms', root_path, method: :get %> -->
-          </div>
-
-          <div class="contained">
-            <canvas id="selfChart" width="200" height="200"></canvas>
-          </div>
+            <div class="contained u-full-width">
+              <table class="u-full-width">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date Sent</th>
+                    <th>Performance</th>
+                    <th>Complete</th>
+                    <th>Incomplete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @feedback_requests.last(5).each do |feedback_request| %>
+                    <% submited = feedback_request.responses.submited.count %>
+                    <% incomplete = feedback_request.responses.incomplete.count %>
+                    <% performance = feedback_request.responses.instructor_performance %>
+                    <tr>
+                      <td><%= feedback_request.form.name %></td>
+                      <td><%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %></td>
+                      <td><%= performance %> / 5</td>
+                      <td><%= submited %></td>
+                      <td><%= incomplete %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+        </div>
       </div>
 
-      <div id="Pacing" class="nine columns chart tab-content">
-          <!-- <span class="title">Monthly Growth</span> -->
-          <div class="header align-left">
-            <span class="title medium">Current Classroom: <%= @classroom.name %></span>
-            <span class="title small">Instructor: <%= @user.last_name %>, <%= @user.first_name %></span>
-            <span class="title small" style="display: block">Class Code: <%= @classroom.class_code %></span>
-            <!-- <%= button_to 'Back To My Classrooms', root_path, method: :get %> -->
-          </div>
-
-          <div class="contained">
-            <canvas id="classChart" width="200" height="200"></canvas>
-          </div>
-      </div>
-
-
-
-
-
-      <div class="three columns tab">
-
-        <a href="javascript:void(0)" id="defaultChart" class="tab-link" onclick="openChart(event, 'Performance')">
-          <div class="arrow-right"></div>
+      <div class="max-width two columns students">
+        <div class="header">
+          <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width' %>
+          <br>
+          <span class="title small">Students</span>
+          <!-- <br> -->
+          <!-- <br> -->
+        </div>
+        <hr>
+        <% @students.each do |student| %>
           <div class="row">
-            <div class="five columns offset-by-one column">
-              <span class="text small">Your Performance</span>
-            </div>
-            <div class="six columns">
-
+            <div class="twelve columns">
+              <span class="text medium"><%= student.last_name %>, <%= student.first_name %></span>
             </div>
           </div>
-        </a>
-
-        <!-- <a href="javascript:void(0)" class="tab-link last" onclick="openChart(event, 'Pacing')">
-          <div class="arrow-right"></div>
-          <div class="row">
-            <div class="six columns">
-              Class Pacing
-            </div>
-            <div class="six columns">
-            </div>
-          </div>
-        </a> -->
-
-        <div class="tab-link empty">
-        </div>
-
-        <div class="tab-link empty">
-        </div>
-
-        <div class="tab-link empty">
-        </div>
-        <div class="tab-link empty">
-        </div>
+        <% end  %>
       </div>
 
     </div>
+
   </div>
 </div>
 
@@ -83,7 +72,7 @@
       <div class="header align-left">
         <span class="title medium">My Feedback</span>
       </div>
-
+      <hr>
       <% if @feedbacks.count > 0 %>
         <!-- <%= @feedbacks.count %> -->
         <div class="row">
@@ -112,7 +101,7 @@
         <% end %>
       </div>
       <% else %>
-        <div class="card full">
+        <div class="card u-full-width">
           <div class="section">
             <span class="title medium">No Free Response Feedback has been submitted.</span>
           </div>

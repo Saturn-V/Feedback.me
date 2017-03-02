@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :created_by_id, :value => current_user.id %>
+
   <div class="row">
     <div class="twelve columns">
       <%= f.label :name, 'Form name', :class => "title small bold" %>
@@ -33,11 +35,15 @@
     <div class="twelve columns">
       <span class="title med-sml">Competency Categories</span>
       <span class="title small bold splash orange"><%= link_to_add_fields "Add Category", f, :categories %></span>
+
+      <div class="row" id="categories">
+      </div>
+
     </div>
   </div>
 
   <%= f.fields_for :categories do |builder| %>
-    <%= render 'category_fields', :f => builder %>
+      <%= render 'category_fields', :f => builder %>
   <% end %>
 
   <div class="actions six columns offset-by-three columns">

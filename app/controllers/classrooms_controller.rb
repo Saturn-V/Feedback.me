@@ -10,7 +10,9 @@ class ClassroomsController < ApplicationController
   def show
     # @classroom = @user.classrooms.find(params[:id])
     @classroom = Classroom.find(params[:id])
-    @user = @classroom.users.first
+    @instructor = @classroom.users.first
+    @students = Classroom.students(@classroom)
+    @feedback_requests = current_user.feedback_requests.where(classroom: @classroom)
     @feedbacks = []
     responses = @classroom.responses.where(is_complete: true)
     responses.each do |response|

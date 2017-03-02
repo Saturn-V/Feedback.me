@@ -11,8 +11,6 @@ class Response < ApplicationRecord
   has_many :answers
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  # validates_associated :answers
-
   scope :for_instructors, -> { joins(:form).where(is_complete: true, created_at: Time.now.end_of_month - 6.months..Time.now.end_of_month, forms: {assesment_type: 'instructor'}) }
   scope :submited, -> { where(is_complete: true) }
   scope :incomplete, -> { where(is_complete: false) }

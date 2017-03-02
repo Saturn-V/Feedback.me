@@ -16,15 +16,15 @@
 
   <% @categories.each do |category| %>
     <% if category.name == 'Free Response' %>
-      <li class="title med-sml splash blue"><%= category.name %> Section</li>
+      <span class="title med-sml splash blue"><%= category.name %> Section</span>
     <% else %>
-      <li class="title med-sml splash blue"><%= category.name %> Competencies</li>
+      <span class="title med-sml splash blue"><%= category.name %> Competencies</span>
     <% end %>
 
     <% questions = category.questions %>
 
     <% questions.each do |question| %>
-      <li class="title small bold"><%= question.label %></li>
+      <span class="title small bold"><%= question.label %></span>
       <ul>
         <% if question.try(:static?) %>
           <% question.skills.each do |skill| %>
@@ -34,8 +34,9 @@
           <li>Optional Feedback section.</li>
         <% end %>
       </ul>
-      <hr style="width: 50%; float: left">
-      <br>
+
+      <hr style="width: 50%" class="u-pull-left">
+      <div class="u-cf"></div>
     <% end %>
   <% end %>
 

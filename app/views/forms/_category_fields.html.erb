@@ -1,13 +1,14 @@
-<div class="form-fields card flat">
-  <br>
-  <% unless f.object.name == 'Free Response' %>
+<% unless f.object.name == 'Free Response' %>
+  <div class="form-fields card flat twelve columns">
+
+    <!--  Header -->
     <div class="row">
-      <div class="six columns">
-        <%= f.label :name, 'Category Type', :class => "title small bold" %>
-        <%= f.select :name, [ 'Core','Character','Technical','Free Response' ], :prompt => 'Select One' %>
-      </div>
-      <div class="six columns">
-        <%= link_to_remove_fields "remove", f %>
+      <div class="twelve columns">
+        <div class="u-pull-left">
+          <%= f.label :name, 'Category Type', :class => "title small bold" %>
+          <%= f.select :name, [ 'Core','Character','Technical','Free Response' ], :prompt => 'Select One' %>
+          <%= link_to_remove_fields "remove", f %>
+        </div>
       </div>
     </div>
 
@@ -20,13 +21,13 @@
       <span class="title small bold splash orange"><%= link_to_add_fields "Add Question", f, :questions %></span>
     </div>
 
+    <div class="row" id="questions">
+    </div>
+
     <%= f.fields_for :questions do |builder| %>
       <%= render 'question_fields', :f => f %>
     <% end %>
-
-    <br>
-
-  <% else %>
-    <%= render 'category_free_fields', :f => f %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <%= render 'category_free_fields', :f => f %>
+<% end %>

@@ -96,7 +96,7 @@ svg {
   > i         { font-size: 2rem }
 }
 
-span.splash > a { color: #F56643; }
+span.splash > a { color: #F56643; } // tmp
 
 .text {
   &.aside {
@@ -113,11 +113,6 @@ span.splash > a { color: #F56643; }
   }
   &.med-sml { font-size: 1.5rem }
   &.small { font-size: 1rem }
-}
-
-.label {
-  font-size: 2em;
-  font-weight: 400;
 }
 
 .section {
@@ -145,18 +140,19 @@ span.splash > a { color: #F56643; }
   float: left;
   text-align: center;
   font-weight: 300;
+  // Flat card
   &.flat:hover { box-shadow: 0px 2.5px 5px #C7C7C7 }
   &:hover {
      background-color: rgba(255, 255, 255, 0.80);
      box-shadow: 0px 5px 15px #C7C7C7;
     }
+  // Alert card
   &.alert {
     background-color: rgba(183, 28, 28, 0.80);
     color: white;
   }
-  // &.border { border: 1px solid black }
-  &.full { width: 100% }
-  &.charts { padding: 0 }
+  // Custom
+  &.class-details { padding: 0 }
   > img { padding: 1rem 0 2rem 0 }
   > .title { letter-spacing: 0.25rem }
   .header { padding: 0 2rem }
@@ -169,6 +165,10 @@ span.splash > a { color: #F56643; }
 .align-left { text-align: left }
 .align-right { text-align: right }
 .align-center { text-align: center }
+
+.blur {
+  filter: blur(7.5px);
+}
 
 .body {
   font-size: 2.5em;
@@ -198,9 +198,9 @@ span.splash > a { color: #F56643; }
   transform: translate(0, -50%);
   width: 0;
   height: 0;
-  border-top: 2rem solid transparent;
-  border-bottom: 2rem solid transparent;
-  border-left: 2rem solid white;
+  border-top: 1rem solid transparent;
+  border-bottom: 1rem solid transparent;
+  border-left: 1rem solid white;
 }
 
 .border-left {
@@ -247,6 +247,36 @@ a {
 a:hover {
   color: grey; }
 
+/* Tables
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child { padding-left: 0 }
+th:last-child,
+td:last-child { padding-right: 0 }
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+button,
+.button { margin-bottom: 1rem }
+input,
+textarea,
+select,
+fieldset { margin-bottom: 1.5rem }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form { margin-bottom: 2.5rem }
+
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -271,6 +301,14 @@ a:hover {
   content: "";
   display: table;
   clear: both; }
+
+/* Misc
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
 
 /* Badges
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -320,8 +358,7 @@ a:hover {
   .container {
     width: 80%; }
   .column,
-  .columns {
-    margin-left: 4%; }
+  .columns { margin-left: 4% }
   .column:first-child,
   .columns:first-child {
     margin-left: 0;
@@ -337,8 +374,9 @@ a:hover {
     margin-left: 0;
   }
 
+
   .one.column,
-  .one.columns                    { width: 4.66666666667%; }
+  .one.columns                    { width: 4.66666666667%  }
   .two.columns                    { width: 13.3333333333%; }
   .three.columns                  { width: 22%;            }
   .four.columns                   { width: 30.6666666667%; }
@@ -351,10 +389,23 @@ a:hover {
   .eleven.columns                 { width: 91.3333333333%; }
   .twelve.columns                 { width: 100%; margin-left: 0; }
 
-  // .eleven.columns.content {
-  //   width: 91.3333333333%;
-  //   padding: 1rem 0 0 3rem;
-  // }
+  .max-width {
+    margin-left: 0;
+    &.one.column,
+    &.one.columns                    { width: 8.3333333333%   }
+    &.two.columns                    { width: 16.6666666667%  }
+    &.three.columns                  { width: 25%             }
+    &.four.columns                   { width: 33.3333333333%  }
+    &.five.columns                   { width: 41.6666666667%  }
+    &.six.columns                    { width: 50%             }
+    &.seven.columns                  { width: 58.3333333333%  }
+    &.eight.columns                  { width: 66.6666666667%  }
+    &.nine.columns                   { width: 75%             }
+    &.ten.columns                    { width: 83.3333333333%  }
+    &.eleven.columns                 { width: 91.6666666667%  }
+    &.twelve.columns                 { width: 100%            }
+  }
+
   .twelve.columns.content {
     position: relative;
     top: 55px;

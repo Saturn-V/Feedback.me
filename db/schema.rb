@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227204929) do
+ActiveRecord::Schema.define(version: 20170301054519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,9 @@ ActiveRecord::Schema.define(version: 20170227204929) do
     t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.integer  "classroom_id"
+    t.integer  "form_id"
     t.index ["classroom_id"], name: "index_feedback_requests_on_classroom_id", using: :btree
+    t.index ["form_id"], name: "index_feedback_requests_on_form_id", using: :btree
     t.index ["user_id"], name: "index_feedback_requests_on_user_id", using: :btree
   end
 
@@ -146,6 +148,7 @@ ActiveRecord::Schema.define(version: 20170227204929) do
   add_foreign_key "answers", "responses"
   add_foreign_key "categories", "forms"
   add_foreign_key "feedback_requests", "classrooms"
+  add_foreign_key "feedback_requests", "forms"
   add_foreign_key "feedback_requests", "users"
   add_foreign_key "notifications", "responses"
   add_foreign_key "questions", "categories"
