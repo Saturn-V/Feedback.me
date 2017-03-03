@@ -1,6 +1,12 @@
 <% if !@classroom.nil? and !@classroom.new_record? %>
 
   <div class="header">
+    <%= link_to classroom_path(@classroom) do %>
+      <img src="/assets/back.svg" alt="back button" style="position: absolute">
+    <% end %>
+
+    <br>
+
     <div class="row">
       <div class="six columns">
         <span class="title medium">Forms</span>

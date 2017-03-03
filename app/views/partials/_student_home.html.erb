@@ -1,7 +1,5 @@
 <div class="header">
-  <span class="title medium">Hello, <%= current_user.first_name %> <%= current_user.last_name %></span>
-
-
+  <span class="title med-sml minor">Hello, <%= current_user.first_name %> <%= current_user.last_name %></span>
 </div>
 
 <div class="section">
@@ -9,10 +7,12 @@
     <div class="card six columns align-left">
       <% if !current_user.responses.incomplete.empty? %>
         <span class="title medium">Alerts</span>
-        <span>Pending Forms: <%= current_user.responses.incomplete.size %></span>
+        <hr>
+        <span class="text lg-med">Feedback</span>
+        <span class="text medium minor">Incomplete | <%= current_user.responses.incomplete.count %></span>
 
       <% else %>
-        <span class="title medium">No alerts! You have filed out all of your forms, good for you!</span>
+        <span class="text medium">No alerts! You have filed out all of your forms, good for you!</span>
       <% end %>
     </div>
   </div>

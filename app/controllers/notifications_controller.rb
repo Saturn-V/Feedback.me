@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
 
   def index
-    @incomplete_notifications = Notification.where(recipient: current_user).incomplete
+    @incomplete_notifications = Notification.where(recipient: current_user).incomplete.order("created_at DESC")
     @complete_notifications = Notification.where(recipient: current_user).completed
   end
 

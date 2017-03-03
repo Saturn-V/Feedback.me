@@ -1,40 +1,62 @@
 <div class="row">
-  <div class="twelve columns card class-details section first">
+  <div class="twelve columns card no-padding section first">
 
     <div class="row">
-      <div class="max-width ten columns">
-        <div class="header align-left">
+      <div class="max-width nine columns">
+        <div class="header align-left pad-left">
           <span class="title medium"><%= @classroom.name %></span>
           <span class="title small"><%= @instructor.last_name %>, <%= @instructor.first_name %></span>
           <span class="title small" style="display: block">Class Code | <%= @classroom.class_code %></span>
         </div>
         <hr>
-        <div id="Overview" class="chart">
+        <div id="Overview" class="chart u-full-width">
             <!-- <span class="title">Monthly Growth</span> -->
 
-            <div class="contained u-full-width">
-              <table class="u-full-width">
+            <div class="contained u-full-width pad-left">
+              <table>
                 <thead>
                   <tr>
                     <th>Name</th>
                     <th>Date Sent</th>
                     <th>Performance</th>
                     <th>Complete</th>
-                    <th>Incomplete</th>
+                    <!-- <th>Incomplete</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                  <% @feedback_requests.last(5).each do |feedback_request| %>
-                    <% submited = feedback_request.responses.submited.count %>
-                    <% incomplete = feedback_request.responses.incomplete.count %>
-                    <% performance = feedback_request.responses.instructor_performance %>
-                    <tr>
-                      <td><%= feedback_request.form.name %></td>
-                      <td><%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %></td>
-                      <td><%= performance %> / 5</td>
-                      <td><%= submited %></td>
-                      <td><%= incomplete %></td>
-                    </tr>
+                  <% if current_user.try(:instructor?) %>
+                    <% @instructor_feedback_requests.last(5).each do |feedback_request| %>
+                      <% submited = feedback_request.responses.submited.count %>
+                      <% incomplete = feedback_request.responses.incomplete.count %>
+                      <% performance = feedback_request.responses.instructor_performance %>
+                      <tr class="clickable">
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <%= feedback_request.form.name %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <% if submited == 0 %>
+                                -
+                              <% else %>
+                                <%= performance %> / 5
+                              <% end %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <%= submited %> / <%= submited + incomplete %>
+                            <% end %>
+                          </td>
+                      </tr>
+                    <% end %>
+                  <% else %>
                   <% end %>
                 </tbody>
               </table>
@@ -42,22 +64,32 @@
         </div>
       </div>
 
-      <div class="max-width two columns students">
-        <div class="header">
-          <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width' %>
-          <br>
-          <span class="title small">Students</span>
-          <!-- <br> -->
-          <!-- <br> -->
-        </div>
-        <hr>
-        <% @students.each do |student| %>
+      <div class="max-width three columns students">
+        <% if Classroom.students(@classroom).empty? %>
           <div class="row">
-            <div class="twelve columns">
-              <span class="text medium"><%= student.last_name %>, <%= student.first_name %></span>
+            <div class="card alert twelve columns align-left">
+              <span class="text medium">You must enroll students in this class before sending a form!</span>
+              <br />
+              <span class="text med-sml">Students can enroll in this class by using the code <%= @classroom.class_code %></span>
             </div>
           </div>
+        <% else %>
+          <div class="header pad-lr">
+            <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width', :style => 'margin-bottom: 9px;' %>
+            <br>
+            <span class="title small">Students</span>
+            <!-- <br> -->
+            <!-- <br> -->
+          </div>
+          <hr>
+        <% end %>
+        <div class="row">
+        <% @students.each do |student| %>
+            <div class=" max-width six columns student">
+              <span class="text medium"><%= student.last_name %>, <%= student.first_name %></span>
+            </div>
         <% end  %>
+      </div>
       </div>
 
     </div>
@@ -67,7 +99,7 @@
 
 <% if current_user.try(:instructor?) %>
   <div class="row">
-    <div class="twelve columns card section">
+    <div class="twelve columns card">
 
       <div class="header align-left">
         <span class="title medium">My Feedback</span>
@@ -77,26 +109,27 @@
         <!-- <%= @feedbacks.count %> -->
         <div class="row">
         <% @feedbacks.each do |feedback| %>
-            <div class="six columns card">
+            <div class="six columns">
               <div class="section">
                 <div class="row">
 
                   <div class="six columns align-left">
-                    <span class="title small">Submitted by <%= feedback.response.user.first_name %></span>
+                    <span class="text med-sml minor">Submitted by <%= feedback.response.user.first_name %></span>
                   </div>
                   <div class="six columns align-right">
-                    <span class="title small"><%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
+                    <span class="text med-sml minor"><%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
                   </div>
 
                 </div>
 
                 <div class="row">
                   <div class="twelve columns align-left">
-                    <span class="title small"><%= feedback.value_free %></span>
+                    <span class="text medium"><%= feedback.value_free %></span>
                   </div>
                 </div>
 
               </div>
+              <hr>
             </div>
         <% end %>
       </div>

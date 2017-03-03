@@ -1,13 +1,10 @@
 
+<div class="header">
+  <span class="title medium">Settings</span>
+</div>
+
 <div class="section">
 
-  <div class="header">
-    <%= link_to root_path do %>
-      <img src="/assets/back.svg" alt="back button">
-    <% end %>
-    <br />
-    <span class="title medium">Settings</span>
-  </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -54,7 +51,7 @@
   </div>
   <% end %>
 
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => 'button' %>
 </div>
 
 <!-- <div class="section">

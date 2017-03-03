@@ -1,7 +1,17 @@
 <div class="header">
+  <span>
+    <%= link_to root_path do %>
+      <img src="/assets/back.svg" alt="back button" style="position: absolute">
+    <% end %>
+  </span>
+
+  <br>
+
   <span class="title medium">Feedback Request Details</span>
   <span class="title small">Submitted: <%= @submitted_responses.count %> | Incomplete: <%= @incomplete_responses.count %> | Students: <%= @students.count %></span>
 </div>
+
+<hr>
 
 <div class="section">
   <span class="title medium">Students</span>
@@ -13,6 +23,8 @@
     <% end %>
   </div>
 </div>
+
+<hr>
 
 <div class="section">
   <span class="title medium">Feedback</span>

@@ -27,6 +27,13 @@
   }
 }
 
+.student {
+  border-left: 1px solid #E1E1E1;
+  &:first-child {
+    border-left: none;
+  }
+}
+
 .students {
   background-color: #eee;
   height: 68.75rem;

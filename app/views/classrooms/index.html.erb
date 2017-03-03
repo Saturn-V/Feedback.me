@@ -5,9 +5,9 @@
       </div>
       <div class="six columns">
         <% if current_user.try(:instructor?) %>
-          <%= button_to 'Create a classroom', new_classroom_path, method: :get, :class => 'button-primary u-pull-right' %>
+          <%= button_to 'Create a class', new_classroom_path, method: :get, :class => 'button-primary u-pull-right' %>
         <% else %>
-          <%= button_to 'Join a classroom', new_student_join_search_path, method: :get, :class => 'button-primary u-pull-right' %>
+          <%= button_to 'Join a class', new_student_join_search_path, method: :get, :class => 'button-primary u-pull-right' %>
         <% end %>
       </div>
   </div>
@@ -17,22 +17,7 @@
   <div class="row">
     <% @classrooms.each do |classroom| %>
 
-      <% if Classroom.students(classroom).empty? %>
 
-        <%= link_to classroom_path(classroom), :class => 'card four columns align-left' do %>
-          <span class="title small"><%= classroom.name %></span>
-          <span class="text medium">Subject: <%= classroom.subject %></span>
-
-          <div class="row">
-            <div class="card alert twelve columns align-left">
-              <span class="text medium">You must enroll students in this class before sending a form!</span>
-              <br />
-              <span class="text med-sml">Students can enroll in this class by using the code <%= classroom.class_code %></span>
-            </div>
-          </div>
-        <% end %>
-
-      <% else %>
 
         <div class="card four columns align-left">
           <%= link_to classroom_path(classroom) do %>
@@ -57,11 +42,9 @@
 
           </div>
           <% end %>
-          <br />
-          <%= button_to 'Get Feedback', classroom_forms_path(classroom), method: :get, :class => 'button-primary u-full-width' %>
         </div>
 
-      <% end %>
+
 
     <% end %>
   </div>

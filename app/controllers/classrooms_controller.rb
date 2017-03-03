@@ -12,7 +12,8 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     @instructor = @classroom.users.first
     @students = Classroom.students(@classroom)
-    @feedback_requests = current_user.feedback_requests.where(classroom: @classroom)
+    @instructor_feedback_requests = @instructor.feedback_requests.where(classroom: @classroom)
+    # @student_feedback_requests = 
     @feedbacks = []
     responses = @classroom.responses.where(is_complete: true)
     responses.each do |response|

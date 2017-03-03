@@ -1,5 +1,125 @@
 <span class="title medium"><%= @response.form.name %></span>
 
+<span class="title med-sml splash orange">Character and Core Mastery Rubric</span>
+
+<div class="row response-footer">
+
+  <div class="two columns">
+    <span class="text medium minor">Waiting</span>
+    <span class="text med-sml">
+      Exhibits fewer than 1/2 of the key characteristics of the competency without consistency.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Beginning</span>
+    <span class="text med-sml">
+      Exhibits 1/2 of the key characteristics but without consistency.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Undertaking</span>
+    <span class="text med-sml">
+      Exhibits 1/2 of the key characteristics consistently.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Approaching</span>
+    <span class="text med-sml">
+      Exhibits more than half of the key characteristics consistently.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Overtaking</span>
+    <span class="text med-sml">
+      Exhibits all the key characteristics consistently.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Innovating</span>
+    <span class="text med-sml">
+      Innovates new ways to embody and express the competency.
+    </span>
+  </div>
+
+</div>
+
+<span class="title med-sml splash orange">Technical Mastery Rubric</span>
+
+<div class="row response-footer">
+
+  <div class="two columns">
+    <span class="text medium minor">Waiting</span>
+    <span class="text med-sml">
+      Has never touched the technology
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Beginning</span>
+    <span class="text med-sml">
+      Has done a “hello world” in the technology.
+
+      Has completed one tutorial and read some of the documentation.
+
+      Can answer basic architectural questions about the technology but not with depth.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Undertaking</span>
+    <span class="text med-sml">
+      Has built a tutorial project or simple app in the technology
+
+      Has completed more than one tutorials and read the documentation and other articles and stackoverflow questions.
+
+      Can answer basic architectural questions about the technology with some depth.
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Approaching</span>
+    <span class="text med-sml">
+      Has built a project in the technology or used it in a project.
+
+      Has completed more than one tutorial and read much of the documentation and has contributed to stackoverflow questions or answers about the technology.
+
+      Can answer basic architectural questions about the technology with depth
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Overtaking</span>
+    <span class="text med-sml">
+      Has built more than one project in the technology or used it in more than one project.
+
+      Has helped others to master the technology
+
+      Has written blog posts that refer to the technology and now it works or how to extend it
+
+      Can answer advanced architectural questions about the technology
+    </span>
+  </div>
+
+  <div class="two columns">
+    <span class="text medium minor">Innovating</span>
+    <span class="text med-sml">
+      Has built many projects in the technology or used it in many projects
+
+      Has taught a class or written a tutorial on the technology.
+
+      Has contributed to the actual technology or to related technologies
+
+      Has built a stand-alone module or library that depends on or extends the technology
+    </span>
+  </div>
+
+</div>
+
 <%= form_for(@response) do |f| %>
   <% if @response.errors.any? %>
     <h4><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h4>
@@ -60,7 +180,7 @@
           <% else %>
             <p>
               <%= a.label :value_free, "Free Response Answer" %><br />
-              <%= a.text_field :value_free %><br />
+              <%= a.text_area :value_free %><br />
             </p>
           <% end %>
       <% end %>
@@ -73,33 +193,3 @@
 <% end %>
 
 <%= button_to "Back to Notifications", notifications_path, method: :get %>
-
-<!-- <div class="response-footer-wrapper">   -->
-  <div class="row response-footer">
-
-    <div class="card two columns">
-      <span>test</span>
-    </div>
-
-    <div class="card two columns">
-      <span>test</span>
-    </div>
-
-    <div class="card two columns">
-      <span>test</span>
-    </div>
-
-    <div class="card two columns">
-      <span>test</span>
-    </div>
-
-    <div class="card two columns">
-      <span>test</span>
-    </div>
-
-    <div class="card two columns">
-      <span>test</span>
-    </div>
-
-  </div>
-<!-- </div> -->

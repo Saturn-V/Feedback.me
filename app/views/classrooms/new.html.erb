@@ -1,4 +1,15 @@
-<h1>Create a Classroom!</h1>
+<div class="header">
+  <span>
+    <%= link_to classrooms_path do %>
+      <img src="/assets/back.svg" alt="back button" style="position: absolute">
+    <% end %>
+  </span>
+
+  <br>
+
+  <h1>Create a Class</h1>
+</div>
+
 
 <%= form_for(@classroom) do |f| %>
 
@@ -17,5 +28,3 @@
   </div>
 
 <% end %>
-
-<%= link_to 'Back To Home Page', root_path %>

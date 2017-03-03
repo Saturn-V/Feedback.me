@@ -3,15 +3,17 @@
 </div>
 
 <div class="section">
-  <% @incomplete_notifications.each do |notification| %>
-  <div class="card u-full-width">
-    <%= link_to(edit_response_path(notification.response)) do %>
-    <section>
-      <span class="sub title">Form Request</span>
-      <span><%= notification.response.form.assesment_type %></span>
-      <span>from <%= notification.sender.email %></span>
-    </section>
+  <div class="row">
+    <% @incomplete_notifications.each do |notification| %>
+      <div class="six columns card align-left">
+        <%= link_to(edit_response_path(notification.response)) do %>
+          <section>
+            <span class="sub title">Form Request</span>
+            <span><%= notification.response.form.assesment_type %></span>
+            <span>from <%= notification.sender.email %></span>
+          </section>
+        <% end %>
+      </div>
     <% end %>
   </div>
-  <% end %>
 </div>
