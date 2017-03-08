@@ -28,8 +28,9 @@
           <% students = Classroom.students(feedback_request.classroom).count %>
           <%= link_to responses_request_path(feedback_request), :class => 'four columns card border-left align-left' do %>
 
-              <span class="title small"><%= feedback_request.classroom.name %></span>
-              <span class="title small">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
+              <span class="title small splash blue"><%= feedback_request.form.name %></span>
+              <span class="title small splash blue"><%= feedback_request.classroom.name %></span>
+              <span class="title small"><%= (submited / (submited + incomplete) * 100).to_i %>% Completed</span>
               <span class="title x-sml">Submited: <%= submited %></span>
               <span class="title x-sml">Incomplete: <%= incomplete %></span>
               <span class="title x-sml">Student Count: <%= students %></span>

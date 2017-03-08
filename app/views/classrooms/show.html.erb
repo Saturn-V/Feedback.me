@@ -6,13 +6,14 @@
         <div class="header align-left pad-left">
           <span class="title medium"><%= @classroom.name %></span>
           <span class="title small"><%= @instructor.last_name %>, <%= @instructor.first_name %></span>
-          <span class="title small" style="display: block">Class Code | <%= @classroom.class_code %></span>
+
         </div>
         <hr>
         <div id="Overview" class="chart u-full-width">
             <!-- <span class="title">Monthly Growth</span> -->
+          <div class="contained u-full-width pad-left">
+            <% if current_user.try(:instructor?) %>
 
-            <div class="contained u-full-width pad-left">
               <% if Classroom.students(@classroom).empty? %>
                 <div class="row">
                   <div class="eight columns offset-by-two align-left">
@@ -40,44 +41,85 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% if current_user.try(:instructor?) %>
-                      <% @instructor_feedback_requests.last(5).each do |feedback_request| %>
-                        <% submited = feedback_request.responses.submited.count %>
-                        <% incomplete = feedback_request.responses.incomplete.count %>
-                        <% performance = feedback_request.responses.instructor_performance %>
-                        <tr class="clickable">
-                            <td>
-                              <%= link_to responses_request_path(feedback_request) do %>
-                                <%= feedback_request.form.name %>
+                    <% @instructor_feedback_requests.each do |feedback_request| %>
+                      <% submited = feedback_request.responses.submited.count %>
+                      <% incomplete = feedback_request.responses.incomplete.count %>
+                      <% performance = feedback_request.responses.instructor_performance %>
+                      <tr class="clickable">
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <%= feedback_request.form.name %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <% if submited == 0 %>
+                                -
+                              <% else %>
+                                <%= performance %> / 5
                               <% end %>
-                            </td>
-                            <td>
-                              <%= link_to responses_request_path(feedback_request) do %>
-                                <%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %>
-                              <% end %>
-                            </td>
-                            <td>
-                              <%= link_to responses_request_path(feedback_request) do %>
-                                <% if submited == 0 %>
-                                  -
-                                <% else %>
-                                  <%= performance %> / 5
-                                <% end %>
-                              <% end %>
-                            </td>
-                            <td>
-                              <%= link_to responses_request_path(feedback_request) do %>
-                                <%= submited %> / <%= submited + incomplete %>
-                              <% end %>
-                            </td>
-                        </tr>
-                      <% end %>
-                    <% else %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to responses_request_path(feedback_request) do %>
+                              <%= submited %> / <%= submited + incomplete %>
+                            <% end %>
+                          </td>
+                      </tr>
                     <% end %>
                   </tbody>
                 </table>
               <% end %>
-            </div>
+            <% else %> <!-- Student is signed in -->
+              <% if @student_feedback_responses.empty? %>
+              <div class="row">
+                <div class="eight columns offset-by-two align-left">
+                  <span class="title small minor">There is nothing here yet!</span>
+                  <span>Encourage your instructor to get feedback for your classroom, it'll be :fire:.</span>
+                </div>
+              </div>
+              <% else %>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Date Responded</th>
+                      <!-- <th>Performance</th> -->
+                      <th>Complete</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @student_feedback_responses.each do |feedback_response| %>
+                      <tr class="clickable">
+                        <td>
+                          <%= link_to response_path(feedback_response) do %>
+                            <%= feedback_response.form.name %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= link_to response_path(feedback_response) do %>
+                            <%= feedback_response.updated_at.strftime("%A #{feedback_response.updated_at.day.ordinalize}, %B") %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= link_to response_path(feedback_response) do %>
+                            <%= feedback_response.is_complete %>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <!-- <span><%= feedback_response %></span> -->
+                    <% end %>
+                  </tbody>
+                </table>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
 
@@ -92,11 +134,18 @@
           </div>
         <% else %>
           <div class="header pad-lr">
-            <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width', :style => 'margin-bottom: 9px;' %>
-            <br>
-            <span class="title small">Students</span>
-            <!-- <br> -->
-            <!-- <br> -->
+            <% if current_user.try(:instructor) %>
+              <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width', :style => 'margin-bottom: 9px;' %>
+              <br>
+              <span class="title small">Students</span>
+              <!-- <br> -->
+              <!-- <br> -->
+            <% else %>
+              <span class="title small" style="display: block; margin-bottom: 8px;">Class Code | <%= @classroom.class_code %></span>
+              <!-- <br> -->
+              <br>
+              <span class="title small">Students</span>
+            <% end %>
           </div>
           <hr>
         <% end %>

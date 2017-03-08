@@ -10,7 +10,7 @@
           <section>
             <span class="title med-sml">Feedback Request</span>
             <span class="title x-sml minor"><%= notification.response.form.assesment_type %></span>
-            <span class="title x-sml minor">from <%= notification.sender.first_name %>, <%= notification.sender.last_name %></span>
+            <span class="title x-sml minor">from <i class="splash orange" style="font-size: inherit;"><%= notification.sender.first_name %> <%= notification.sender.last_name %></i> in <i class="splash orange" style="font-size: inherit;"> <%= notification.response.classroom.name %></i></span>
             <span class="title x-sml minor">Sent <%= time_ago_in_words(notification.created_at) %> ago</span>
           </section>
         <% end %>

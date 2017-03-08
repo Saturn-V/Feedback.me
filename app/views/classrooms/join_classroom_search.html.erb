@@ -11,7 +11,7 @@
   </span>
 </div>
 
-<div class="card">
+<div class="section">
   <%= form_tag(new_student_join_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Class Code" %>
     <%= submit_tag "Submit", :name => nil %>
