@@ -14,12 +14,14 @@
 <%= form_for(@classroom) do |f| %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :name, 'Class Name', :class => 'text medium' %>
+    <span class="text med-sml">(e.g., CS59, Full-Stack JS)</span>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :subject %>
+    <%= f.label :subject, :class => 'text medium' %>
+    <span class="text med-sml">(e.g., English, Computer Science)</span>
     <%= f.text_field :subject %>
   </div>
 

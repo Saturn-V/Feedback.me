@@ -14,12 +14,12 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
     @classroom = @instructor.classrooms.build(name: 'Ruby on Rails', class_code: 'xyz', subject: 'CS')
 
     @form = Form.create(name: 'Sample Form', assesment_type: 'instructor')
-    @question_one = @form.questions.create(static: true, free: false, label: 'Sample Question', form: @form)
-    @question_two = @form.questions.create(static: false, free: true, label: 'Sample Question', form: @form)
+    @question_one = @form.competencies.create(static: true, free: false, label: 'Sample Question', form: @form)
+    @question_two = @form.competencies.create(static: false, free: true, label: 'Sample Question', form: @form)
 
     @response = Response.create(classroom: @classroom, form: @form, user: @student)
-    @answer = @response.answers.create(response: @response, question: @question_one)
-    @response.answers.create(response: @response, question: @question_two)
+    @answer = @response.answers.create(response: @response, competency: @question_one)
+    @response.answers.create(response: @response, competency: @question_two)
 
     # @notification = Notification.create(recipient: @student, sender: @instructor, response: @response)
   end

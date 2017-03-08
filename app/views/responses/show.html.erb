@@ -1,7 +1,7 @@
 <% @response.answers.each do |answer| %>
-  <li><%= answer.question.label %></li>
+  <li><%= answer.competency.label %></li>
   <ul>
-    <% if answer.question.try(:static?) %>
+    <% if answer.competency.try(:static?) %>
       <li><%= answer.value_static %></li>
     <% else %>
       <li><%= answer.value_free %></li>

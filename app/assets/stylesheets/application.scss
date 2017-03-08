@@ -86,11 +86,6 @@ svg {
   font-weight: 400;
   // Importance
   &.minor { color: grey }
-  // Colors
-  &.splash {
-    &.orange  { color: #F56643 }
-    &.blue    { color: #58A4B0 }
-  }
   // Styles
   &.bold      { font-weight: 500 }
   // Sizes
@@ -98,7 +93,14 @@ svg {
   &.medium    { font-size: 4rem }
   &.med-sml   { font-size: 3rem }
   &.small     { font-size: 2rem }
+  &.x-sml     { font-size: 1.5rem }
   > i         { font-size: 2rem }
+}
+
+// Colors
+.splash {
+  &.orange  { color: #F56643 }
+  &.blue    { color: #58A4B0 }
 }
 
 span.splash > a { color: #F56643; } // tmp remove me soon
@@ -613,6 +615,19 @@ label > .label-body {
   content: "";
   display: table;
   clear: both; }
+
+/* Utilities
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
 
  /* Navigation Menu
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

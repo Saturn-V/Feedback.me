@@ -30,9 +30,9 @@
         <% @forms.each do |f| %>
           <%= link_to classroom_form_path(@classroom, f), :class => 'six columns card align-left' do %>
             <% u = User.find(f.created_by_id) %>
-            <span class="title medium"><%= f.name.capitalize %></span>
-            <span class="title small">Form Type: <%= f.assesment_type.capitalize %></span>
-            <span class="title small">Created by: <%= u.first_name %> <%= u.last_name %></span>
+            <span class="title med-sml"><%= f.name.capitalize %></span>
+            <span class="title x-sml">Type | <%= f.assesment_type.capitalize %></span>
+            <span class="title x-sml">Created by | <%= u.first_name %> <%= u.last_name %></span>
           <% end %>
         <% end %>
 

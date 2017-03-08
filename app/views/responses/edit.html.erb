@@ -134,10 +134,10 @@
   <div class="section">
     <!-- <ol> -->
       <%= f.fields_for :answers do |a| %>
-        <% question = Question.find_by( id: a.object.question_id ) %>
-        <span class="title small splash orange"><%= question.label %></span>
+        <% competency = Competency.find_by( id: a.object.competency_id ) %>
+        <span class="title small splash orange"><%= competency.label %></span>
 
-        <% if question.try(:static?) %>
+        <% if competency.try(:static?) %>
           <div class="">
             <span class="title small"><%= a.label :value_static, "Select one aption that applies to you most." %></span>
             <div class="inline">
@@ -172,7 +172,7 @@
           </div>
 
             <ul>
-              <% question.skills.each do |skill| %>
+              <% competency.skills.each do |skill| %>
                 <li><%= skill.label %></li>
               <% end %>
             </ul>

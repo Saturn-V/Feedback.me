@@ -8,7 +8,7 @@ class FormsController < ApplicationController
   def show
     @classroom = Classroom.find(params[:classroom_id])
     @form = @classroom.forms.find(params[:id])
-    @questions = @form.questions
+    @competencies = @form.competencies
   end
 
   def new
@@ -16,7 +16,7 @@ class FormsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     @form = @classroom.forms.build
     3.times do
-      question = @form.sections.build.build_question
+      competency = @form.sections.build.build_competency
     end
 
     # @form.current_step = session[:form_step]

@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301054519) do
+ActiveRecord::Schema.define(version: 20170308040450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "response_id"
     t.integer  "value_static"
     t.string   "value_free"
-    t.integer  "question_id"
-    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+    t.integer  "competency_id"
+    t.index ["competency_id"], name: "index_answers_on_competency_id", using: :btree
     t.index ["response_id"], name: "index_answers_on_response_id", using: :btree
   end
 
@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 20170301054519) do
     t.integer "user_id"
     t.index ["classroom_id"], name: "index_classrooms_users_on_classroom_id", using: :btree
     t.index ["user_id"], name: "index_classrooms_users_on_user_id", using: :btree
+  end
+
+  create_table "competencies", force: :cascade do |t|
+    t.boolean  "static"
+    t.boolean  "free"
+    t.string   "label"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_competencies_on_category_id", using: :btree
+  end
+
+  create_table "competencies_skills", id: false, force: :cascade do |t|
+    t.integer "competency_id"
+    t.integer "skill_id"
+    t.index ["competency_id"], name: "index_competencies_skills_on_competency_id", using: :btree
+    t.index ["skill_id"], name: "index_competencies_skills_on_skill_id", using: :btree
   end
 
   create_table "feedback_requests", force: :cascade do |t|
@@ -84,23 +101,6 @@ ActiveRecord::Schema.define(version: 20170301054519) do
     t.datetime "updated_at",   null: false
     t.integer  "response_id"
     t.index ["response_id"], name: "index_notifications_on_response_id", using: :btree
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.boolean  "static"
-    t.boolean  "free"
-    t.string   "label"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "category_id"
-    t.index ["category_id"], name: "index_questions_on_category_id", using: :btree
-  end
-
-  create_table "questions_skills", id: false, force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "skill_id"
-    t.index ["question_id"], name: "index_questions_skills_on_question_id", using: :btree
-    t.index ["skill_id"], name: "index_questions_skills_on_skill_id", using: :btree
   end
 
   create_table "responses", force: :cascade do |t|
@@ -144,14 +144,14 @@ ActiveRecord::Schema.define(version: 20170301054519) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "competencies"
   add_foreign_key "answers", "responses"
   add_foreign_key "categories", "forms"
+  add_foreign_key "competencies", "categories"
   add_foreign_key "feedback_requests", "classrooms"
   add_foreign_key "feedback_requests", "forms"
   add_foreign_key "feedback_requests", "users"
   add_foreign_key "notifications", "responses"
-  add_foreign_key "questions", "categories"
   add_foreign_key "responses", "classrooms"
   add_foreign_key "responses", "feedback_requests"
   add_foreign_key "responses", "forms"

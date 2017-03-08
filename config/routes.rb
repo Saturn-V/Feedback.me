@@ -45,8 +45,8 @@ Rails.application.routes.draw do
     # end
   end
 
-  # Questions Routes
-  resources :questions, only: [:create, :update, :destroy]
+  # Competencies Routes
+  resources :competencies, only: [:create, :update, :destroy]
 
   # Pages Routes, for non model/RESTFUL related routes
   resources :pages, only: [:home,:landing]

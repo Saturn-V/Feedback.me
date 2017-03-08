@@ -8,11 +8,14 @@ function remove_fields(link) {
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
-  $(link).parent().after(content.replace(regexp, new_id));
+  // $(link).parent().after(content.replace(regexp, new_id));
 
-  // if (association === 'categories') {
-  //   $('#categories').append(content.replace(regexp, new_id));
-  // } else if (association === 'questions'){
+  if (association === 'categories') {
+    $(link).parent().next().after(content.replace(regexp, new_id));
+  } else {
+    $(link).parent().after(content.replace(regexp, new_id));
+  }
+  // } else if (association === 'competencies'){
   //   $(link).parent().next(content.replace(regexp, new_id));
   // }
 }

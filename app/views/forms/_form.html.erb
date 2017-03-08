@@ -1,4 +1,5 @@
 <%= form_for [@classroom, @form] do |f| %>
+
   <!-- ERRORS  -->
   <% if @form.errors.any? %>
     <div class="card">
@@ -36,6 +37,8 @@
       <span class="title med-sml">Competency Categories</span>
       <span class="title small bold splash orange"><%= link_to_add_fields "Add Category", f, :categories %></span>
 
+      <hr>
+      
       <div class="row" id="categories">
       </div>
 

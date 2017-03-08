@@ -6,6 +6,18 @@ class ResponsesController < ApplicationController
     @submitted_responses = @request.responses.submited
     @incomplete_responses = @request.responses.incomplete
     @students = Classroom.students(@request.classroom)
+    @classroom = @request.classroom
+
+    @feedbacks = []
+    responses = @request.responses.submited
+    responses.each do |response|
+      response.answers.each do |answer|
+        if !answer.value_free.nil?
+          @feedbacks += [answer]
+        end
+      end
+    end
+    @feedbacks.reverse!
   end
 
   def show

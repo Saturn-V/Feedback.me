@@ -13,9 +13,9 @@ class ClassroomsController < ApplicationController
     @instructor = @classroom.users.first
     @students = Classroom.students(@classroom)
     @instructor_feedback_requests = @instructor.feedback_requests.where(classroom: @classroom)
-    # @student_feedback_requests = 
+    # @student_feedback_requests =
     @feedbacks = []
-    responses = @classroom.responses.where(is_complete: true)
+    responses = @classroom.responses.submited
     responses.each do |response|
       response.answers.each do |answer|
         if !answer.value_free.nil?

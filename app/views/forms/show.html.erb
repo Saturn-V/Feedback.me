@@ -21,13 +21,13 @@
       <span class="title med-sml splash blue"><%= category.name %> Competencies</span>
     <% end %>
 
-    <% questions = category.questions %>
+    <% competencies = category.competencies %>
 
-    <% questions.each do |question| %>
-      <span class="title small bold"><%= question.label %></span>
+    <% competencies.each do |competency| %>
+      <span class="title small bold"><%= competency.label %></span>
       <ul>
-        <% if question.try(:static?) %>
-          <% question.skills.each do |skill| %>
+        <% if competency.try(:static?) %>
+          <% competency.skills.each do |skill| %>
             <li><%= skill.label %></li>
           <% end %>
         <% else %>

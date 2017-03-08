@@ -1,5 +1,6 @@
 <div class="header">
   <span class="title med-sml minor">Welcome, <%= current_user.first_name %> <%= current_user.last_name %></span>
+  <hr>
 </div>
 
 <div class="section">
@@ -14,7 +15,7 @@
       <% end %>
     </div>
   <% else %>
-    <span class="title medium">Form Responses Recieved</span>
+    <span class="title med-sml splash orange">Recent Feedback Requests</span>
     <% if @feedback_requests.empty? %>
       <div class="card">
         <span class="title">You haven't made any Feedback Requests.</span>
@@ -29,9 +30,9 @@
 
               <span class="title small"><%= feedback_request.classroom.name %></span>
               <span class="title small">Complete: <%= (submited / (submited + incomplete) * 100).to_i %>%</span>
-              <span class="text medium">Submited: <%= submited %></span>
-              <span class="text medium">Incomplete: <%= incomplete %></span>
-              <span class="text medium">Student Count: <%= students %></span>
+              <span class="title x-sml">Submited: <%= submited %></span>
+              <span class="title x-sml">Incomplete: <%= incomplete %></span>
+              <span class="title x-sml">Student Count: <%= students %></span>
 
 
 

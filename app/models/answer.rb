@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
   belongs_to :response
-  belongs_to :question
+  belongs_to :competency
 
-  scope :for_static, -> { joins(:question).where(questions: { static: true, free: false }) }
+  scope :for_static, -> { joins(:competency).where(competencies: { static: true, free: false }) }
 end

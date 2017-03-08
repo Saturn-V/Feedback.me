@@ -1,14 +1,12 @@
 <div class="form-fields card flat twelve columns">
-    <div class="row">
-      <div class="six columns">
+      <div class="u-pull-left align-left">
         <%= f.label :name, 'Competency Category', :class => "title small bold" %>
         <%= f.text_field :name, :readonly => true %>
-      </div>
-    </div>
 
-    <div class="">
-      <%= f.fields_for :questions do |builder| %>
-        <%= render 'question_free_fields', :f => builder %>
-      <% end %>
-    </div>
+        <div class="u-cf"></div>
+
+        <%= f.fields_for :competencies do |builder| %>
+          <%= render 'competency_free_fields', :f => builder %>
+        <% end %>
+      </div>
 </div>

@@ -1,12 +1,12 @@
 <% unless f.object.name == 'Free Response' %>
-  <div class="form-fields card flat twelve columns">
+  <div class="form-fields card flat twelve columns align-left">
 
     <!--  Header -->
     <div class="row">
       <div class="twelve columns">
         <div class="u-pull-left">
           <%= f.label :name, 'Category Type', :class => "title small bold" %>
-          <%= f.select :name, [ 'Core','Character','Technical','Free Response' ], :prompt => 'Select One' %>
+          <%= f.select :name, [ 'Core','Character','Technical' ], :prompt => 'Select One' %>
           <%= link_to_remove_fields "remove", f %>
         </div>
       </div>
@@ -15,17 +15,19 @@
     <br>
 
     <div class="row">
-      <div class="eleven columns offset-by-one column">
+      <div class="twelve columns">
         <span class="title med-sml">Competencies</span>
       </div>
-      <span class="title small bold splash orange"><%= link_to_add_fields "Add Question", f, :questions %></span>
+      <span class="title small bold splash orange"><%= link_to_add_fields "Add Competency", f, :competencies %></span>
     </div>
 
-    <div class="row" id="questions">
+    <!-- <hr> -->
+
+    <div class="row" id="competencies">
     </div>
 
-    <%= f.fields_for :questions do |builder| %>
-      <%= render 'question_fields', :f => f %>
+    <%= f.fields_for :competencies do |builder| %>
+      <%= render 'competency_fields', :f => f %>
     <% end %>
   </div>
 <% else %>

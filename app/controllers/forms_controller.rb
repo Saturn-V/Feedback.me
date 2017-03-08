@@ -9,10 +9,10 @@ class FormsController < ApplicationController
   def show
     @classroom = Classroom.find(params[:classroom_id])
     @form = Form.find(params[:id])
-    @questions = []
+    @competencies = []
     @categories = []
     @form.categories.each do |category|
-      @questions += (category.questions)
+      @competencies += (category.competencies)
       @categories.push(category)
     end
     # binding.pry
@@ -24,9 +24,9 @@ class FormsController < ApplicationController
     @form.assesment_type = 'Instructor'
     category = @form.categories.build
     category.name = 'Free Response'
-    question = category.questions.build
-    question.free = true
-    question.static = false
+    competency = category.competencies.build
+    competency.free = true
+    competency.static = false
   end
 
   def create
@@ -46,6 +46,6 @@ class FormsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def form_params
-    params.require(:form).permit(:name, :assesment_type, :created_by_id, :_destroy, categories_attributes: [:id, :name, :_destroy, questions_attributes: [:id, :label, :static, :free, :_destroy, skills_attributes: [:id, :label, :_destroy]]])
+    params.require(:form).permit(:name, :assesment_type, :created_by_id, :_destroy, categories_attributes: [:id, :name, :_destroy, competencies_attributes: [:id, :label, :static, :free, :_destroy, skills_attributes: [:id, :label, :_destroy]]])
   end
 end

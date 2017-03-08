@@ -13,53 +13,70 @@
             <!-- <span class="title">Monthly Growth</span> -->
 
             <div class="contained u-full-width pad-left">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Date Sent</th>
-                    <th>Performance</th>
-                    <th>Complete</th>
-                    <!-- <th>Incomplete</th> -->
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if current_user.try(:instructor?) %>
-                    <% @instructor_feedback_requests.last(5).each do |feedback_request| %>
-                      <% submited = feedback_request.responses.submited.count %>
-                      <% incomplete = feedback_request.responses.incomplete.count %>
-                      <% performance = feedback_request.responses.instructor_performance %>
-                      <tr class="clickable">
-                          <td>
-                            <%= link_to responses_request_path(feedback_request) do %>
-                              <%= feedback_request.form.name %>
-                            <% end %>
-                          </td>
-                          <td>
-                            <%= link_to responses_request_path(feedback_request) do %>
-                              <%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %>
-                            <% end %>
-                          </td>
-                          <td>
-                            <%= link_to responses_request_path(feedback_request) do %>
-                              <% if submited == 0 %>
-                                -
-                              <% else %>
-                                <%= performance %> / 5
+              <% if Classroom.students(@classroom).empty? %>
+                <div class="row">
+                  <div class="eight columns offset-by-two align-left">
+                    <span class="title small minor">There is nothing here yet!</span>
+                    <span>Get started by inviting some of your students using your unique <i class="splash orange">class code</i>.</span>
+                    <span><i class="splash orange"><%= @classroom.class_code %></i></span>
+                  </div>
+                </div>
+              <% elsif @instructor_feedback_requests.empty? %>
+                <div class="row">
+                  <div class="eight columns offset-by-two align-left">
+                    <span>Still nothing here yet...</span>
+                    <span>All done? Go ahead and request your first feedback!</span>
+                  </div>
+                </div>
+              <% else %>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Date Sent</th>
+                      <th>Performance</th>
+                      <th>Complete</th>
+                      <!-- <th>Incomplete</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if current_user.try(:instructor?) %>
+                      <% @instructor_feedback_requests.last(5).each do |feedback_request| %>
+                        <% submited = feedback_request.responses.submited.count %>
+                        <% incomplete = feedback_request.responses.incomplete.count %>
+                        <% performance = feedback_request.responses.instructor_performance %>
+                        <tr class="clickable">
+                            <td>
+                              <%= link_to responses_request_path(feedback_request) do %>
+                                <%= feedback_request.form.name %>
                               <% end %>
-                            <% end %>
-                          </td>
-                          <td>
-                            <%= link_to responses_request_path(feedback_request) do %>
-                              <%= submited %> / <%= submited + incomplete %>
-                            <% end %>
-                          </td>
-                      </tr>
+                            </td>
+                            <td>
+                              <%= link_to responses_request_path(feedback_request) do %>
+                                <%= feedback_request.created_at.strftime("%A #{feedback_request.created_at.day.ordinalize}, %B") %>
+                              <% end %>
+                            </td>
+                            <td>
+                              <%= link_to responses_request_path(feedback_request) do %>
+                                <% if submited == 0 %>
+                                  -
+                                <% else %>
+                                  <%= performance %> / 5
+                                <% end %>
+                              <% end %>
+                            </td>
+                            <td>
+                              <%= link_to responses_request_path(feedback_request) do %>
+                                <%= submited %> / <%= submited + incomplete %>
+                              <% end %>
+                            </td>
+                        </tr>
+                      <% end %>
+                    <% else %>
                     <% end %>
-                  <% else %>
-                  <% end %>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              <% end %>
             </div>
         </div>
       </div>
@@ -67,7 +84,7 @@
       <div class="max-width three columns students">
         <% if Classroom.students(@classroom).empty? %>
           <div class="row">
-            <div class="card alert twelve columns align-left">
+            <div class="card alert twelve columns align-left" style="margin-top: 0;">
               <span class="text medium">You must enroll students in this class before sending a form!</span>
               <br />
               <span class="text med-sml">Students can enroll in this class by using the code <%= @classroom.class_code %></span>
@@ -134,9 +151,9 @@
         <% end %>
       </div>
       <% else %>
-        <div class="card u-full-width">
-          <div class="section">
-            <span class="title medium">No Free Response Feedback has been submitted.</span>
+        <div class="u-full-width">
+          <div class="section align-left">
+            <span class="title small">No Feedback has been submitted.</span>
           </div>
         </div>
       <% end %>
