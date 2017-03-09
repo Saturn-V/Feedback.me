@@ -376,16 +376,15 @@ hr {
     margin-left: 0;
   }
 
-  .six.column.card:nth-child(odd),
-  .six.columns.card:nth-child(odd) {
-    margin-left: 0;
-  }
-
   .four.column.card:nth-child(4n),
   .four.columns.card:nth-child(4n) {
     margin-left: 0;
   }
 
+  .six.column:nth-of-type(odd),
+  .six.columns:nth-of-type(odd) {
+    margin-left: 0;
+  }
 
   .one.column,
   .one.columns                    { width: 4.66666666667%  }

@@ -30,7 +30,7 @@
 
               <span class="title small splash blue"><%= feedback_request.form.name %></span>
               <span class="title small splash blue"><%= feedback_request.classroom.name %></span>
-              <span class="title small"><%= (submited / (submited + incomplete) * 100).to_i %>% Completed</span>
+              <span class="title small"><%= (submited.to_f / (submited + incomplete) * 100).to_i %>% Completed</span>
               <span class="title x-sml">Submited: <%= submited %></span>
               <span class="title x-sml">Incomplete: <%= incomplete %></span>
               <span class="title x-sml">Student Count: <%= students %></span>

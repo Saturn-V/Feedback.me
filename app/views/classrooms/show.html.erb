@@ -2,15 +2,17 @@
   <div class="twelve columns card no-padding section first">
 
     <div class="row">
+
       <div class="max-width nine columns">
+
         <div class="header align-left pad-left">
           <span class="title medium"><%= @classroom.name %></span>
           <span class="title small"><%= @instructor.last_name %>, <%= @instructor.first_name %></span>
-
         </div>
+
         <hr>
+
         <div id="Overview" class="chart u-full-width">
-            <!-- <span class="title">Monthly Growth</span> -->
           <div class="contained u-full-width pad-left">
             <% if current_user.try(:instructor?) %>
 
@@ -75,14 +77,16 @@
                   </tbody>
                 </table>
               <% end %>
+
             <% else %> <!-- Student is signed in -->
+
               <% if @student_feedback_responses.empty? %>
-              <div class="row">
-                <div class="eight columns offset-by-two align-left">
-                  <span class="title small minor">There is nothing here yet!</span>
-                  <span>Encourage your instructor to get feedback for your classroom, it'll be :fire:.</span>
+                <div class="row">
+                  <div class="eight columns offset-by-two align-left">
+                    <span class="title small minor">There is nothing here yet!</span>
+                    <span>Encourage your instructor to get feedback for your classroom, it'll be :fire:.</span>
+                  </div>
                 </div>
-              </div>
               <% else %>
                 <table>
                   <thead>
@@ -118,9 +122,11 @@
                   </tbody>
                 </table>
               <% end %>
+
             <% end %>
           </div>
         </div>
+
       </div>
 
       <div class="max-width three columns students">
@@ -150,19 +156,20 @@
           <hr>
         <% end %>
         <div class="row">
-        <% @students.each do |student| %>
+          <% @students.each do |student| %>
             <div class=" max-width six columns student">
               <span class="text medium"><%= student.last_name %>, <%= student.first_name %></span>
             </div>
-        <% end  %>
-      </div>
+          <% end %>
+        </div>
       </div>
 
     </div>
-
   </div>
 </div>
 
+
+<!--  Individual Feedbacks Section -->
 <% if current_user.try(:instructor?) %>
   <div class="row">
     <div class="twelve columns card">
@@ -171,21 +178,25 @@
         <span class="title medium">My Feedback</span>
       </div>
       <hr>
-      <% if @feedbacks.count > 0 %>
+      <% if @feedbacks.empty? %>
+        <div class="u-full-width">
+          <div class="section align-left">
+            <span class="title small">No Feedback has been submitted.</span>
+          </div>
+        </div>
+      <% else %>
         <!-- <%= @feedbacks.count %> -->
         <div class="row">
-        <% @feedbacks.each do |feedback| %>
+          <% @feedbacks.each do |feedback| %>
             <div class="six columns">
-              <div class="section">
-                <div class="row">
 
+                <div class="row">
                   <div class="six columns align-left">
                     <span class="text med-sml minor">Submitted by <%= feedback.response.user.first_name %></span>
                   </div>
                   <div class="six columns align-right">
                     <span class="text med-sml minor"><%= time_ago_in_words(feedback.response.updated_at) %> ago</span>
                   </div>
-
                 </div>
 
                 <div class="row">
@@ -194,16 +205,9 @@
                   </div>
                 </div>
 
-              </div>
               <hr>
             </div>
-        <% end %>
-      </div>
-      <% else %>
-        <div class="u-full-width">
-          <div class="section align-left">
-            <span class="title small">No Feedback has been submitted.</span>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
