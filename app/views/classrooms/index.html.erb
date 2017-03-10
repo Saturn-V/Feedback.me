@@ -15,37 +15,43 @@
 
 <div class="section">
   <div class="row">
-    <% @classrooms.each do |classroom| %>
+    <% if @classrooms.empty? %>
+      <div class="card six columns align-left">
+        <span class="text medium">You haven't joined any classes, join one now!</span>
+      </div>
+    <% else %>
+      <% @classrooms.each do |classroom| %>
 
 
 
-        <div class="card four columns align-left">
-          <%= link_to classroom_path(classroom) do %>
-          <span class="title small"><%= classroom.name %></span>
-          <span class="text medium">Subject: <%= classroom.subject %></span>
-          <div class="row">
+          <div class="card four columns align-left">
+            <%= link_to classroom_path(classroom) do %>
+            <span class="title small"><%= classroom.name %></span>
+            <span class="text medium">Subject: <%= classroom.subject %></span>
+            <div class="row">
 
-            <div class="card four columns">
-              <span><%= Classroom.students(classroom).count %></span>
-              <span class="text small">Students</span>
+              <div class="card four columns">
+                <span><%= Classroom.students(classroom).count %></span>
+                <span class="text small">Students</span>
+              </div>
+
+              <div class="card four columns">
+                <span><%= classroom.feedback_requests.size %></span>
+                <span class="text small">Forms sent</span>
+              </div>
+
+              <div class="card four columns">
+                <span><%= classroom.responses.size %></span>
+                <span class="text small">Received</span>
+              </div>
+
             </div>
-
-            <div class="card four columns">
-              <span><%= classroom.feedback_requests.size %></span>
-              <span class="text small">Forms sent</span>
-            </div>
-
-            <div class="card four columns">
-              <span><%= classroom.responses.size %></span>
-              <span class="text small">Received</span>
-            </div>
-
+            <% end %>
           </div>
-          <% end %>
-        </div>
 
 
 
+      <% end %>
     <% end %>
   </div>
 </div>

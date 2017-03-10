@@ -5,14 +5,18 @@
 <div class="section">
   <div class="row">
     <div class="card six columns align-left">
-      <% if !current_user.responses.incomplete.empty? %>
+      <% if current_user.responses.empty? %>
+        <span class="text medium">It seems like you haven't received any feedback requests since the beginning of time....encourage your instructor to send some out!</span>
+      <% else %>
+        <% if !current_user.responses.incomplete.empty? %>
         <span class="title medium">Alerts</span>
         <hr>
         <span class="text lg-med">Feedback</span>
         <span class="text medium minor">Incomplete | <%= current_user.responses.incomplete.count %></span>
 
-      <% else %>
+        <% else %>
         <span class="text medium">No alerts! You have filed out all of your forms, good for you!</span>
+        <% end %>
       <% end %>
     </div>
   </div>
