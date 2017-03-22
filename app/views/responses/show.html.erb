@@ -1,10 +1,49 @@
-<% @response.answers.each do |answer| %>
-  <li><%= answer.competency.label %></li>
-  <ul>
-    <% if answer.competency.try(:static?) %>
-      <li><%= answer.value_static %></li>
+<div class="header">
+  <span class="title medium splash orange">Feedback Response Details</span>
+  <span class="title small"><%= @response.classroom.instructor.last_name %>, <%= @response.classroom.instructor.first_name %> | <%= @response.classroom.name %> | <%= @response.form.name %></span>
+</div>
+
+<hr>
+
+<div class="section">
+
+  <% @categories.each do |category| %>
+    <% if category.name == 'Free Response' %>
+      <span class="title med-sml splash blue"><%= category.name %> Section</span>
     <% else %>
-      <li><%= answer.value_free %></li>
+      <span class="title med-sml splash blue"><%= category.name %> Competencies</span>
     <% end %>
-  </ul>
-<% end %>
+
+    <% competencies = category.competencies %>
+
+    <% competencies.each do |competency| %>
+      <span class="title small bold"><%= competency.label %></span>
+      <ul>
+        <% if competency.try(:static?) %>
+          <% competency.skills.each do |skill| %>
+            <li><%= skill.label %></li>
+          <% end %>
+        <% else %>
+        <% end %>
+
+        <% @response.answers.each do |answer| %>
+          <% if answer.competency.category.name == category.name and answer.competency.label == competency.label %>
+            <li><%= answer.competency.label %></li>
+            <!-- <ul> -->
+              <span class="text med-sml splash orange">Answer</span>
+              <% if answer.competency.try(:static?) %>
+                <span class="text med-sml"><%= answer.value_static %></span>
+              <% else %>
+                <span class="text med-sml"><%= answer.value_free %></span>
+              <% end %>
+            <!-- </ul> -->
+          <% end %>
+        <% end %>
+      </ul>
+
+      <hr style="width: 50%" class="u-pull-left">
+      <div class="u-cf"></div>
+    <% end %>
+  <% end %>
+
+</div>

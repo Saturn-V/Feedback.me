@@ -22,4 +22,8 @@ class Classroom < ApplicationRecord
     end
     return false
   end
+
+  def instructor
+    self.users.first
+  end
 end

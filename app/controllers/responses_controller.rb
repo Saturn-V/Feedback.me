@@ -22,6 +22,13 @@ class ResponsesController < ApplicationController
 
   def show
     @response = current_user.responses.find(params[:id])
+    form = @response.form
+    @competencies = []
+    @categories = []
+    form.categories.each do |category|
+      @competencies += (category.competencies)
+      @categories.push(category)
+    end
   end
 
   def edit

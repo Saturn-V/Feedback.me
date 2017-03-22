@@ -1,45 +1,49 @@
 <div class="header align-center">
-  <span class="title large">Teachers, let's get started</span>
+  <span class="title medium">Teachers, let's get started</span>
 </div>
+
+<div class="align-left">
+  <%= link_to root_path, :class => 'three columns' do %>
+    <img src="/assets/back.svg" alt="back button" style="position: absolute">
+  <% end %>
+</div>
+
+<br>
 
 <div class="row">
-  <%= link_to root_path, :class => 'three columns' do %>
-  <img src="/assets/back.svg" alt="back button" style="position: absolute">
-  <% end %>
-  <div class="six columns offset-by-three columns">
+  <div class="twelve columns align-center">
     <%= render "devise/shared/links" %>
   </div>
-
 </div>
 
 
-<div class="row section center">
+<div class="row">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
   <%= devise_error_messages! %>
 
-  <div class="field six columns offset-by-three columns">
+  <div class="field twelve columns">
     <%= f.label :email, :class => 'title small' %>
     <%= f.email_field :email, autofocus: true, :class => 'u-full-width' %>
   </div>
 
   <br>
 
-  <div class="field six columns offset-by-three columns">
+  <div class="field twelve columns">
     <%= f.label :first_name, :class => 'title small' %>
     <%= f.text_field :first_name, autofocus: true, :class => 'u-full-width' %>
   </div>
 
   <br>
 
-  <div class="field six columns offset-by-three columns">
+  <div class="field twelve columns">
     <%= f.label :last_name, :class => 'title small' %>
     <%= f.text_field :last_name, autofocus: true, :class => 'u-full-width' %>
   </div>
 
   <br>
 
-  <div class="field six columns offset-by-three columns">
+  <div class="field twelve columns">
     <%= f.label :password, :class => 'title small' %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -49,13 +53,13 @@
 
   <br>
 
-  <div class="field six columns offset-by-three columns">
+  <div class="field twelve columns">
     <%= f.label :password_confirmation, :class => 'title small' %>
     <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'u-full-width' %>
   </div>
 
 
-  <div class="actions six columns offset-by-three columns">
+  <div class="actions twelve columns">
     <br>
     <%= f.submit "Sign up", :name => 'instructor_button' %>
   </div>

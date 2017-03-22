@@ -1,23 +1,26 @@
 <% if @classroom.blank? %>
-  <div class="header align-center card">
-    <span class="title medium">0 classrooms matched the code <i style="color: red;"><%= params[:search] %></i>.</span>
+  <div class="header align-center card flat">
+    <span class="title">0 classrooms matched the code <i style="color: red;"><%= params[:search] %></i>.</span>
   </div>
 <% else %>
-  <%= link_to @classroom.name, classroom_path(@classroom) %>
-  <span>Student Count: <%= @classroom.users.count - 1%></span>
+  <div class="header align-left card flat">
+    <%= link_to @classroom.name, classroom_path(@classroom), :class => 'title medium splash orange' %>
+    <span class="title small">Student Count: <%= @classroom.users.count - 1%></span>
 
-  <% if @is_enrolled %>
-    <h1>You are already enrolled in this classroom!</h1>
-    <span>Search for another class?</span>
-    <span><%= button_to 'Back', new_student_join_search_path, method: :get %></span>
-  <% else %>
-    <!--  REVISE SEARCH QUERY CODE -->
-    <%= form_for @classroom, url: join_classroom_path(@classroom) do |f| %>
-      <!-- Why the fuck is this even here. Literally no value being passed. -->
-      <%= f.hidden_field :users do |cf| %>
+    <% if @is_enrolled %>
+      <span class="title med-sml">You are already enrolled in this classroom!</span>
+      <hr>
+      <span>Search for another class?</span>
+      <span><%= button_to 'Back', new_student_join_search_path, method: :get %></span>
+    <% else %>
+      <!--  REVISE SEARCH QUERY CODE -->
+      <%= form_for @classroom, url: join_classroom_path(@classroom) do |f| %>
+        <!-- Why the fuck is this even here. Literally no value being passed. -->
+        <%= f.hidden_field :users do |cf| %>
+        <% end %>
+
+        <%= f.submit 'Join', :name => 'join' %>
       <% end %>
-
-      <%= f.submit 'Join', :name => 'join' %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

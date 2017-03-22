@@ -15,7 +15,6 @@ class FormsController < ApplicationController
       @competencies += (category.competencies)
       @categories.push(category)
     end
-    # binding.pry
   end
 
   def new

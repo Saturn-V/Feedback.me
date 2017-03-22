@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="twelve columns card no-padding section first">
+  <div class="twelve columns card flat no-padding section first">
 
     <div class="row">
 
@@ -147,7 +147,7 @@
               <!-- <br> -->
               <!-- <br> -->
             <% else %>
-              <span class="title small" style="display: block; margin-bottom: 8px;">Class Code | <%= @classroom.class_code %></span>
+              <span class="title small" style="display: block; margin-bottom: 8px;">Code | <%= @classroom.class_code %></span>
               <!-- <br> -->
               <br>
               <span class="title small">Students</span>
@@ -157,7 +157,7 @@
         <% end %>
         <div class="row">
           <% @students.each do |student| %>
-            <div class=" max-width six columns student">
+            <div class="max-width twelve columns student align-left" style="padding-left:2rem;">
               <span class="text medium"><%= student.last_name %>, <%= student.first_name %></span>
             </div>
           <% end %>
