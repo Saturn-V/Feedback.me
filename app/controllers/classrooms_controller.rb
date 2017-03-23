@@ -10,7 +10,7 @@ class ClassroomsController < ApplicationController
   def show
     # @classroom = @user.classrooms.find(params[:id])
     @classroom = Classroom.find(params[:id])
-    @instructor = @classroom.users.first
+    @instructor = @classroom.instructor
     @students = Classroom.students(@classroom)
 
     @instructor_feedback_requests = @instructor.feedback_requests.where(classroom: @classroom).last(5)

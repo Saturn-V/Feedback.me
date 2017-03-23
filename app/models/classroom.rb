@@ -9,7 +9,8 @@ class Classroom < ApplicationRecord
     where("class_code LIKE ?", "%#{search}%")
   end
 
-  scope :students, -> (classroom) { classroom.users.where.not(id: classroom.users.first) }
+  scope :students, -> (classroom) { classroom.users.where(student: true) }
+
 
   def enable_graph
     months = []
@@ -24,6 +25,6 @@ class Classroom < ApplicationRecord
   end
 
   def instructor
-    self.users.first
+    self.users.where(instructor: true).first
   end
 end
