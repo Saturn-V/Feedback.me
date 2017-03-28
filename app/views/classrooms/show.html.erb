@@ -141,7 +141,9 @@
         <% else %>
           <div class="header pad-lr">
             <% if current_user.try(:instructor) %>
-              <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width', :style => 'margin-bottom: 9px;' %>
+              <!-- <%= button_to 'Get Feedback', classroom_forms_path(@classroom), method: :get, :class => 'button-primary u-full-width', :style => 'margin-bottom: 9px;' %> -->
+              <br>
+              <br>
               <br>
               <span class="title small">Students</span>
               <!-- <br> -->
@@ -169,10 +171,31 @@
 </div>
 
 
+
+
 <!--  Individual Feedbacks Section -->
 <% if current_user.try(:instructor?) %>
   <div class="row">
-    <div class="twelve columns card">
+    <div class="twelve columns card flat">
+
+      <div class="header align-left">
+        <span class="title medium">Feedback Forms</span>
+      </div>
+
+      <% @forms.each do |f| %>
+        <%= link_to classroom_form_path(@classroom, f), :class => 'six columns card align-left' do %>
+          <% u = User.find(f.created_by_id) %>
+          <span class="title med-sml"><%= f.name.capitalize %></span>
+          <span class="title x-sml">Type | <%= f.assesment_type.capitalize %></span>
+          <span class="title x-sml">Created by | <%= u.first_name %> <%= u.last_name %></span>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="twelve columns card flat">
 
       <div class="header align-left">
         <span class="title medium">My Feedback</span>

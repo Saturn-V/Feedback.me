@@ -8,10 +8,10 @@ class ClassroomsController < ApplicationController
 
   # GET /classrooms/:id
   def show
-    # @classroom = @user.classrooms.find(params[:id])
     @classroom = Classroom.find(params[:id])
     @instructor = @classroom.instructor
     @students = Classroom.students(@classroom)
+    @forms = Form.all.order("created_at DESC")
 
     @instructor_feedback_requests = @instructor.feedback_requests.where(classroom: @classroom).last(5)
     @student_feedback_responses = @classroom.responses.by(current_user).last(5)
