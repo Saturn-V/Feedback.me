@@ -5,7 +5,7 @@ class ResponsesController < ApplicationController
     @request = current_user.feedback_requests.find(params[:id])
     @submitted_responses = @request.responses.submited
     @incomplete_responses = @request.responses.incomplete
-    @students = Classroom.students(@request.classroom)
+    @students = @request.classroom.students
     @classroom = @request.classroom
 
     @feedbacks = []

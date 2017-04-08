@@ -10,7 +10,7 @@ class ClassroomsController < ApplicationController
   def show
     @classroom = Classroom.find(params[:id])
     @instructor = @classroom.instructor
-    @students = Classroom.students(@classroom)
+    @students = @classroom.students
     @forms = Form.all.order("created_at DESC")
 
     @instructor_feedback_requests = @instructor.feedback_requests.where(classroom: @classroom).last(5)
@@ -63,36 +63,23 @@ class ClassroomsController < ApplicationController
   # Results
   def join_classroom
     @classroom = nil
-    @is_enrolled = true
+    is_enrolled = true
     # Params hash contains class_code that was [:SEARCH]ed
     if !params[:search].empty?
 
       @classroom = Classroom.find_by(class_code: params[:search])
 
-      unless @classroom.nil?
-        unless @classroom.users.include?(current_user)
-          @is_enrolled = false
-        end
+      unless @classroom.nil? or @classroom.students.include?(current_user)
+          is_enrolled = false
       end
 
     else
       redirect_to :back
       flash[:error] = "Please enter a class code."
     end
-
-    # if params[:join]
-    #   unless @classroom.users.include?(current_user)
-    #     @classroom.users << current_user
-    #   end
-    #
-    #   if current_user.save
-    #     redirect_to classrooms_path
-    #   end
-    # end
   end
 
   def join
-    current_user
     @classroom = Classroom.find(params[:id])
     unless @classroom.users.include?(current_user)
       @classroom.users << current_user

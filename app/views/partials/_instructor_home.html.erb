@@ -25,7 +25,7 @@
         <% @feedback_requests.each do |feedback_request| %>
           <% submited = feedback_request.responses.submited.count %>
           <% incomplete = feedback_request.responses.incomplete.count %>
-          <% students = Classroom.students(feedback_request.classroom).count %>
+          <% students = feedback_request.classroom.students.count %>
           <%= link_to responses_request_path(feedback_request), :class => 'four columns card border-left align-left' do %>
 
               <span class="title small splash blue"><%= feedback_request.form.name %></span>

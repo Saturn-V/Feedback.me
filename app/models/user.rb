@@ -14,4 +14,10 @@ class User < ApplicationRecord
   has_many :feedback_requests, dependent: :destroy
 
   has_many :forms, foreign_key: :created_by_id, dependent: :destroy
+
+  def join(class_code)
+    classroom = Classroom.where(class_code: class_code)
+    # classroom.users << self
+    # self.classrooms << classroom
+  end
 end

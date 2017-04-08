@@ -16,7 +16,7 @@
           <div class="contained u-full-width pad-left">
             <% if current_user.try(:instructor?) %>
 
-              <% if Classroom.students(@classroom).empty? %>
+              <% if @classroom.students.empty? %>
                 <div class="row">
                   <div class="eight columns offset-by-two align-left">
                     <span class="title small minor">There is nothing here yet!</span>
@@ -130,7 +130,7 @@
       </div>
 
       <div class="max-width three columns students">
-        <% if Classroom.students(@classroom).empty? %>
+        <% if @classroom.students.empty? %>
           <div class="row">
             <div class="card alert twelve columns align-left" style="margin-top: 0;">
               <span class="text medium">You must enroll students in this class before sending a form!</span>
