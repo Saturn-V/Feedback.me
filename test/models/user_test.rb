@@ -49,8 +49,10 @@ class UserTest < ActiveSupport::TestCase
     @student.join(classroom_3.class_code)
 
     assert @student.classrooms.size, 3
-    # assert @student.classrooms.first.
-    # puts @student.classrooms
+    assert @student.classrooms.first, classroom_1
+    assert @student.classrooms.second, classroom_2
+    assert @student.classrooms.third, classroom_3
+    # Add tests for checking if student object is in studets of classroom
   end
 
   test 'User(student) should receive a notification after instructor sends a feedback_request' do

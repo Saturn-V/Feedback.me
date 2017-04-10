@@ -22,12 +22,13 @@ class ClassroomTest < ActiveSupport::TestCase
       assert classroom.instructor, @instructor
   end
 
-  # test 'Classroom can have many students' do
-  #   classroom = @instructor.classrooms.create(name: 'Rails')
-  #   @student.join(classroom.class_code)
-  #
-  #   assert_equal classroom.students.size, 1
-  # end
+  test 'Classroom can have many students' do
+    classroom = @instructor.classrooms.create(name: 'Rails')
+    @student.join(classroom.class_code)
+    classroom.reload
+
+    assert_equal classroom.students.size, 1
+  end
 
   # test 'classroom has name' do
   #   assert_equal @classroom.name, 'Ruby on Rails'
