@@ -1,3 +1,7 @@
+# Feedback.me
+![Ruby](https://img.shields.io/badge/Ruby-2.4.1-brightgreen.svg)
+![Rails](https://img.shields.io/badge/Rails-5.0.1-brightgreen.svg)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
